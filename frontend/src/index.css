@@ -1,0 +1,246 @@
+@import "katex/dist/katex.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Theme tokens (light + dark share one monochrome palette)           */
+/*  Toggling the `.dark` class on <html> swaps these variables, so     */
+/*  every semantic utility (bg-paper, text-ink, border-paper-line,     */
+/*  text-accent, ...) inverts automatically — no per-component work.   */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --paper: #ffffff;
+  --paper-shade: #fafafa;
+  --paper-line: #e4e4e7;
+  --paper-line2: #d4d4d8;
+  --ink: #111113;
+  --ink-soft: #3f3f46;
+  --ink-mute: #71717a;
+  --ink-faint: #a1a1aa;
+  --accent: #002d62;
+  --accent-soft: #1a4b8c;
+  --code-border: #efeff1;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #0d0d0f;
+  --paper-shade: #16161a;
+  --paper-line: #26262b;
+  --paper-line2: #33333a;
+  --ink: #f4f4f5;
+  --ink-soft: #d4d4d8;
+  --ink-mute: #a1a1aa;
+  --ink-faint: #71717a;
+  --accent: #7aa2d8; /* lighter navy for legibility on dark */
+  --accent-soft: #9dbde6;
+  --code-border: #26262b;
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    @apply bg-ink text-paper;
+  }
+  /* Thin, unobtrusive scrollbar to keep the administrative feel. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--paper-line2) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-paper-line2;
+  }
+}
+
+@layer components {
+  /* Mono, uppercase, letterspaced metadata label (the "administrative" voice). */
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute;
+  }
+  .hairline {
+    @apply border-t border-paper-line;
+  }
+  .card {
+    @apply border border-paper-line bg-paper;
+  }
+  .chip {
+    @apply inline-flex items-center border border-paper-line2 px-2 py-0.5 font-mono text-[11px] text-ink-soft;
+  }
+  /* Buttons / interactive: monochrome with the single accent on hover. */
+  .btn {
+    @apply inline-flex items-center gap-2 border border-ink px-4 py-2 text-sm font-medium
+      transition-colors hover:bg-ink hover:text-paper;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 border border-paper-line2 px-4 py-2 text-sm
+      text-ink-soft transition-colors hover:border-ink hover:text-ink;
+  }
+  .link {
+    @apply text-accent underline decoration-paper-line2 underline-offset-2
+      transition-colors hover:decoration-accent;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Rendered note content (.prose-note)                                */
+/*  Styles the HTML produced by the backend renderer.                 */
+/* ------------------------------------------------------------------ */
+
+.prose-note {
+  @apply font-serif text-[1.0625rem] leading-[1.75] text-ink;
+}
+.prose-note h1,
+.prose-note h2,
+.prose-note h3,
+.prose-note h4 {
+  @apply font-sans font-semibold text-ink;
+  scroll-margin-top: 6rem;
+}
+.prose-note h1 {
+  @apply mt-10 mb-4 text-2xl;
+}
+.prose-note h2 {
+  @apply mt-9 mb-3 border-b border-paper-line pb-1 text-xl;
+}
+.prose-note h3 {
+  @apply mt-7 mb-2 text-lg;
+}
+.prose-note h4 {
+  @apply mt-6 mb-2 text-base;
+}
+.prose-note p {
+  @apply my-4;
+}
+.prose-note a {
+  @apply text-accent underline decoration-paper-line2 underline-offset-2
+    transition-colors hover:decoration-accent;
+}
+.prose-note ul,
+.prose-note ol {
+  @apply my-4 pl-6;
+}
+.prose-note ul {
+  @apply list-disc;
+}
+.prose-note ol {
+  @apply list-decimal;
+}
+.prose-note li {
+  @apply my-1;
+}
+.prose-note blockquote {
+  @apply my-5 border-l-2 border-paper-line2 pl-4 italic text-ink-soft;
+}
+.prose-note code {
+  @apply bg-paper-shade px-1.5 py-0.5 font-mono text-[0.85em] text-ink;
+  border: 1px solid var(--code-border);
+}
+.prose-note pre {
+  @apply my-5 overflow-x-auto border border-paper-line bg-paper-shade p-4;
+}
+.prose-note pre code {
+  @apply bg-transparent p-0 text-[0.85rem];
+  border: 0;
+}
+.prose-note table {
+  @apply my-5 w-full border-collapse text-sm;
+}
+.prose-note th,
+.prose-note td {
+  @apply border border-paper-line px-3 py-2 text-left;
+}
+.prose-note th {
+  @apply bg-paper-shade font-sans font-semibold;
+}
+.prose-note hr {
+  @apply my-8 border-paper-line;
+}
+.prose-note img {
+  @apply my-4 h-auto max-w-full border border-paper-line;
+}
+.prose-note .embed-center {
+  @apply mx-auto block;
+}
+
+/* Wikilinks: subtle, dotted; unresolved ("ghost") notes appear muted. */
+.prose-note .wikilink {
+  @apply text-accent no-underline;
+  border-bottom: 1px dotted var(--ink-faint);
+}
+.prose-note .wikilink:hover {
+  border-bottom-color: var(--accent);
+}
+.prose-note .wikilink-unresolved {
+  @apply text-ink-mute;
+  border-bottom-style: dashed;
+}
+.prose-note mark {
+  @apply bg-paper-line2 text-ink;
+}
+.prose-note .block-ref {
+  @apply text-ink-faint;
+}
+
+/* Obsidian callouts -> clean bordered boxes. */
+.prose-note .callout {
+  @apply my-5 border border-paper-line bg-paper-shade p-0;
+}
+.prose-note .callout-title {
+  @apply border-b border-paper-line px-4 py-2 font-sans text-sm font-semibold
+    uppercase tracking-wide text-ink;
+}
+.prose-note .callout-body {
+  @apply px-4 py-3 text-[1rem];
+}
+.prose-note .callout-body > :first-child {
+  margin-top: 0;
+}
+.prose-note .callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* KaTeX block spacing. */
+.prose-note .katex-display {
+  @apply my-5 overflow-x-auto;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Print (CV -> PDF via browser "Save as PDF")                        */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  aside {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "main": {
+    "id": "dc934c683450e847",
+    "type": "split",
+    "children": [
+      {
+        "id": "a7aab36f7fcc3379",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6cecbb8f4f2e3474",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "000/z.RAW NOTES/ENSAM IAGI → Machine Learning Systems Engineer.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "ENSAM IAGI → Machine Learning Systems Engineer"
+            }
+          },
+          {
+            "id": "e346a1b56b8200eb",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk"
+            }
+          },
+          {
+            "id": "3a3efa82b1339eb1",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James"
+            }
+          },
+          {
+            "id": "dbd7d39a482279ef",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library"
+            }
+          },
+          {
+            "id": "cfd12c7658560910",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library"
+            }
+          }
+        ]
+      },
+      {
+        "id": "27636163eb1a4d42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c07a3510df275d61",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/Elimination Using Matrices.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Elimination Using Matrices"
+            }
+          },
+          {
+            "id": "9862a691f7e6239a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs/Proof Strategies.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Proof Strategies"
+            }
+          },
+          {
+            "id": "45b2cc7719b2f3cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Absolute Convergence and the Ratio and Root Tests.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Absolute Convergence and the Ratio and Root Tests"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8c50e56ea3a79813",
+    "type": "split",
+    "children": [
+      {
+        "id": "04ee4b86d23d9c96",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "733e29fdadfe1e30",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "b6315c5389de0b4b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0e6a8e3f7632b506",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 327.8999938964844,
+    "collapsed": true
+  },
+  "right": {
+    "id": "59406b7bc5081323",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e3d16ac3bb69156",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bdef584b9f1296b2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "a99dd3f6bf345dc5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "3caa6d19ae19d0d1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "162229ff5ba5b945",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "62708d2e32784774",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "f4ac6b222dd8582e",
+            "type": "leaf",
+            "state": {
+              "type": "calendar-period-week",
+              "state": {},
+              "icon": "calendar-check",
+              "title": "Calendar period week notes"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "terminal:Open terminal": false,
+      "notebook-navigator:Notebook Navigator": false,
+      "calendar-period-week-notes:Open Calendar Period Week Notes": false
+    }
+  },
+  "active": "6cecbb8f4f2e3474",
+  "lastOpenFiles": [
+    "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf",
+    "300 TECHNOLOGY & COMPUTING/340 Data Science & AI/341 Machine Learning/Supervised Learning/Supervised Learning.md",
+    "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Absolute Convergence and the Ratio and Root Tests.md",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/362 Computer Networks/Cours Moughit/2. Réseaux et Protocoles - Théorèmes Fondamentaux.md",
+    "{10184670-0C83-4EF5-B725-4BAA27C7C9A2}.png",
+    "{8F030B55-7D0F-4563-BA1E-E9A8FB0530D4}.png",
+    "{E482057C-776C-42EF-AC04-08738DEDD004}.png",
+    "{24814F95-6813-4F71-B2CC-DB196B58B7FB}.png",
+    "{C573E9A2-2FC8-458A-827B-093A94361A6B}.png",
+    "Pasted image 20261005125656.png",
+    "Pasted image 20261005125611.png",
+    "Pasted image 20261005125531.png",
+    "{169D0688-0ACA-4F13-B44D-95E71A42A4C6}.png",
+    "{388F580E-36D2-4759-8304-95CDCB8CE95B}.png",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/362 Computer Networks/Cours Moughit/1. Réseaux et Protocoles - Concepts de Base et Modèle OSI.md",
+    "300 TECHNOLOGY & COMPUTING/340 Data Science & AI/341 Machine Learning/Unsupervised learning/Pr. Azzouagh/K-Means (Méthode de Partitionnement).md",
+    "000/z.RAW NOTES/ENSAM IAGI → Machine Learning Systems Engineer.md",
+    "000/z.RAW NOTES/university/tracking/Week 2.md",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Array-Based Sequences/03. Python Sequence Operations & Complexity.md",
+    "000/z.RAW NOTES/university/tracking/Week 1.md",
+    "Excalidraw/Drawing 2026-02-21 13.23.21.excalidraw.md",
+    "000/z.RAW NOTES/Td 1- structure des donnes.md",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Array-Based Sequences/05. Multidimensional Arrays.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs/Proof Strategies.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/Elimination Using Matrices.md",
+    "100 FORMAL SCIENCES/140 Logic & Set Theory/145 Set Theory/More Operations on Sets.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/C/Pointers and Arrays.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs",
+    "000/z.RAW NOTES/Zsh & Micromambda - Terminal.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/C/Pointers.md",
+    "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Alternating Series.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/The Comparison Tests.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/The Integral Test and Estimates of Sums.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Series.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/Systems of Equations and Inequalities/Systems of Inequalities.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Sequences.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/The idea of Elimination.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations",
+    "~syncthing~Pasted image 20260927230652.png.tmp",
+    "100 FORMAL SCIENCES/120 Applied Mathematics/121 Optimization/Recherche Operationele",
+    "~syncthing~Pasted image 20260925234525.png.tmp",
+    "000/z.RAW NOTES/university/tracking",
+    "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"0f7ad53a3acd0c4e","type":"text","text":"Store\n---\nStoreKey\nIdCity\nStoreName\nStoreAddress\nManagerName","x":220,"y":-250,"width":250,"height":215},
+		{"id":"2ca84f205e15cbea","type":"text","text":"Promotion\n---\nall of teh other stuff","x":-477,"y":238,"width":250,"height":202},
+		{"id":"c6fa1660f313621f","type":"text","text":"Time\n---\nalso all of the normal stuff","x":59,"y":192,"width":250,"height":288},
+		{"id":"c14b1bbb9bbf8bde","type":"text","text":"City\n---\nIdCity\nIdState\nCityName\nCityPopulation\nCityArea","x":636,"y":-155,"width":250,"height":202},
+		{"id":"81be24f62e19b809","type":"text","text":"Product\n------------------\nProductKey\nIdCategorie\nProductNumber\nProductName\nDescription\nSize","x":-560,"y":-327,"width":250,"height":307},
+		{"id":"62412edced09b1b3","type":"text","text":"Sales\n-----------------------------\nProductKey\nStoreKey\nPromotionKey\nTimeKey\nAmount\nQuantity","x":-171,"y":-454,"width":230,"height":255},
+		{"id":"609137d734b3031f","type":"text","text":"State\n---\nIdState\nStateName\nStatePopulation\nStateArea\nStateMajoreActivity\n","x":636,"y":160,"width":250,"height":234},
+		{"id":"a96989040e9a45e7","type":"text","text":"Category\n----------------\nIdCategorie\nIdDepartemnent\nCategoryNAme\nCategoryDescr\n","x":-940,"y":-225,"width":250,"height":190},
+		{"id":"bfe07dc21747337b","type":"text","text":"Departement\n---------\nIdDepartement\nDepartementName\nDepartementDescr","x":-900,"y":-507,"width":250,"height":180}
+	],
+	"edges":[
+		{"id":"4db2be47527004a3","fromNode":"62412edced09b1b3","fromSide":"left","toNode":"81be24f62e19b809","toSide":"right"},
+		{"id":"d96920d707b3038b","fromNode":"81be24f62e19b809","fromSide":"left","toNode":"a96989040e9a45e7","toSide":"right"},
+		{"id":"0631dd40c3c08f3b","fromNode":"62412edced09b1b3","fromSide":"right","toNode":"0f7ad53a3acd0c4e","toSide":"left"},
+		{"id":"7082f6577852e471","fromNode":"62412edced09b1b3","fromSide":"bottom","toNode":"2ca84f205e15cbea","toSide":"top"},
+		{"id":"85eccf24cce4d50a","fromNode":"62412edced09b1b3","fromSide":"bottom","toNode":"c6fa1660f313621f","toSide":"top"},
+		{"id":"82d5a48b1842fcd2","fromNode":"0f7ad53a3acd0c4e","fromSide":"right","toNode":"c14b1bbb9bbf8bde","toSide":"top"},
+		{"id":"c8361f1ca5c5ab31","fromNode":"c14b1bbb9bbf8bde","fromSide":"bottom","toNode":"609137d734b3031f","toSide":"top"},
+		{"id":"431025dad47c7622","fromNode":"a96989040e9a45e7","fromSide":"top","toNode":"bfe07dc21747337b","toSide":"bottom"}
+	]
+}

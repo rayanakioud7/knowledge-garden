@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rayan Akioud — a monochrome knowledge garden and engineering portfolio."
+    />
+    <title>Rayan Akioud · Knowledge Garden</title>
+    <!-- Fonts: editorial sans + serif body + mono metadata. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Default to LIGHT mode. Dark mode is only applied when the user has
+      // explicitly toggled it (persisted in localStorage). This avoids the
+      // page flashing dark just because the OS is in dark mode.
+      (function () {
+        try {
+          if (localStorage.getItem("garden-theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Maple",
+  "theme": "moonstone",
+  "enabledCssSnippets": [
+    "Image Align"
+  ],
+  "accentColor": "#b3a8a8",
+  "textFontFamily": "DejaVu Math TeX Gyre,TeX Gyre Schola,TeX Gyre Pagella,TeX Gyre Termes,TeX Gyre Bonum,DejaVu Sans,Arial,Cambria Math",
+  "baseFontSizeAction": true
+}

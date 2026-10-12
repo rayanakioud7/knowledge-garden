@@ -1,0 +1,22 @@
+# Optional services for the Knowledge Garden.
+#
+#   docker compose up -d      # start Meilisearch
+#
+# The Django backend works WITHOUT this file (it falls back to an in-memory
+# search). Bring Meilisearch up when you want production-grade full-text search
+# with typo tolerance, then set MEILISEARCH_URL / MEILISEARCH_KEY in backend/.env.
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.10
+    container_name: garden-meilisearch
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILISEARCH_KEY:-garden-master-key-change-me}
+      - MEILI_ENV=development
+    volumes:
+      - meili_data:/meili_data
+
+volumes:
+  meili_data:

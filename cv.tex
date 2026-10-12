@@ -1,0 +1,141 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=*,labelsep=6pt,topsep=0pt,partopsep=0pt,itemsep=1.5pt,parsep=0pt}
+
+\definecolor{darkblue}{RGB}{0, 45, 98}
+\definecolor{accentgray}{RGB}{80, 80, 90}
+
+\titleformat{\section}{\large\bfseries\color{darkblue}\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{4pt}
+
+\newcommand{\name}[1]{\centerline{\Huge\bfseries\color{darkblue} #1}\vspace{2pt}}
+\newcommand{\contact}[1]{\centerline{\small\color{accentgray} #1}\vspace{6pt}}
+
+\begin{document}
+
+% ===================== HEADER =====================
+\name{RAYAN AKIOUD}
+\contact{
+    Casablanca, Morocco \quad $\bullet$ \quad +212 684 996 265 \quad $\bullet$ \quad
+    \href{mailto:rayanakioud8@gmail.com}{rayanakioud8@gmail.com} \quad $\bullet$ \quad
+    \href{https://github.com/rayanakioud7}{github.com/rayanakioud7}
+}
+
+% ===================== PROFESSIONAL SUMMARY =====================
+\section{Profile}
+\justify
+Machine Learning Systems Engineering student with a rigorous, self-directed curriculum in pure mathematics and low-level software architecture. Experienced in building end-to-end AI systems—from custom neural network pipelines and hardware-accelerated inference to decoupled full-stack deployments. Focused on bridging the gap between theoretical ML research and production-grade, hardware-optimized infrastructure.
+
+% ===================== EDUCATION =====================
+\section{Education}
+
+\textbf{Diplôme d'Ingénieur d'État en Intelligence Artificielle et Génie Informatique (IAGI)} \hfill \textit{2026 -- Present (Expected 2029)}\\
+École Nationale Supérieure d'Arts et Métiers (ENSAM) \hfill \textit{Casablanca, Morocco}\\
+{\small\color{accentgray}
+\textbf{Core Engineering:} Cloud Computing, Big Data \& DevOps, Distributed Systems, Advanced Algorithms, Enterprise Architecture.\\
+\textbf{AI \& Systems Specialization:} Deep Learning, Computer Vision, Generative AI, ML Systems Architecture, GPU Optimization, Custom Autograd Engines.
+}
+
+\vspace{4pt}
+
+
+\textbf{Bachelor's Degree in Data Science and Business Intelligence (SDID)} \hfill \textit{2026}\\
+Faculty of Sciences and Technology (FST) \hfill \textit{Mohammedia, Morocco}
+
+\vspace{4pt}
+
+\textbf{DEUST --- Mathematics, Computer Science and Physics (MIP)} \hfill \textit{2023 -- 2025}\\
+Faculty of Sciences and Technology (FST) \hfill \textit{Mohammedia, Morocco}\\
+{\small\color{accentgray}Core foundational studies in Linear Algebra, Calculus, Probability, and Classical Mechanics.}
+
+% ===================== TECHNICAL EXPERTISE =====================
+\section{Technical Expertise}
+\begin{itemize}
+    \item \textbf{Machine Learning \& Systems:} PyTorch, Custom Autograd Engines, Transformers, HuggingFace, AMD ROCm / NVIDIA CUDA, Mixed Precision Training.
+    \item \textbf{Languages:} Python (NumPy, Pandas), C/C++, Java (Spring Boot), SQL, Bash.
+    \item \textbf{Infrastructure \& DevOps:} Docker, Linux/POSIX, Git, UML Modeling, Relational Databases (PostgreSQL, Oracle).
+    \item \textbf{Mathematics:} Linear Algebra, Multivariable Calculus, Inferential Statistics, Optimization Theory.
+\end{itemize}
+
+% ===================== PROJECTS =====================
+\section{Key Projects}
+
+% Project 1 — Sign Language (SPOTLIGHT)
+\textbf{\href{https://github.com/rayanakioud7/signlang}{Real-Time American Sign Language Recognition System}} \hfill \textit{2026}
+\begin{itemize}
+    \item Designed and trained a \textbf{1D-CNN + Transformer Encoder} architecture ($\approx$21M parameters) from scratch for 250-way sign classification.
+    \item Developed a spatial feature pipeline using 115 MediaPipe landmarks, computing position and velocity vectors relative to shoulder baselines (690 features/frame).
+    \item Executed 13 structured training experiments across 4 datasets, securing an \textbf{86.89\%} Top-1 accuracy on entirely unseen signers, and 100\% user-specific accuracy.
+    \item Engineered a native desktop monitoring application (\textbf{PySide6}) utilizing local AMD RX 7900 XT ROCm compute for live, low-latency inference at 30 FPS.
+\end{itemize}
+
+\vspace{4pt}
+
+% Project 2 — Smart-Eval
+\textbf{Smart-Eval: Multimodal Educational Assessment System} \hfill \textit{2026}
+\begin{itemize}
+    \item Developed an automated processing engine to scan, categorize, and evaluate unstructured exam documents.
+    \item Integrated \textbf{YOLO} through \textbf{Roboflow} to handle document layout analysis and parse boundaries on structural paper surfaces.
+    \item Deployed a Vision-Language Model (\textbf{VLM OCR}) pipeline to handle text extraction from challenging handwritten responses.
+    \item Connected a PyTorch \textbf{CamemBERT-large} classifier to contextualize raw text streams into concrete curricula nodes.
+\end{itemize}
+
+\vspace{4pt}
+
+% Project 3 — SDID Portal
+\textbf{\href{https://github.com/rayanakioud7/SDID-portal-fullstack}{SDID Portal: Academic Management Architecture}} \hfill \textit{2025}
+\begin{itemize}
+    \item Built a decoupled web framework featuring a secure \textbf{Java Spring Boot} API backend and a responsive \textbf{React.js} UI.
+    \item Implemented clean design separation via the Controller-Service-Repository pattern to handle transactional database operations safely.
+    \item Enforced persistent state security using explicit Role-Based Access Control (RBAC) schemas over a MySQL backend.
+\end{itemize}
+
+\vspace{4pt}
+
+% Project 4 — Adam Optimizer
+\textbf{Interactive 3D Optimization Engine (Adam Optimizer)} \hfill \textit{2025}
+\begin{itemize}
+    \item Implemented the underlying calculus and weight update mechanisms of the Adam optimizer explicitly in Python and MATLAB.
+    \item Bound the mathematical backend to a interactive \textbf{React.js + Plotly.js} canvas to observe hyperparameter convergence behavior in real-time.
+\end{itemize}
+
+% ===================== PROFESSIONAL EXPERIENCE =====================
+\section{Experience}
+
+\textbf{Content Moderator} \hfill \textit{July 2024 -- June 2025}\\
+Teleperformance \hfill \textit{Casablanca, Morocco}
+\begin{itemize}
+    \item Moderated high-volume digital environments under strict operational parameters while securing a 100\% compliance record.
+    \item Sustained high academic standings while working consistent night-shift operations over a continuous 12-month period.
+\end{itemize}
+
+\vspace{4pt}
+
+\textbf{Customer Relations Advisor} \hfill \textit{July 2025 -- September 2025}\\
+IOSsolutions \hfill \textit{Casablanca, Morocco}
+\begin{itemize}
+    \item Managed fast-paced bilingual (French/English) inbound communications, resolving client issues within target resolution windows.
+\end{itemize}
+
+% ===================== CERTIFICATIONS =====================
+\section{Certifications}
+\textbf{Supervised Machine Learning: Regression and Classification} --- DeepLearning.AI \& Stanford \hfill \textit{2026}\\
+\textbf{Introduction to SQL} --- Simplilearn SkillUp \hfill \textit{2025}
+
+% ===================== LANGUAGES =====================
+\section{Languages}
+\centerline{
+    \textbf{Arabic:} Native \quad $\bullet$ \quad
+    \textbf{French:} Full Professional Proficiency \quad $\bullet$ \quad
+    \textbf{English:} Full Professional Proficiency
+}
+
+\end{document}

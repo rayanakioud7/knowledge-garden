@@ -1,0 +1,444 @@
+{
+  "main": {
+    "id": "dc934c683450e847",
+    "type": "split",
+    "children": [
+      {
+        "id": "a7aab36f7fcc3379",
+        "type": "tabs",
+        "dimension": 47.61526232114468,
+        "children": [
+          {
+            "id": "6cecbb8f4f2e3474",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "000/z.RAW NOTES/ENSAM IAGI → Machine Learning Systems Engineer.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "ENSAM IAGI → Machine Learning Systems Engineer"
+            }
+          },
+          {
+            "id": "e346a1b56b8200eb",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk"
+            }
+          },
+          {
+            "id": "3a3efa82b1339eb1",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James"
+            }
+          },
+          {
+            "id": "dbd7d39a482279ef",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library"
+            }
+          },
+          {
+            "id": "59c9051b295db2bf",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library"
+            }
+          }
+        ],
+        "currentTab": 4
+      },
+      {
+        "id": "27636163eb1a4d42",
+        "type": "tabs",
+        "dimension": 52.38473767885533,
+        "children": [
+          {
+            "id": "3e51c49f47b157a8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/2. Solving Linear Equations/Transposes.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Transposes"
+            }
+          },
+          {
+            "id": "6ed67470e61cd99a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Vector Functions/Vector Functions and Spaces Curves.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Vector Functions and Spaces Curves"
+            }
+          },
+          {
+            "id": "aacdf126e5ff90fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs/Proofs Involving Negations and Conditionals.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Proofs Involving Negations and Conditionals"
+            }
+          },
+          {
+            "id": "a61b828a1f709f1b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "000/z.RAW NOTES/university/Assignments/tasks/tasks to do.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "tasks to do"
+            }
+          },
+          {
+            "id": "3bfc58a76dd49be5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "000/z.RAW NOTES/university/tracking/Week 3.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Week 3"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8c50e56ea3a79813",
+    "type": "split",
+    "children": [
+      {
+        "id": "04ee4b86d23d9c96",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "733e29fdadfe1e30",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "b6315c5389de0b4b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0e6a8e3f7632b506",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 327.8999938964844,
+    "collapsed": true
+  },
+  "right": {
+    "id": "59406b7bc5081323",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e3d16ac3bb69156",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bdef584b9f1296b2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "a99dd3f6bf345dc5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "3caa6d19ae19d0d1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "162229ff5ba5b945",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "62708d2e32784774",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "f4ac6b222dd8582e",
+            "type": "leaf",
+            "state": {
+              "type": "calendar-period-week",
+              "state": {},
+              "icon": "calendar-check",
+              "title": "Calendar period week notes"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "terminal:Open terminal": false,
+      "notebook-navigator:Notebook Navigator": false,
+      "calendar-period-week-notes:Open Calendar Period Week Notes": false
+    }
+  },
+  "active": "3bfc58a76dd49be5",
+  "lastOpenFiles": [
+    "100 FORMAL SCIENCES/140 Logic & Set Theory/141 Propositional (Sentential) Logic/The Conditional and Biconditional Connectives.md",
+    "000/z.RAW NOTES/university/Assignments/tasks/tasks to do.md",
+    "000/z.RAW NOTES/university/tracking/Week 3.md",
+    "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf",
+    "000/z.RAW NOTES/university/Master Skills Inventory.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs/Proofs Involving Negations and Conditionals.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/C/Mémoire, Pointeurs, Tableaux et Allocation Dynamique en C.md",
+    "000/z.RAW NOTES/university/Assignments/Td2  -Structre des donnees.md",
+    "Pasted image 20261010004832.png",
+    "Pasted image 20261010002820.png",
+    "Pasted image 20261009231529.png",
+    "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf",
+    "Excalidraw/Drawing 2026-10-03 21.10.22.excalidraw.md",
+    "Pasted image 20261009225708.png",
+    "Pasted image 20261009225630.png",
+    "100 FORMAL SCIENCES/120 Applied Mathematics/121 Optimization/Recherche Operationele - Ensam/Optimisation Combinatoire.md",
+    "Pasted image 20261009221209.png",
+    "Pasted image 20261009221118.png",
+    "500 ARTS & CULTURE/510 Music Theory & Practice/513 Performance Technique & Instrumentation/Guitar Fundamentals/Guitar Tuning Concepts.md",
+    "{CFC945F5-DF78-4EB1-90E9-52A691DEBF7E}.png",
+    "{C22D83C1-00DF-4FBD-A18E-404166EB7959}.png",
+    "{77875625-32BC-439F-BB7B-05BA6269E379}.png",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/362 Computer Networks/Cours Moughit/3. Réseaux et Protocoles — Sous-couche MAC, TCP-IP et Adressage.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Ensam/4. Principe des Jointures.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Ensam/3. Fonctions Mono-Ligne SQL.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Ensam/2. Sélectionner des Lignes - les Clauses `WHERE` et 'ORDER BY'.md",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/361 Operating Systems/Systèmes d’Exploitation LINUX - Ensam/Partie 2 - Système de Fichiers et Commandes.md",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/362 Computer Networks/Cours Moughit/1. Réseaux et Protocoles - Concepts de Base et Modèle OSI.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Ensam/1. Concepts de Base - La Base de Données.md",
+    "100 FORMAL SCIENCES/120 Applied Mathematics/122 Discrete Mathematics/Math Pour Info/Graphes.md",
+    "100 FORMAL SCIENCES/130 Statistics & Probability/ENSAM - Statistique descriptive/Statistique Descriptive.md",
+    "000/z.RAW NOTES/Obsidian shortcuts.md",
+    "Untitled.base",
+    "000/z.RAW NOTES/university/Assignments/tasks",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/JAVA/Java Basics/Java Variables.md",
+    "300 TECHNOLOGY & COMPUTING/340 Data Science & AI/341 Machine Learning/Supervised Learning/Linear Regression.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/2. Solving Linear Equations/Transposes.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Vector Functions/Vector Functions and Spaces Curves.md",
+    "400 HUMANITIES & SOCIETY/410 History/411 Historiography & Method/Evaluating Historical Documents.md",
+    "100 FORMAL SCIENCES/130 Statistics & Probability/ENSAM - Statistique descriptive",
+    "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf",
+    "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf",
+    "300 TECHNOLOGY & COMPUTING/330 Software Engineering/331 System Design & Architecture/Merise & SI",
+    "300 TECHNOLOGY & COMPUTING/360 Computer Systems & Infrastructure/361 Operating Systems/Systèmes d’Exploitation LINUX - Ensam",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Stacks, Queues & Deques"
+  ]
+}

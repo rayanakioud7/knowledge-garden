@@ -1,0 +1,45 @@
+# --- Python / Django ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+backend/garden.sqlite3
+backend/garden-index.json
+backend/staticfiles/
+
+# --- Env ---
+.env
+*.env.local
+
+# --- Node / Frontend ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+scripts/*.log
+scripts/server.log
+scripts/server.err.log
+scripts/django.log
+scripts/django.err.log
+scripts/vite.log
+scripts/vite.err.log
+
+*.pdf
+
+# --- Private Vault Notes ---
+Obsidian/000/z.RAW NOTES/
+Obsidian/000/z.RAW NOTES/**
+**/z.RAW NOTES/
+**/z.RAW NOTES/**
+*z.RAW NOTES*
+Obsidian\PY0101EN-5-1-Numpy1D.ipynb
+Obsidian\PY0101EN-5-2-Numpy2D.ipynb

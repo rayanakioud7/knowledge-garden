@@ -1,0 +1,466 @@
+{
+  "main": {
+    "id": "dc934c683450e847",
+    "type": "split",
+    "children": [
+      {
+        "id": "a7aab36f7fcc3379",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6cecbb8f4f2e3474",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "000/z.RAW NOTES/ENSAM IAGI → Machine Learning Systems Engineer.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "ENSAM IAGI → Machine Learning Systems Engineer"
+            }
+          },
+          {
+            "id": "e346a1b56b8200eb",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk"
+            }
+          },
+          {
+            "id": "3a3efa82b1339eb1",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James"
+            }
+          },
+          {
+            "id": "dbd7d39a482279ef",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library"
+            }
+          },
+          {
+            "id": "cfd12c7658560910",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library"
+            }
+          }
+        ]
+      },
+      {
+        "id": "27636163eb1a4d42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c07a3510df275d61",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/Elimination Using Matrices.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Elimination Using Matrices"
+            }
+          },
+          {
+            "id": "e50f9804f984b133",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Moutachaouik/1. Concepts de Base - La Base de Données.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "1. Concepts de Base - La Base de Données"
+            }
+          },
+          {
+            "id": "d7e11b4a8e6cb71e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/SQL Commands.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "SQL Commands"
+            }
+          },
+          {
+            "id": "23c0603a6a98efdf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Series.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Series"
+            }
+          },
+          {
+            "id": "3d10d7f40b0835f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Array-Based Sequences/03. Python Sequence Operations & Complexity.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "03. Python Sequence Operations & Complexity"
+            }
+          },
+          {
+            "id": "3e61579944bf511a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "100 FORMAL SCIENCES/140 Logic & Set Theory/145 Set Theory/More Operations on Sets.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "More Operations on Sets"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8c50e56ea3a79813",
+    "type": "split",
+    "children": [
+      {
+        "id": "04ee4b86d23d9c96",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "733e29fdadfe1e30",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "b6315c5389de0b4b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0e6a8e3f7632b506",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 327.8999938964844,
+    "collapsed": true
+  },
+  "right": {
+    "id": "59406b7bc5081323",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e3d16ac3bb69156",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bdef584b9f1296b2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "a99dd3f6bf345dc5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "3caa6d19ae19d0d1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "162229ff5ba5b945",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "62708d2e32784774",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "f4ac6b222dd8582e",
+            "type": "leaf",
+            "state": {
+              "type": "calendar-period-week",
+              "state": {},
+              "icon": "calendar-check",
+              "title": "Calendar period week notes"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "terminal:Open terminal": false,
+      "notebook-navigator:Notebook Navigator": false,
+      "calendar-period-week-notes:Open Calendar Period Week Notes": false
+    }
+  },
+  "active": "6cecbb8f4f2e3474",
+  "lastOpenFiles": [
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/SQL Commands.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/SQL/Moutachaouik/1. Concepts de Base - La Base de Données.md",
+    "000/000.Source Material/books/James_Stewart_Calculus_Early_Transcendentals,_Seventh_edition_James.pdf",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Series.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/113 Analysis/Infinite Sequences and Series/Seuqences.md",
+    "100 FORMAL SCIENCES/140 Logic & Set Theory/145 Set Theory/More Operations on Sets.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/PYTHON/Python Cheat Sheet.md",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Array-Based Sequences/03. Python Sequence Operations & Complexity.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/PYTHON/OOP Pyhton/Shallow and Deep Copying.md",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Array-Based Sequences/02. Dynamic Arrays & Amortized Analysis.md",
+    "300 TECHNOLOGY & COMPUTING/310 Computer Science Theory/311 Algorithms & Data Structures/Recursion/03. Recursion Pitfalls & Stack Limits.md",
+    "300 TECHNOLOGY & COMPUTING/320 Programming & Software Development/322 Languages/PYTHON/Python Primer/Iterators and Generators.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/Elimination Using Matrices.md",
+    "000/000.Source Material/books/Introduction_to_Linear_Algebra_Ed_5_Gilbert_Strang_z_library_sk.pdf",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/The idea of Elimination.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/Systems of Equations and Inequalities/Matrices and Systems of Linear Equations.md",
+    "000/000.Zettelkasten/B - Tags/Gaussian Elimination.md",
+    "Pasted image 20260928224335.png",
+    "Pasted image 20260928224322.png",
+    "Pasted image 20260928224115.png",
+    "Pasted image 20260928224112.png",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations/Vectors and Linear Equations.md",
+    "Pasted image 20260928215649.png",
+    "Pasted image 20260928215639.png",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/Systems of Equations and Inequalities/Systems of Linear Equations in Two Variables.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/Linear Algebra.md",
+    "300 TECHNOLOGY & COMPUTING/350 Tools & Environment/351 Publishing/LaTex/LaTeX Cheat sheet.md",
+    "Pasted image 20260928215049.png",
+    "Pasted image 20260928215035.png",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Introduction to Vectors/Matrices.md",
+    "000/000.Zettelkasten/B - Tags/Linear Independence.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Solving Linear Equations",
+    "Pasted image 20260928211235.png",
+    "100 FORMAL SCIENCES/150 History & Philosophy of Math/Mathematics.md",
+    "Recherche Opérationnelle.md",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Linear Algebra/GIlbert Strang/Introduction to Vectors/The Dot Product and Vector Length.md",
+    "000/z.RAW NOTES/university/Master Skills Inventory.md",
+    "Pasted image 20260927230726.png",
+    "100 FORMAL SCIENCES/120 Applied Mathematics/121 Optimization/Recherche Operationele/Introduction à la Recherche Opérationnelle.md",
+    "~syncthing~Pasted image 20260927230652.png.tmp",
+    "100 FORMAL SCIENCES/120 Applied Mathematics/121 Optimization/Recherche Operationele",
+    "~syncthing~Pasted image 20260925234525.png.tmp",
+    "000/000.Source Material/books/Data_Structures_and_Algorithms_in_Python_Michael_T_Goodrich_z_library.pdf",
+    "000/z.RAW NOTES/university/tracking",
+    "000/000.Source Material/books/How_to_Prove_It_A_Structured_Approach_Daniel_J_Velleman_z_library.pdf",
+    "100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proof Strategies"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "cssTheme": "ITS Theme",
+  "theme": "obsidian",
+  "accentColor": "#517fdb",
+  "enabledCssSnippets": [
+    "Image Align",
+    "colors"
+  ]
+}

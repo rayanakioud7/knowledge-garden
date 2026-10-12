@@ -1,0 +1,8 @@
+{
+  "cssTheme": "Minimal",
+  "theme": "obsidian",
+  "accentColor": "#60abbe",
+  "enabledCssSnippets": [
+    "Image Align"
+  ]
+}
