@@ -28,7 +28,7 @@ def _env_bool(name: str, default: bool = False) -> bool:
 
 SECRET_KEY = _env("DJANGO_SECRET_KEY", "dev-insecure-secret-change-me")
 DEBUG = _env_bool("DJANGO_DEBUG", True)
-ALLOWED_HOSTS = _env("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = _env("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,testserver,.onrender.com,.koyeb.app").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -107,6 +107,12 @@ CORS_ALLOWED_ORIGINS = _env(
     "GARDEN_CORS_ORIGINS",
     "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174,http://localhost:3000",
 ).split(",")
+CORS_ALLOW_ALL_ORIGINS = _env_bool("CORS_ALLOW_ALL_ORIGINS", False)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/.*\.vercel\.app$",
+    r"^https:\/\/.*\.netlify\.app$",
+    r"^https:\/\/.*\.onrender\.com$",
+]
 
 # ---------------------------------------------------------------------------
 # Knowledge Garden specific
