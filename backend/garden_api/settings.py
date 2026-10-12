@@ -28,7 +28,7 @@ def _env_bool(name: str, default: bool = False) -> bool:
 
 SECRET_KEY = _env("DJANGO_SECRET_KEY", "dev-insecure-secret-change-me")
 DEBUG = _env_bool("DJANGO_DEBUG", True)
-ALLOWED_HOSTS = _env("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,testserver,.onrender.com,.koyeb.app,.hf.space").split(",")
+ALLOWED_HOSTS = _env("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,testserver,.onrender.com,.koyeb.app,.hf.space,.pythonanywhere.com").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -116,6 +116,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/.*\.netlify\.app$",
     r"^https:\/\/.*\.onrender\.com$",
     r"^https:\/\/.*\.hf\.space$",
+    r"^https:\/\/.*\.pythonanywhere\.com$",
 ]
 
 # ---------------------------------------------------------------------------
