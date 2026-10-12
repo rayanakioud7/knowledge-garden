@@ -287,15 +287,33 @@ def build_graph(notes: Dict[str, Note]) -> Dict[str, object]:
     return {"nodes": nodes, "edges": edges}
 
 
-def index_to_payload(notes: Dict[str, Note]) -> Dict[str, object]:
+def scan_attachments(vault_root: str | Path) -> Dict[str, str]:
+    """Index all vault media attachments into a map: filename -> relative vault path."""
+    root = Path(vault_root).resolve()
+    if not root.exists():
+        return {}
+    att_exts = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".pdf"}
+    attachments: Dict[str, str] = {}
+    for p in root.rglob("*"):
+        if p.is_file() and p.suffix.lower() in att_exts:
+            if _is_ignored(p.relative_to(root)):
+                continue
+            attachments[p.name] = p.relative_to(root).as_posix()
+    return attachments
+
+
+def index_to_payload(notes: Dict[str, Note], attachments: Optional[Dict[str, str]] = None) -> Dict[str, object]:
     """Serialize the full index for writing to ``garden-index.json``."""
-    return {
+    payload = {
         "version": 1,
         "noteCount": len(notes),
         "notes": [n.to_index() for n in notes.values()],
         "graph": build_graph(notes),
         "tree": build_tree(notes),
     }
+    if attachments is not None:
+        payload["attachments"] = attachments
+    return payload
 
 
 def _natural_key(name: str):

@@ -75,9 +75,10 @@ class GardenIndex:
             for note in notes.values():
                 if not note.html or force:
                     note.html = render_note(note.body_md, resolver, attach)
-            from parser.vault import index_to_payload
+            from parser.vault import index_to_payload, scan_attachments
 
-            payload = index_to_payload(notes)
+            attachments = scan_attachments(vault_path)
+            payload = index_to_payload(notes, attachments=attachments)
             try:
                 index_path.parent.mkdir(parents=True, exist_ok=True)
                 index_path.write_text(

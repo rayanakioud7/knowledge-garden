@@ -12,8 +12,10 @@ import re
 from pathlib import Path
 from typing import Optional
 
+from urllib.parse import quote
+
 from django.conf import settings
-from django.http import FileResponse, Http404, JsonResponse
+from django.http import FileResponse, Http404, HttpResponseRedirect, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -147,19 +149,37 @@ def sync_webhook(request):
 
 
 def serve_attachment(request, filename: str):
-    """Serve a vault attachment (image/pdf) by filename, searching the vault."""
+    """Serve a vault attachment (image/pdf) by filename, searching the vault.
+
+    Falls back to GitHub raw CDN when the server is deployed in constrained
+    environments (such as PythonAnywhere free tier) where large attachments
+    are not stored on the local disk.
+    """
     vault = Path(settings.GARDEN_VAULT_PATH)
-    # Prevent path traversal.
     safe_name = os.path.basename(filename)
     if not safe_name or safe_name != filename.replace("\\", "/").split("/")[-1]:
         raise Http404("Invalid attachment path.")
-    # Search the vault (attachments live in various subfolders).
-    for candidate in vault.rglob(safe_name):
-        if ".obsidian" in candidate.parts or ".trash" in candidate.parts:
-            continue
-        if candidate.is_file():
-            content_type = _guess_type(candidate.suffix)
-            return FileResponse(candidate.open("rb"), content_type=content_type)
+
+    # 1. Search the local vault if it exists.
+    if vault.exists():
+        for candidate in vault.rglob(safe_name):
+            if ".obsidian" in candidate.parts or ".trash" in candidate.parts:
+                continue
+            if candidate.is_file():
+                content_type = _guess_type(candidate.suffix)
+                return FileResponse(candidate.open("rb"), content_type=content_type)
+
+    # 2. Fallback: Lookup in pre-indexed attachments map and redirect to GitHub Raw CDN.
+    cached = get_index()._load_cache() or {}
+    att_map = cached.get("attachments", {})
+    rel_path = att_map.get(safe_name)
+    if rel_path:
+        quoted_rel = quote(rel_path, safe="/")
+        github_url = (
+            f"https://raw.githubusercontent.com/rayanakioud7/knowledge-garden/main/Obsidian/{quoted_rel}"
+        )
+        return HttpResponseRedirect(github_url)
+
     raise Http404("Attachment not found.")
 
 
