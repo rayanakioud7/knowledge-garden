@@ -1,7 +1,8 @@
 // Thin API client for the Django backend. All routes are relative so the Vite
 // dev proxy (and a same-origin production deploy) both work unchanged.
 
-const BASE = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
+export const API_BASE = (import.meta.env.VITE_API_BASE_URL || "/api").replace(/\/+$/, "");
+const BASE = API_BASE;
 
 async function getJson(url, options = {}) {
   const resp = await fetch(BASE + url, {

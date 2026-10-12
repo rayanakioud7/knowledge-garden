@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import katex from "katex";
+import { API_BASE } from "../api";
 
 // Render the sanitized HTML produced by the backend, then (a) run KaTeX over
 // any math spans and (b) intercept internal wikilink clicks so they route
@@ -8,6 +9,14 @@ import katex from "katex";
 export default function Markdown({ html }) {
   const ref = useRef(null);
   const navigate = useNavigate();
+
+  const processedHtml = useMemo(() => {
+    if (!html) return "";
+    if (API_BASE && API_BASE !== "/api") {
+      return html.replace(/src="\/api\/attachments\//g, `src="${API_BASE}/attachments/`);
+    }
+    return html;
+  }, [html]);
 
   useEffect(() => {
     const root = ref.current;
@@ -49,13 +58,13 @@ export default function Markdown({ html }) {
     };
     root.addEventListener("click", onClick);
     return () => root.removeEventListener("click", onClick);
-  }, [html, navigate]);
+  }, [processedHtml, navigate]);
 
   return (
     <div
       ref={ref}
       className="prose-note"
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={{ __html: processedHtml }}
     />
   );
 }
