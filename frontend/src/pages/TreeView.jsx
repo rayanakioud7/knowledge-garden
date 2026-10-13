@@ -6,12 +6,12 @@ import { api } from "../api.js";
 // Japanese Sumi-e Procedural Ink Bonsai Knowledge Tree (水墨画 · 松盆栽)
 // Features:
 // - HTML5 Canvas 2D Procedural Calligraphy Engine (Real brushwork, zero plastic SVG)
+// - Pixel-Perfect Coordinate Alignment (Screen-to-World synced with getBoundingClientRect)
+// - Full-Branch & Floating Label Hit-Testing with Visual Hover Highlights
 // - Multi-Bristle Simulation (毛筆 Kehitsu) with Dry-Brush (飛白 Kasure) & Ink Bleed (滲み Nijimi)
 // - Wide Lateral Moyogi Bonsai Boughs: Spreads widely across 120°-160° fans (Zero vertical broom)
 // - Floating Calligraphy & Vermilion Hanko Seals (印鑑): Zero clunky boxes
 // - Cloud-Pruned Tamabuki (玉吹) Foliage Clouds & 5-Needle Pine Tufts (松葉 Matsuba)
-// - Washi Paper Tint with Concentric Zen Sand Ripples (枯山水 Karesansui)
-// - High-DPI Retina Display Support & Buttery 60fps Inertial Camera Engine
 // - Interactive Slide-Out Washi Parchment Drawer for Note Inspection
 // ============================================================================
 
@@ -32,9 +32,13 @@ export default function TreeView() {
   const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 0.85 });
   const targetCamera = useRef({ x: 0, y: 0, zoom: 0.85 });
   const isDragging = useRef(false);
+  const hasDragged = useRef(false);
   const dragStart = useRef({ x: 0, y: 0 });
+  const mouseDownPos = useRef({ x: 0, y: 0 });
   const animFrameId = useRef(null);
   const [viewportDims, setViewportDims] = useState({ width: 1000, height: 700 });
+  const [cursorScreenPos, setCursorScreenPos] = useState(null);
+  const cursorWorldPos = useRef({ x: 0, y: 0 });
   const touchStart = useRef({ x: 0, y: 0, dist: 0 });
 
   // 1. Fetch Tree Hierarchy Data
@@ -58,19 +62,34 @@ export default function TreeView() {
     fetchTreeData();
   }, [fetchTreeData]);
 
-  // 2. Measure Container Dimensions on Mount & Resize
+  // 2. Measure Container Dimensions on Mount & Resize via ResizeObserver
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
     const updateDims = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0) {
-          setViewportDims({ width: rect.width, height: rect.height });
-        }
+      const rect = el.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        setViewportDims({ width: rect.width, height: rect.height });
       }
     };
     updateDims();
+
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          setViewportDims({ width, height });
+        }
+      }
+    });
+    ro.observe(el);
+
     window.addEventListener("resize", updateDims);
-    return () => window.removeEventListener("resize", updateDims);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updateDims);
+    };
   }, []);
 
   // 3. Find active node in the tree hierarchy
@@ -157,7 +176,7 @@ export default function TreeView() {
     }
   }, [currentPath, treeLayout]);
 
-  // 8. Non-passive wheel event listener for buttery smooth zooming
+  // 8. Non-passive wheel event listener for smooth zooming
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -175,7 +194,24 @@ export default function TreeView() {
   }, []);
 
   // --------------------------------------------------------------------------
-  // 9. Procedural Canvas 2D Painting Loop
+  // 9. Coordinate Conversion: 100% Synced with Exact Canvas Dimensions
+  // --------------------------------------------------------------------------
+  const screenToWorld = useCallback(
+    (screenX, screenY) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return { x: 0, y: 0 };
+      const rect = canvas.getBoundingClientRect();
+      const relX = screenX - rect.left;
+      const relY = screenY - rect.top;
+      const worldX = (relX - rect.width / 2) / camera.zoom + camera.x;
+      const worldY = (relY - rect.height / 2) / camera.zoom + camera.y;
+      return { x: worldX, y: worldY };
+    },
+    [camera]
+  );
+
+  // --------------------------------------------------------------------------
+  // 10. Procedural Canvas 2D Painting Loop
   // --------------------------------------------------------------------------
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -184,13 +220,15 @@ export default function TreeView() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    const width = viewportDims.width;
-    const height = viewportDims.height;
+    const rect = canvas.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    if (width <= 0 || height <= 0) return;
 
-    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+    const dpr = window.devicePixelRatio || 1;
+    if (canvas.width !== Math.round(width * dpr) || canvas.height !== Math.round(height * dpr)) {
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
     }
 
     ctx.save();
@@ -211,7 +249,7 @@ export default function TreeView() {
     // Subtle Washi Paper Texture Specks (Organic fibers)
     drawWashiFibers(ctx, width, height, isDark);
 
-    // Apply Camera Transform
+    // Apply Camera Transform (Exact same width/2 & height/2 as screenToWorld)
     ctx.save();
     ctx.translate(width / 2 - camera.x * camera.zoom, height / 2 - camera.y * camera.zoom);
     ctx.scale(camera.zoom, camera.zoom);
@@ -224,17 +262,17 @@ export default function TreeView() {
 
     // 3. Calligraphic Tapered Boughs & Branches
     treeLayout.branches.forEach((branch) => {
-      if (branch.path === "") return; // Root trunk already drawn with full body
+      if (branch.path === "") return;
       const isActive = currentPath === branch.path;
       const isAncestor = currentPath.startsWith(branch.path);
-      const isHovered = hoveredNode?.path === branch.path;
+      const isHovered = hoveredNode?.branch?.path === branch.path || hoveredNode?.path === branch.path;
 
-      drawSumiBranch(ctx, branch, inkBase, inkSoft, isActive, isAncestor, isHovered);
+      drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered);
     });
 
     // 4. Cloud-Pruned Tamabuki Foliage Pads (玉吹) & Note Pine Tufts
     treeLayout.foliagePads.forEach((pad) => {
-      const isHovered = hoveredNode?.id === pad.id;
+      const isHovered = hoveredNode?.pad?.id === pad.id || hoveredNode?.id === pad.id;
       const isSelected = selectedLeaf?.id === pad.id;
       const isActive = currentPath === pad.path;
 
@@ -246,14 +284,36 @@ export default function TreeView() {
       if (branch.path === "") return;
       const isActive = currentPath === branch.path;
       const isAncestor = currentPath.startsWith(branch.path);
-      const isHovered = hoveredNode?.path === branch.path;
+      const isHovered = hoveredNode?.branch?.path === branch.path || hoveredNode?.path === branch.path;
 
       drawFloatingCalligraphy(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered);
     });
 
+    // 6. Interactive Zen Cursor Ring on Canvas
+    if (cursorWorldPos.current && cursorScreenPos) {
+      const cw = cursorWorldPos.current;
+      const isHovering = Boolean(hoveredNode);
+      ctx.save();
+      ctx.strokeStyle = isHovering ? vermilion : isDark ? "rgba(244, 244, 245, 0.35)" : "rgba(18, 18, 20, 0.3)";
+      ctx.lineWidth = isHovering ? 1.5 : 0.8;
+      ctx.setLineDash(isHovering ? [] : [3, 3]);
+
+      ctx.beginPath();
+      ctx.arc(cw.x, cw.y, isHovering ? 18 : 10, 0, Math.PI * 2);
+      ctx.stroke();
+
+      if (isHovering) {
+        ctx.fillStyle = vermilion;
+        ctx.beginPath();
+        ctx.arc(cw.x, cw.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
     ctx.restore(); // Restore Camera
     ctx.restore(); // Restore DPR
-  }, [treeLayout, camera, viewportDims, currentPath, hoveredNode, selectedLeaf]);
+  }, [treeLayout, camera, viewportDims, currentPath, hoveredNode, selectedLeaf, cursorScreenPos]);
 
   // Handlers for branch navigation
   const zoomIntoBranch = useCallback(
@@ -281,30 +341,23 @@ export default function TreeView() {
     setSelectedLeaf(null);
   }, [setParams]);
 
-  // Coordinate Conversion from Screen to World Space
-  const screenToWorld = useCallback(
-    (screenX, screenY) => {
-      const el = containerRef.current;
-      if (!el) return { x: 0, y: 0 };
-      const rect = el.getBoundingClientRect();
-      const relX = screenX - rect.left;
-      const relY = screenY - rect.top;
-      const worldX = (relX - viewportDims.width / 2) / camera.zoom + camera.x;
-      const worldY = (relY - viewportDims.height / 2) / camera.zoom + camera.y;
-      return { x: worldX, y: worldY };
-    },
-    [camera, viewportDims]
-  );
-
-  // Mouse pan drag handlers
+  // Mouse pan drag & hit test handlers
   const handleMouseDown = (e) => {
     if (e.button !== 0) return;
     isDragging.current = true;
+    hasDragged.current = false;
     dragStart.current = { x: e.clientX, y: e.clientY };
+    mouseDownPos.current = { x: e.clientX, y: e.clientY };
   };
 
   const handleMouseMove = (e) => {
+    setCursorScreenPos({ x: e.clientX, y: e.clientY });
+
     if (isDragging.current) {
+      const distMoved = Math.hypot(e.clientX - mouseDownPos.current.x, e.clientY - mouseDownPos.current.y);
+      if (distMoved > 4) {
+        hasDragged.current = true;
+      }
       const dx = (e.clientX - dragStart.current.x) / camera.zoom;
       const dy = (e.clientY - dragStart.current.y) / camera.zoom;
       dragStart.current = { x: e.clientX, y: e.clientY };
@@ -320,30 +373,16 @@ export default function TreeView() {
     // Hit Testing under cursor
     if (!treeLayout) return;
     const world = screenToWorld(e.clientX, e.clientY);
-    let hit = null;
+    cursorWorldPos.current = world;
 
-    // Check foliage pads (notes / clusters)
-    for (const pad of treeLayout.foliagePads) {
-      const dist = Math.hypot(world.x - pad.x, world.y - pad.y);
-      if (dist <= pad.radius + 15) {
-        hit = { ...pad, isPad: true };
-        break;
-      }
-    }
-
-    // Check branch labels
-    if (!hit) {
-      for (const b of treeLayout.branches) {
-        if (!b.labelPos) continue;
-        const dist = Math.hypot(world.x - b.labelPos.x, world.y - b.labelPos.y);
-        if (dist <= 45) {
-          hit = { ...b, isBranch: true };
-          break;
-        }
-      }
-    }
-
+    const hit = findHitTarget(world, treeLayout);
     setHoveredNode(hit);
+  };
+
+  const handleMouseLeave = () => {
+    setCursorScreenPos(null);
+    setHoveredNode(null);
+    isDragging.current = false;
   };
 
   const handleMouseUp = () => {
@@ -351,55 +390,48 @@ export default function TreeView() {
   };
 
   const handleClick = (e) => {
+    if (hasDragged.current) {
+      return; // User was panning, ignore click
+    }
     if (!treeLayout) return;
     const world = screenToWorld(e.clientX, e.clientY);
+    const hit = findHitTarget(world, treeLayout);
 
-    // 1. Check if a foliage pad or note is clicked
-    for (const pad of treeLayout.foliagePads) {
-      const dist = Math.hypot(world.x - pad.x, world.y - pad.y);
-      if (dist <= pad.radius + 15) {
-        if (pad.notes && pad.notes.length > 0) {
-          setSelectedLeaf({
-            ...pad.notes[0],
-            sectionName: pad.name,
-            domainCode: pad.code,
-            pad,
-          });
-        }
-        return;
+    if (!hit) return;
+
+    if (hit.type === "pad") {
+      if (hit.pad.notes && hit.pad.notes.length > 0) {
+        setSelectedLeaf({
+          ...hit.pad.notes[0],
+          sectionName: hit.pad.name,
+          domainCode: hit.pad.code,
+          pad: hit.pad,
+        });
       }
-    }
-
-    // 2. Check if a branch label or tip is clicked
-    for (const b of treeLayout.branches) {
-      if (b.path === "") continue;
-      const distTip = Math.hypot(world.x - b.tip.x, world.y - b.tip.y);
-      const distLabel = b.labelPos ? Math.hypot(world.x - b.labelPos.x, world.y - b.labelPos.y) : 999;
-
-      if (distTip <= 35 || distLabel <= 45) {
-        zoomIntoBranch(b.path);
-        return;
-      }
+    } else if (hit.type === "branch") {
+      zoomIntoBranch(hit.branch.path);
     }
   };
 
   const handleDoubleClick = (e) => {
     if (!treeLayout) return;
     const world = screenToWorld(e.clientX, e.clientY);
-    for (const pad of treeLayout.foliagePads) {
-      const dist = Math.hypot(world.x - pad.x, world.y - pad.y);
-      if (dist <= pad.radius + 15 && pad.notes && pad.notes.length > 0) {
-        navigate(`/garden/note/${encodeURIComponent(pad.notes[0].id)}`);
-        return;
-      }
+    const hit = findHitTarget(world, treeLayout);
+
+    if (hit && hit.type === "pad" && hit.pad.notes && hit.pad.notes.length > 0) {
+      navigate(`/garden/note/${encodeURIComponent(hit.pad.notes[0].id)}`);
+    } else if (hit && hit.type === "branch") {
+      zoomIntoBranch(hit.branch.path);
     }
   };
 
-  // Touch handlers for mobile
+  // Touch handlers for mobile pan & pinch
   const handleTouchStart = (e) => {
     if (e.touches.length === 1) {
       isDragging.current = true;
+      hasDragged.current = false;
       dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      mouseDownPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
     } else if (e.touches.length === 2) {
       isDragging.current = false;
       const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -410,6 +442,13 @@ export default function TreeView() {
 
   const handleTouchMove = (e) => {
     if (e.touches.length === 1 && isDragging.current) {
+      const distMoved = Math.hypot(
+        e.touches[0].clientX - mouseDownPos.current.x,
+        e.touches[0].clientY - mouseDownPos.current.y
+      );
+      if (distMoved > 4) {
+        hasDragged.current = true;
+      }
       const dx = (e.touches[0].clientX - dragStart.current.x) / camera.zoom;
       const dy = (e.touches[0].clientY - dragStart.current.y) / camera.zoom;
       dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -581,6 +620,7 @@ export default function TreeView() {
         }`}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onClick={handleClick}
         onDoubleClick={handleDoubleClick}
@@ -593,6 +633,30 @@ export default function TreeView() {
           className="h-full w-full block"
           style={{ width: "100%", height: "100%" }}
         />
+
+        {/* ---------------- Floating Tooltip Follower ---------------- */}
+        {cursorScreenPos && hoveredNode && (
+          <div
+            className="pointer-events-none fixed z-30 -translate-x-1/2 -translate-y-12 border border-ink bg-paper/95 px-3 py-1 font-mono text-xs text-ink shadow-lg backdrop-blur-md rounded-sm whitespace-nowrap"
+            style={{ left: cursorScreenPos.x, top: cursorScreenPos.y }}
+          >
+            {hoveredNode.type === "pad" ? (
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-[#9e2a2b]" />
+                <span>
+                  Inspect Note: <strong>{stripCode(hoveredNode.name)}</strong> ({hoveredNode.noteCount || 0} notes)
+                </span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1.5">
+                <span className="text-[#9e2a2b] font-bold">⤢</span>
+                <span>
+                  Zoom Into: <strong>{stripCode(hoveredNode.name)}</strong>
+                </span>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* ---------------- Slide-Out Washi Parchment Drawer ---------------- */}
         {selectedLeaf && (
@@ -671,7 +735,7 @@ export default function TreeView() {
         {/* Floating status badge on hover */}
         {hoveredNode && !selectedLeaf && (
           <div className="pointer-events-none absolute bottom-5 left-6 z-20 border border-paper-line2 bg-paper/95 px-3.5 py-1.5 font-mono text-xs text-ink shadow-sm backdrop-blur-sm">
-            {hoveredNode.isPad ? (
+            {hoveredNode.type === "pad" ? (
               <span>
                 Foliage Pad: <strong>{stripCode(hoveredNode.name)}</strong> ({hoveredNode.noteCount || 0} notes) — Click to inspect
               </span>
@@ -695,7 +759,6 @@ export default function TreeView() {
 function drawWashiFibers(ctx, width, height, isDark) {
   ctx.save();
   ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(30, 20, 10, 0.02)";
-  // Draw subtle random flecks
   const seed = 42;
   for (let i = 0; i < 40; i++) {
     const rx = ((Math.sin(seed + i * 17) + 1) / 2) * width;
@@ -759,7 +822,6 @@ function drawSumiTrunk(ctx, root, apex, inkBase, inkSoft, vermilion) {
   });
 
   // Main S-Curve Trunk Calligraphic Body
-  // From root (0, 380) to apex (10, 140)
   const cp1 = { x: x - 30, y: y - 80 };
   const cp2 = { x: x + 35, y: y - 170 };
 
@@ -816,16 +878,16 @@ function drawSumiTrunk(ctx, root, apex, inkBase, inkSoft, vermilion) {
 }
 
 // 4. Calligraphic Sumi-e Branch Limb
-function drawSumiBranch(ctx, branch, inkBase, inkSoft, isActive, isAncestor, isHovered) {
+function drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered) {
   const { start, cp1, cp2, tip, strokeWidth } = branch;
 
   ctx.save();
 
-  // Active / Hovered Halo
+  // Active or Hovered Glowing Ink Halo
   if (isActive || isHovered) {
     ctx.save();
-    ctx.globalAlpha = 0.15;
-    ctx.strokeStyle = isActive ? "#9e2a2b" : inkBase;
+    ctx.globalAlpha = 0.22;
+    ctx.strokeStyle = vermilion;
     ctx.lineWidth = strokeWidth + 14;
     ctx.lineCap = "round";
     ctx.beginPath();
@@ -835,7 +897,7 @@ function drawSumiBranch(ctx, branch, inkBase, inkSoft, isActive, isAncestor, isH
     ctx.restore();
   }
 
-  // Soft Ink Bleed Underlayer
+  // Soft Ink Bleed Underlayer (Nijimi)
   ctx.save();
   ctx.globalAlpha = 0.06;
   ctx.strokeStyle = inkBase;
@@ -849,13 +911,13 @@ function drawSumiBranch(ctx, branch, inkBase, inkSoft, isActive, isAncestor, isH
 
   // Multi-Bristle Stroke Body
   const endW = Math.max(2.2, strokeWidth * 0.55);
-  const color = isActive ? inkBase : isAncestor ? inkSoft : inkSoft;
+  const color = isHovered ? vermilion : isActive ? inkBase : isAncestor ? inkSoft : inkSoft;
   drawMultiBristleCurve(ctx, start, cp1, cp2, tip, strokeWidth, endW, color);
 
-  // Branch Knuckle Node (Bonsai Joint)
-  ctx.fillStyle = inkBase;
+  // Branch Knuckle Joint (Bonsai Joint)
+  ctx.fillStyle = isHovered ? vermilion : inkBase;
   ctx.beginPath();
-  ctx.arc(tip.x, tip.y, Math.max(2.5, endW * 0.7), 0, Math.PI * 2);
+  ctx.arc(tip.x, tip.y, Math.max(2.8, endW * 0.75), 0, Math.PI * 2);
   ctx.fill();
 
   ctx.restore();
@@ -863,7 +925,7 @@ function drawSumiBranch(ctx, branch, inkBase, inkSoft, isActive, isAncestor, isH
 
 // 5. Cloud-Pruned Tamabuki (玉吹) Foliage Clouds & Pine Tufts
 function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, isSelected, isActive) {
-  const { x, y, radius, notes } = pad;
+  const { x, y, radius } = pad;
 
   ctx.save();
 
@@ -871,7 +933,7 @@ function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, i
   if (isHovered || isSelected || isActive) {
     ctx.save();
     const glowGrad = ctx.createRadialGradient(x, y, radius * 0.2, x, y, radius * 1.6);
-    glowGrad.addColorStop(0, isSelected ? "rgba(158, 42, 43, 0.28)" : "rgba(18, 18, 20, 0.18)");
+    glowGrad.addColorStop(0, isSelected ? "rgba(158, 42, 43, 0.32)" : "rgba(158, 42, 43, 0.2)");
     glowGrad.addColorStop(1, "transparent");
     ctx.fillStyle = glowGrad;
     ctx.beginPath();
@@ -881,16 +943,14 @@ function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, i
   }
 
   // Multi-Layer Translucent Ink Wash Cloud Foundation (Tamabuki Cloud)
-  // Layer 1: Diluted Misty Wash
   ctx.save();
-  ctx.globalAlpha = isHovered ? 0.22 : 0.12;
+  ctx.globalAlpha = isHovered ? 0.24 : 0.12;
   ctx.fillStyle = inkBase;
   ctx.beginPath();
   ctx.ellipse(x, y, radius * 1.25, radius * 0.72, 0.1, 0, Math.PI * 2);
   ctx.fill();
 
-  // Layer 2: Medium Core Cloud
-  ctx.globalAlpha = isHovered ? 0.32 : 0.18;
+  ctx.globalAlpha = isHovered ? 0.34 : 0.18;
   ctx.beginPath();
   ctx.ellipse(x - radius * 0.15, y - radius * 0.1, radius * 0.85, radius * 0.55, -0.15, 0, Math.PI * 2);
   ctx.fill();
@@ -904,7 +964,7 @@ function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, i
   const needleLen = isHovered ? 20 : 16;
 
   ctx.save();
-  ctx.strokeStyle = isHovered ? inkBase : inkSoft;
+  ctx.strokeStyle = isHovered ? vermilion : inkSoft;
   ctx.lineWidth = isHovered ? 1.4 : 1.0;
   ctx.lineCap = "round";
 
@@ -913,7 +973,6 @@ function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, i
     const tx = x + Math.cos(tuftAng) * (radius * 0.85);
     const ty = y + Math.sin(tuftAng) * (radius * 0.55);
 
-    // 5 needle strokes per rosette
     for (let s = -2; s <= 2; s++) {
       const nAng = tuftAng + s * 0.22;
       ctx.beginPath();
@@ -926,16 +985,16 @@ function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, i
 
   // Central Pearl Node
   ctx.save();
-  ctx.fillStyle = isSelected ? vermilion : inkBase;
+  ctx.fillStyle = isHovered || isSelected ? vermilion : inkBase;
   ctx.beginPath();
-  ctx.arc(x, y, isHovered ? 3.5 : 2.5, 0, Math.PI * 2);
+  ctx.arc(x, y, isHovered ? 4 : 2.5, 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
 
   ctx.restore();
 }
 
-// 6. Floating Calligraphy & Vermilion Hanko Stamps (Zero Boxes!)
+// 6. Floating Calligraphy Titles & Vermilion Hanko Stamps (Zero Boxes!)
 function drawFloatingCalligraphy(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered) {
   if (!branch.labelPos) return;
   const { x, y, align } = branch.labelPos;
@@ -944,32 +1003,43 @@ function drawFloatingCalligraphy(ctx, branch, inkBase, inkSoft, vermilion, isAct
 
   ctx.save();
 
+  const isHighlighted = isActive || isHovered;
+  const bounds = getBranchLabelBounds(branch);
+
+  // Subtle washi pill highlight badge on hover / active
+  if (isHighlighted && bounds) {
+    ctx.save();
+    ctx.fillStyle = "rgba(158, 42, 43, 0.08)";
+    ctx.strokeStyle = "rgba(158, 42, 43, 0.5)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(bounds.minX, bounds.minY, bounds.width, bounds.height, 3);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
   ctx.textAlign = align || "left";
   ctx.textBaseline = "middle";
 
-  const isHighlighted = isActive || isHovered;
-
   // Title Text (Editorial Serif Calligraphy)
   ctx.font = `${isHighlighted ? "bold" : "600"} 13px 'Source Serif 4', Georgia, serif`;
-  ctx.fillStyle = isHighlighted ? inkBase : inkSoft;
-
-  // Render Title
+  ctx.fillStyle = isHighlighted ? (isActive ? vermilion : inkBase) : inkSoft;
   ctx.fillText(displayName, x, y);
 
-  // Vermilion Hanko Stamp for Dewey Code (Placed gracefully above or beside)
+  // Vermilion Hanko Stamp for Dewey Code
   if (code) {
     const codeText = `[${code}]`;
     ctx.font = "bold 9px 'JetBrains Mono', monospace";
     ctx.fillStyle = isHighlighted ? vermilion : "rgba(158, 42, 43, 0.85)";
-
     const codeY = y - 14;
     ctx.fillText(codeText, x, codeY);
   }
 
   // Delicate Silk Leader Cord connecting branch knuckle to calligraphy baseline
   ctx.save();
-  ctx.strokeStyle = isHighlighted ? inkBase : "rgba(113, 113, 122, 0.45)";
-  ctx.lineWidth = 0.7;
+  ctx.strokeStyle = isHighlighted ? vermilion : "rgba(113, 113, 122, 0.45)";
+  ctx.lineWidth = isHighlighted ? 1.0 : 0.7;
   ctx.setLineDash([2, 3]);
 
   ctx.beginPath();
@@ -981,7 +1051,7 @@ function drawFloatingCalligraphy(ctx, branch, inkBase, inkSoft, vermilion, isAct
   // Subtle Note Count Indicator
   if (branch.noteCount != null && branch.noteCount > 0) {
     ctx.font = "normal 10px 'JetBrains Mono', monospace";
-    ctx.fillStyle = "rgba(113, 113, 122, 0.7)";
+    ctx.fillStyle = isHighlighted ? vermilion : "rgba(113, 113, 122, 0.7)";
     const countOffset = align === "right" ? -displayName.length * 7 - 14 : displayName.length * 7 + 12;
     ctx.fillText(`· ${branch.noteCount}`, x + countOffset, y);
   }
@@ -996,24 +1066,20 @@ function drawMultiBristleCurve(ctx, p0, cp1, cp2, p3, startW, endW, strokeColor)
   const steps = 36;
   const bristleCount = 7;
 
-  // Precompute Bezier Samples
   const samples = [];
   for (let i = 0; i <= steps; i++) {
     const t = i / steps;
     const pt = bezierPoint(p0, cp1, cp2, p3, t);
 
-    // Tangent derivative
     const dt = 0.01;
     const ptNext = bezierPoint(p0, cp1, cp2, p3, Math.min(1, t + dt));
     const tx = ptNext.x - pt.x;
     const ty = ptNext.y - pt.y;
     const tlen = Math.hypot(tx, ty) || 1;
 
-    // Normal vector perpendicular to tangent
     const nx = -ty / tlen;
     const ny = tx / tlen;
 
-    // Calligraphic pressure width curve (belly swell)
     const bellFactor = 1 + 0.3 * Math.sin(Math.PI * t);
     const w = (startW * (1 - t) + endW * t) * bellFactor;
 
@@ -1024,9 +1090,8 @@ function drawMultiBristleCurve(ctx, p0, cp1, cp2, p3, startW, endW, strokeColor)
   ctx.strokeStyle = strokeColor;
   ctx.lineCap = "round";
 
-  // Draw Bristle Strands
   for (let b = 0; b < bristleCount; b++) {
-    const bristleRatio = (b / (bristleCount - 1) - 0.5) * 2; // -1 to 1
+    const bristleRatio = (b / (bristleCount - 1) - 0.5) * 2;
     const strandOpacity = 0.35 + (1 - Math.abs(bristleRatio)) * 0.45;
     ctx.globalAlpha = strandOpacity;
     ctx.lineWidth = Math.max(0.7, (endW / bristleCount) * 1.6);
@@ -1036,16 +1101,14 @@ function drawMultiBristleCurve(ctx, p0, cp1, cp2, p3, startW, endW, strokeColor)
 
     for (let i = 0; i < samples.length; i++) {
       const s = samples[i];
-      // Kasure: outer bristles intermittently lift off paper
       const kasure = Math.abs(bristleRatio) > 0.6 && (i + b * 5) % 11 === 0;
       if (kasure) {
         started = false;
         continue;
       }
 
-      // Micro-jitter of brush hair
       const jitter = Math.sin(i * 1.2 + b * 2.5) * 0.6;
-      const offset = (bristleRatio * (s.w / 2) + jitter);
+      const offset = bristleRatio * (s.w / 2) + jitter;
       const bx = s.pt.x + s.nx * offset;
       const by = s.pt.y + s.ny * offset;
 
@@ -1073,6 +1136,73 @@ function bezierPoint(p0, cp1, cp2, p3, t) {
     x: mt3 * p0.x + 3 * mt2 * t * cp1.x + 3 * mt * t2 * cp2.x + t3 * p3.x,
     y: mt3 * p0.y + 3 * mt2 * t * cp1.y + 3 * mt * t2 * cp2.y + t3 * p3.y,
   };
+}
+
+// Distance from point to cubic Bezier curve
+function distToBranchCurve(point, branch) {
+  const steps = 14;
+  let minDist = Infinity;
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const pt = bezierPoint(branch.start, branch.cp1, branch.cp2, branch.tip, t);
+    const d = Math.hypot(point.x - pt.x, point.y - pt.y);
+    if (d < minDist) minDist = d;
+  }
+  return minDist;
+}
+
+// Bounding box calculation for branch labels
+function getBranchLabelBounds(b) {
+  if (!b.labelPos) return null;
+  const displayName = stripCode(b.name);
+  const textWidth = Math.max(90, displayName.length * 8.5 + (b.code ? 35 : 0) + 20);
+  const isLeft = b.labelPos.align === "right";
+  const minX = isLeft ? b.labelPos.x - textWidth - 8 : b.labelPos.x - 8;
+  const maxX = isLeft ? b.labelPos.x + 8 : b.labelPos.x + textWidth + 8;
+  const minY = b.labelPos.y - 20;
+  const maxY = b.labelPos.y + 14;
+  return { minX, maxX, minY, maxY, width: maxX - minX, height: maxY - minY };
+}
+
+// Find Hit Target under world coordinates
+function findHitTarget(world, treeLayout) {
+  if (!treeLayout) return null;
+
+  // 1. Foliage Pads (Highest priority for notes)
+  for (const pad of treeLayout.foliagePads) {
+    const dist = Math.hypot(world.x - pad.x, world.y - pad.y);
+    if (dist <= pad.radius + 14) {
+      return { type: "pad", pad, name: pad.name, noteCount: pad.noteCount, x: pad.x, y: pad.y, path: pad.path };
+    }
+  }
+
+  // 2. Floating Branch Labels (Exact Text Bounding Box)
+  for (const b of treeLayout.branches) {
+    if (b.path === "") continue;
+    const bounds = getBranchLabelBounds(b);
+    if (bounds) {
+      if (
+        world.x >= bounds.minX &&
+        world.x <= bounds.maxX &&
+        world.y >= bounds.minY &&
+        world.y <= bounds.maxY
+      ) {
+        return { type: "branch", branch: b, name: b.name, path: b.path, x: b.tip.x, y: b.tip.y };
+      }
+    }
+  }
+
+  // 3. Branch Limbs (Cubic Bezier curve proximity)
+  for (const b of treeLayout.branches) {
+    if (b.path === "") continue;
+    const distCurve = distToBranchCurve(world, b);
+    const hitRadius = Math.max(16, b.strokeWidth / 2 + 10);
+    if (distCurve <= hitRadius) {
+      return { type: "branch", branch: b, name: b.name, path: b.path, x: b.tip.x, y: b.tip.y };
+    }
+  }
+
+  return null;
 }
 
 // ============================================================================
@@ -1175,14 +1305,12 @@ function blossomMoyogiSubtree(node, parentBranch, activePath, depth, branches, f
   const total = children.length;
 
   if (total > 0) {
-    // Wide open fan: span 80° to 125° around parent angle
     const fanSpan = Math.min(2.1, 0.95 + total * 0.26);
 
     children.forEach((child, idx) => {
       const ratio = total === 1 ? 0 : idx / (total - 1) - 0.5;
       const childAngle = parentBranch.angle + ratio * fanSpan;
 
-      // Generous tiered radial lengths to stagger tips widely in 2D space
       const tierOffset = (idx % 2 === 0 ? 0 : 55) + (idx % 3) * 35;
       const length = Math.max(160, 260 - depth * 25) + tierOffset;
 
