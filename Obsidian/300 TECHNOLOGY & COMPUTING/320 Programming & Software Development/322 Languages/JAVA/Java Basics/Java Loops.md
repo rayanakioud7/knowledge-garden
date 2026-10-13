@@ -32,7 +32,7 @@ class Main {
 
 **~={pink}Output:=~**
 
-```
+```text
 0 1 2 3 4 5 6 7 8 9 10
 ```
 
@@ -66,7 +66,7 @@ class Main {
 
 _~={pink}Output=~_:
 
-```
+```text
 Name: Sweta
 Name: Gudly
 Name: Amiya

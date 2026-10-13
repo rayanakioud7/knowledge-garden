@@ -34,7 +34,7 @@ In Java, an **Array** is an important linear data structure which allows us to s
 ```
 
 **~={green}Output:=~** 
-```
+```text
 7
 
 16
@@ -77,7 +77,7 @@ public class Main {
 
 **~={green}Output:=~**
 
-```
+```text
 83
 Mercedes
 ```
@@ -101,7 +101,7 @@ public class Main {
 
 **~={green}Output:=~**
 
-```
+```text
 87
 Dacia
 ```
@@ -235,7 +235,7 @@ public class Main {
 
 **~={green}Output:=~**
 
-```
+```text
 Name: Fatine, Age: 12
 Name: Rayan, Age: 17
 Name: Souad, Age: 21

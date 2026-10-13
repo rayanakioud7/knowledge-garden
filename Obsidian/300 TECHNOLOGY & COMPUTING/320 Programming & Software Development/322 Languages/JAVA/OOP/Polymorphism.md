@@ -51,7 +51,7 @@ public class Main {
 }
 ```
 *Output*
-```
+```text
 I am a father.
 ```
 
@@ -106,7 +106,7 @@ class Geeks {
 }
 ```
 *Output*
-```
+```text
 subclass1
 subclass2
 ```

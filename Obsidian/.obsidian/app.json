@@ -1,5 +1,6 @@
 {
   "alwaysUpdateLinks": true,
   "showInlineTitle": true,
-  "readableLineLength": true
+  "readableLineLength": true,
+  "attachmentFolderPath": "000/000.Source Material/attachments"
 }

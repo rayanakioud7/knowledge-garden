@@ -259,7 +259,7 @@ public class program {
 ```
 
 ~={green}**Output**=~
-```
+```text
 Write a boolean 
 I wont'!
 You wrote false

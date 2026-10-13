@@ -3,7 +3,7 @@ The key decision here is **don't create separate beginner/intermediate folders**
 
 Here's the complete merged structure:
 
-```
+```text
 513 Performance Technique
 │
 ├── Guitar Fundamentals          ← NEW (beginner only)

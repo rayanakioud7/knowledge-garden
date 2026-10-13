@@ -52,7 +52,7 @@ public class SimpleHashMapExample {
 }
 ```
 *Output*
-```
+```text
 1. Initial Map: {Apple=0.99, Cherry=2.50, Banana=0.5}
 2. Price of Banana: 0.5
 3. After updating Apple: {Apple=1.2, Cherry=2.50, Banana=0.5}

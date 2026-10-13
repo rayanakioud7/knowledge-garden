@@ -60,7 +60,7 @@ Tags:
 
 ## 4. Cycle de Vie de la Donnée
 
-```
+```text
 Collecte → Stockage → Traitement → Analyse → Visualisation → Décision
 ```
 
@@ -199,13 +199,13 @@ Collecte → Stockage → Traitement → Analyse → Visualisation → Décision
 
 **Mécanisme de lecture :**
 
-```
+```text
 Client → Demande au NameNode → Obtient l'emplacement des blocs → Lit directement depuis les DataNodes
 ```
 
 **Mécanisme d'écriture :**
 
-```
+```text
 Client → Demande au NameNode (allocation) → Écrit sur DataNode 1 
        → Pipeline vers DataNode 2 puis DataNode 3 → ACK envoyé au NameNode
 ```
@@ -303,7 +303,7 @@ Client → Demande au NameNode (allocation) → Écrit sur DataNode 1
 
 ![[Pasted image 20260514011242.png]]
 
-```
+```text
 Données brutes → [MAP] → Paires (Clé, Valeur) 
 → [SHUFFLE & SORT] → Clé: [V1,V2,V3] 
 → [REDUCE] → Résultat final
@@ -476,7 +476,7 @@ graph LR
 
 ### Processus d'exécution étape par étape
 
-```
+```text
 1. SOUMISSION  → Utilisateur écrit la requête HiveQL dans HUE ou CLI
 2. COMPILATION → Driver parse, valide la syntaxe, consulte le Metastore pour les schémas
 3. PLANIFICATION → Génération du plan d'exécution logique → puis physique
@@ -652,7 +652,7 @@ graph LR
 
 ## La Pile Technologique : Qui fait quoi ?
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │           COUCHE INTERFACE & ANALYSE            │
 │    Hive (SQL)   │   Pig (Scripts)   │   HUE     │

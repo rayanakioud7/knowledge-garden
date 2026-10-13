@@ -4,7 +4,7 @@ Now that I know everything, here is your precise action plan:
 
 ### This Week — Exact Sequence
 
-```
+```python
 DAY 1 — YOU (30-60 minutes):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 □ Create GitHub Organization: "lifeagent-io" or "lifeagent-ai"
@@ -88,7 +88,7 @@ WEEKEND:
 The most important file you create this week is `environment.yml`. This single file means your friend can recreate your exact Python environment with one command. It also means in 6 months when you hire someone or get a new machine, setup takes minutes not days.
 
 
-```
+```bash
 Concept of what this file contains:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -120,7 +120,7 @@ No more "what version did you install?"
 ## Summary of Decisions Made
 
 
-```
+```text
 ✓ Your machine = central host (already decided)
 ✓ YOU create the GitHub Organization and repository
 ✓ Project name = lifeagent

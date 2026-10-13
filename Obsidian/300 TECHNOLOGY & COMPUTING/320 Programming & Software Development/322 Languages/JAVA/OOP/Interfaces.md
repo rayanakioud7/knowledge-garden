@@ -81,7 +81,7 @@ class Geeks{
 }
 ```
 *~={pink}Output=~*
-```
+```text
 Geek
 10
 ```

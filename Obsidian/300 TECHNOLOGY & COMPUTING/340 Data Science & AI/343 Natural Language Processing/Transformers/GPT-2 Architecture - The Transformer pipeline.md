@@ -28,7 +28,7 @@ Tags:
 
 ### The Complete GPT-2 Architecture (Our Roadmap)
 
-```
+```text
 Token IDs [B, T]
     ↓
 [Token Embedding WTE] + [Positional Embedding WPE]
@@ -91,7 +91,7 @@ class GPTConfig:
 ### The Problem: Meaningless Numbers
 
 The raw input is a sequence of integer token IDs:
-```
+```text
 Input: [5, 21, 108, 32]   ← Just arbitrary numbers
 ```
 
@@ -443,7 +443,7 @@ class SingleHeadSelfAttention(nn.Module):
 GPT is **autoregressive** — it generates one token at a time. When predicting the next word for "A crane ate...", it must only use tokens it has *already seen*. It cannot see "fish" (the answer it should predict).
 
 But our current attention lets every token attend to every other:
-```
+```text
 # Current (broken) attention weights:
 "A"     attends to: [A, crane, ate, fish]   ← CHEATING! sees future
 "crane" attends to: [A, crane, ate, fish]   ← CHEATING! sees future
@@ -738,7 +738,7 @@ GELU is a smooth alternative to ReLU. It squashes negative values toward zero wh
 
 Input: single token vector `x = [[[0.5, -0.5]]]`, `C=2`
 
-```
+```text
 Step 1 - Expansion:   [1,1,2] → [1,1,8]
          Values: [2.40, -0.50, 1.88, -1.91, 2.08, 1.16, 0.41, -2.12]
 
@@ -776,7 +776,7 @@ This simple `x = x + something` pattern is one of the most significant breakthro
 
 In a deep network, the learning signal (gradient) travels **backward** through every layer. With each step, it gets multiplied by the layer's weights. In many cases it shrinks exponentially:
 
-```
+```text
 Loss → Layer 12 → Layer 11 → ... → Layer 1
          OK         Weaker  ...  ~0 (learns nothing!)
 ```
@@ -785,7 +785,7 @@ Early layers stop learning entirely. This is the **vanishing gradient problem**.
 
 ### The Solution: An Express Lane for Gradients
 
-```
+```text
 Input x ──────────────────────────────→ (+) → Output
               ↓                          ↑
          [LayerNorm]                     │
@@ -924,7 +924,7 @@ Zero new complexity here — it's a container for components you've already mast
 
 ### Data Flow Through the Block
 
-```
+```text
 Input x [B,T,C]
     │
     ├──────────────────────────────────┐ residual
@@ -1044,7 +1044,7 @@ Applied **independently to every token position simultaneously** → produces $T
 
 #### During Training: Efficiency is Everything
 
-```
+```text
 Input  [idx]:    ["A",     "crane",  "ate",   "fish"]
 Target [targets]:["crane", "ate",    "fish",  ???  ]
                    ↑         ↑         ↑
@@ -1130,7 +1130,7 @@ def forward(self, idx, targets=None):
 
 For each training sequence, `targets` = `idx` shifted one position left:
 
-```
+```text
 idx     = [5,  12,  8,  21]   ("A crane ate fish")
 targets = [12,  8,  21,  6]   ("crane ate fish ???")
 ```
@@ -1156,7 +1156,7 @@ $$\mathcal{L} = -\frac{1}{B \cdot T} \sum_{i=1}^{B \cdot T} \log P(\text{target}
 
 ### Preparing Training Data: Chunking
 
-```
+```text
 Raw token stream: [5, 12, 8, 21, 6, 33, 9, 4, 15, 7, ...]
                                         ↓
 Sample 1: idx=[5,12,8,21],  targets=[12,8,21,6]
@@ -1192,7 +1192,7 @@ targets = [[12,  8, 21,  6],    # shape [2, 4]
 
 ### The Generation Loop
 
-```
+```text
 1. PREDICT  → Feed current sequence → get scores for next token
 2. SAMPLE   → Roll dice based on probabilities → pick one token
 3. APPEND   → Add new token to end of sequence
@@ -1284,7 +1284,7 @@ Top-K prevents rare/nonsensical tokens from ever being chosen, greatly improving
 
 ## Complete Architecture Summary
 
-```
+```text
 Token IDs [B, T]
     │
     ├── WTE (nn.Embedding) ──────────────┐

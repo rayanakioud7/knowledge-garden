@@ -30,7 +30,7 @@ The startup moat is: **privacy + modularity + fine-tuned domain expertise + self
 
 Here's how I'd architect this from day one so it scales cleanly:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                      VOICE INTERFACE                         │
 │              (Wake word → STT → Agent → TTS)                 │
@@ -121,7 +121,7 @@ I'm selecting every tool based on three criteria: **(1) runs on your hardware, (
 
 This is the most technically demanding part. Here's the full pipeline:
 
-```
+```text
 User speaks → Wake Word Detection → Speech-to-Text → Agent processes → Text-to-Speech → User hears response
 ```
 
@@ -201,7 +201,7 @@ This is where most two-person startups fail. Here's a professional setup:
 
 Here's exactly how your workflow should operate:
 
-```
+```text
 main (protected — nobody pushes directly)
   │
   ├── feat/health-agent-blood-pressure    (your branch)
@@ -249,7 +249,7 @@ main (protected — nobody pushes directly)
 
 Use a **monorepo** for everything. At your scale, microservices in separate repos is over-engineering.
 
-```
+```text
 lifeagent/
 ├── README.md
 ├── docker-compose.yml              # Local development stack

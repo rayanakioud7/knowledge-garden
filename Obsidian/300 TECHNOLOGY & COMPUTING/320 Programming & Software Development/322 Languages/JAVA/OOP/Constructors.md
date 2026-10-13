@@ -34,7 +34,7 @@ public Personne() {
 
 **~={green}Output:=~** 
 
-```
+```text
 Inconnu, 0
 ```
 
@@ -132,7 +132,7 @@ public class Person{
 
 ~={green}**Output**:=~
 
-```
+```text
 Name: ABC
 Age: 18
 

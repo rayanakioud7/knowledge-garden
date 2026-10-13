@@ -1,10 +1,5 @@
-
-
-Date: 2026-03-30
-Tags:
-
-
 ---
+date: 2026-03-30
 aliases:
   - Greek Mathematics
   - Pre-Euclidean Greek Mathematics

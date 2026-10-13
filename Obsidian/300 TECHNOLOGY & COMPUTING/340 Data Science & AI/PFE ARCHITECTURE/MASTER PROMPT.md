@@ -26,7 +26,7 @@ You are assisting with a final-year engineering thesis (Projet de Fin d'Études,
 
 A real bidirectional conversation between a deaf person and a hearing person.
 
-```
+```text
 DEAF PERSON:
   Signs continuously in front of webcam
   → MediaPipe Holistic extracts 115 body landmarks
@@ -61,7 +61,7 @@ Via video retrieval or skeletal animation. Not started.
 
 **AMD hardware. ROCm. NOT NVIDIA. NOT CUDA.**
 
-```
+```text
 CPU:  AMD Ryzen 7 7700 (8 cores)
 GPU:  AMD Radeon RX 7900 XT (RDNA3, gfx1100, 20GB VRAM)
 RAM:  32GB DDR5
@@ -70,7 +70,7 @@ WSL2 RAM allocation: 24GB
 ```
 
 ML Stack:
-```
+```python
 Python:     3.10
 PyTorch:    2.4.1+rocm6.0
 ROCm:       6.0
@@ -96,7 +96,7 @@ export HSA_OVERRIDE_GFX_VERSION=11.0.0
 
 **Google ISLR (Kaggle 2023) — child-directed ASL vocabulary**
 
-```
+```text
 Samples:    94,477
 Classes:    250 ASL signs
 Signers:    21 people
@@ -106,7 +106,7 @@ Nature:     Child-directed vocabulary
 ```
 
 **Signer-independent split (zero overlap verified):**
-```
+```text
 Train: 16 signers → 74,841 samples
 Val:    2 signers →  8,521 samples (signers 25571, 53618)
 Test:   3 signers → 11,115 samples (signers 18796, 30680, 27610)
@@ -118,7 +118,7 @@ Test:   3 signers → 11,115 samples (signers 18796, 30680, 27610)
 
 **ASL Citizen poses — HuggingFace: SorensenAI/asl-citizen-poses**
 
-```
+```text
 Total files:    104,450 .pose files
 Format:         Binary .pose (pose-format library)
 Signers:        52 diverse signers
@@ -129,12 +129,12 @@ Processed dir:  data/processed_asl_citizen/
 ```
 
 **5 signs missing from ASL Citizen (ISLR only):**
-```
+```text
 DAD, GRANDMA, LOOK, MOM, THANKYOU
 ```
 
 **ASL Citizen .pose file structure:**
-```
+```text
 Component offsets (fixed for all files):
   POSE_LANDMARKS:       offset 0   (33 points)
   FACE_LANDMARKS:       offset 33  (468 points)
@@ -165,7 +165,7 @@ mask = np.ma.getmaskarray(pose.body.data)  # True = missing
 
 **115 landmarks from 543 total:**
 
-```
+```text
 Ordering in our 115-landmark array:
   Slots  0–39:  40 face landmarks (curated)
   Slots 40–72:  33 pose landmarks (all)
@@ -188,7 +188,7 @@ FACE_LANDMARKS = [
 ```
 
 **Shoulder indices within 115-landmark array:**
-```
+```text
 Left shoulder:  slot 40 + 11 = 51
 Right shoulder: slot 40 + 12 = 52
 ```
@@ -206,7 +206,7 @@ normalised = (arr - anchor) / scale
 ```
 
 ## Feature Vector Layout — GROUPED (690 per frame)
-```
+```text
 Position block (345):
   [x_0..x_114 | y_0..y_114 | z_0..z_114]   indices 0–344
 
@@ -218,7 +218,7 @@ First frame velocity = 0
 ```
 
 ## Temporal Handling
-```
+```python
 T = 64 frames fixed
 F < 64: center-pad with zeros
 F ≥ 64: center-crop from middle
@@ -256,7 +256,7 @@ V_LH_Z = (648, 669); V_RH_Z = (669, 690)
 
 **Input:** `(B, 64, 690)`
 
-```
+```text
 Stage 1: Linear(690→256) + LayerNorm        → (B, 64, 256)
 Stage 2: 1D CNN (2 layers, kernel=3)
          + residual + LayerNorm             → (B, 64, 256)
@@ -272,7 +272,7 @@ Stage 6: LayerNorm → Linear(256→256)
 ```
 
 **Stats:**
-```
+```text
 Parameters: 3,861,242
 Size:       ~15.4 MB
 VRAM:       <0.5 GB
@@ -294,7 +294,7 @@ Epochs:    80 max
 ```
 
 **Augmentation (training only):**
-```
+```text
 Gaussian noise:  σ=0.05, p=0.50
 Temporal shift:  ±3 frames, p=0.30
 Spatial scale:   ×0.9–1.1, p=0.30
@@ -319,7 +319,7 @@ Mirror flip:     p=0.50
 | **7** | **TBD** | **TBD** | **TBD** | **3.86M** | **ASL Citizen finetune (IN PROGRESS)** |
 
 **Production model: v5 + 6a filter**
-```
+```python
 67-sign conversational subset: 68.66% top-1, 86.68% top-5
 Full 250-class evaluation:     47.47% top-1, 73.29% top-5
 ```
@@ -334,7 +334,7 @@ Full 250-class evaluation:     47.47% top-1, 73.29% top-5
 
 # 11. BUGS FIXED IN V4 — DO NOT REINTRODUCE
 
-```
+```python
 1. Padding-aware z-score (exclude zeros from statistics)
 2. Attention mask for padding frames in Transformer
 3. Masked global average pooling (real frames only)
@@ -364,13 +364,13 @@ CONVERSATIONAL_SUBSET = [
 ```
 
 **Best demo signs (>75% accuracy in v5):**
-```
+```text
 boy(92.3%), pig(84.6%), bird(83.9%), cow(83.0%), frog(80.8%),
 yesterday(80.4%), tiger(78.8%), sick(78.7%), drink(77.6%), apple(76.7%)
 ```
 
 **Avoid in demo until finetuning:**
-```
+```text
 go(13.7%), fast(25.0%), loud(25.0%), why(28.1%), mad(28.8%)
 ```
 
@@ -378,7 +378,7 @@ go(13.7%), fast(25.0%), loud(25.0%), why(28.1%), mad(28.8%)
 
 # 13. FINETUNING PLAN — CASCADED TRANSFER LEARNING
 
-```
+```text
 Stage 1 (Experiment 7): ASL Citizen finetuning
   Data:     Google ISLR (67-sign subset) + ASL Citizen (62 signs)
   Signers:  21 + 52 = 73 total
@@ -402,13 +402,13 @@ Stage 2 (Experiment 8): Personal data finetuning
 
 ## Flask Web App (app.py)
 
-```
+```bash
 python app.py
 Open: http://localhost:5000
 ```
 
 **Components:**
-```
+```python
 CameraThread:          Dedicated thread, requests.Session(),
                        ?quality=30, 640×480 resize
 ImprovedStateMachine:  CALIBRATING → IDLE → ACTIVE
@@ -428,7 +428,7 @@ CAMERA_SOURCE = "http://192.168.0.101:8080/video"  # phone IP Webcam
 ```
 
 **Known issues:**
-```
+```text
 - IP camera: ~8 FPS (school USB webcam will give 30 FPS)
 - Motion threshold needs tuning after calibration
 - Signs not being detected reliably (domain gap — non-expert signer)
@@ -439,7 +439,7 @@ CAMERA_SOURCE = "http://192.168.0.101:8080/video"  # phone IP Webcam
 
 # 15. PROJECT STRUCTURE (CURRENT)
 
-```
+```python
 ~/projects/signlang/
     checkpoints/
         best_model_v3.pt          # v3 experimental
@@ -486,7 +486,7 @@ CAMERA_SOURCE = "http://192.168.0.101:8080/video"  # phone IP Webcam
 # 16. WHAT COMES NEXT (IN ORDER)
 
 ## Immediate (this session):
-```
+```text
 1. Wait for ASL Citizen download to complete (2,335 files)
 2. Run: python -m src.etl_asl_citizen
 3. Verify processed_asl_citizen/ arrays
@@ -496,7 +496,7 @@ CAMERA_SOURCE = "http://192.168.0.101:8080/video"  # phone IP Webcam
 ```
 
 ## After Experiment 7:
-```
+```text
 7. Build personal data collection script
 8. Get school USB webcam
 9. Record 67 signs (~15 samples each, ~1 hour)
@@ -506,7 +506,7 @@ CAMERA_SOURCE = "http://192.168.0.101:8080/video"  # phone IP Webcam
 ```
 
 ## Ongoing:
-```
+```text
 13. Obsidian concepts 11–20 (self-attention etc.)
 14. Excalidraw architecture diagrams
 15. LaTeX report updates for Exp 7 and 8
@@ -624,7 +624,7 @@ PATIENCE     = 10
 
 # 20. FROZEN DECISIONS — NEVER REVISIT
 
-```
+```text
 1.  115 landmark selection and ordering
 2.  Grouped feature layout [pos | vel]
 3.  Shoulder-relative normalisation

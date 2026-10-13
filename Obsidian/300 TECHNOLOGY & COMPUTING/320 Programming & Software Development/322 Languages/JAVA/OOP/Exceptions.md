@@ -87,7 +87,7 @@ class Artithmetic{
 }
 ```
 *~={pink}Output=~*
-```
+```text
 Error: Division by 0!
 ```
 
@@ -220,7 +220,7 @@ public class Main {
 ```
 
 *~={pink}Output=~*
-```
+```text
 Access Denied: Sorry, you must be 18+.
 ```
 
@@ -312,7 +312,7 @@ public class TestCalcuatrice {
 ```
 
 *~={pink}Output=~*
-```
+```text
 Donner deux nombre
 -9
 0

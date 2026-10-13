@@ -23,7 +23,7 @@ Les fonctions de base $\varphi_j^h$ ($1 \leq j \leq N$) vérifient :
 
 La fonction $\varphi_j^h$ est une **fonction chapeau** (hat function) centrée sur le nœud $x_j$ :
 
-```
+```text
         1 ·
            /\
           /  \
@@ -278,7 +278,7 @@ Avec **3 éléments** et **4 nœuds** :
 
 $$h = \frac{1}{3}, \qquad x_1 = 0, \quad x_2 = \frac{1}{3}, \quad x_3 = \frac{2}{3}, \quad x_4 = 1$$
 
-```
+```text
   x₁=0      x₂=1/3     x₃=2/3     x₄=1
    |————————|————————|————————|
      Elem 1    Elem 2   Elem 3

@@ -75,7 +75,7 @@ class GFG {
 ```
   
 **Output**:
-```
+```text
 Geeks for Geeks
 ```
 
@@ -128,7 +128,7 @@ class GFG {
 ```
 
 **Output**
-```
+```text
 5
 ```
 

@@ -12,7 +12,7 @@ After the matrix multiplication $\mathbf{X}\mathbf{W} + \mathbf{b}$,
 each frame has 256 output values. But these values can be on
 wildly different scales:
 
-```
+```text
 Frame 20 after projection (before LayerNorm):
 
   h₁  =  +47.3   ← very large positive
@@ -123,7 +123,7 @@ $$\boxed{
 
 Using the earlier extreme values:
 
-```
+```text
 Before LayerNorm:
   h₁  = +47.3
   h₂  = -0.002
@@ -177,7 +177,7 @@ For Transformers, LayerNorm is preferred because:
 LayerNorm is not used just once. It appears at multiple points
 throughout the ASLTransformer:
 
-```
+```text
 Stage 1:  Linear Projection output          ← HERE (after XW + b)
 Stage 2:  After the residual connection     ← HERE (after CNN + skip)
 Stage 4:  Inside each Transformer layer     ← HERE × 4 (Pre-LN style)
@@ -210,7 +210,7 @@ variation between signers during training.
 
 The two mechanisms work at different levels:
 
-```
+```text
 Data level:   Augmentation + signer split
               → different signers, different body sizes,
                 different movement timing

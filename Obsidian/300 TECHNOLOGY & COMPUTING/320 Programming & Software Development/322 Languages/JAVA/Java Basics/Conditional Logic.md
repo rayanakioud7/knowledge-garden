@@ -25,7 +25,7 @@ class Main {
 
 _~={pink}Output=~_
 
-```
+```text
 Condition is True
 ```
 
@@ -55,7 +55,7 @@ if (value > 42) {
 
 _~={pink}Output=~_
 
-```
+```text
 not ok
 ```
 
@@ -85,7 +85,7 @@ class Main {
 
 _~={pink}Output=~_
 
-```
+```text
 i is smaller than 15
 i is exactly 10
 ```
@@ -116,7 +116,7 @@ class Main {
 
 _~={pink}Output=~_
 
-```
+```text
 i is 20
 ```
 
@@ -153,7 +153,7 @@ class Main {
 
 _~={pink}Output=~_
 
-```
+```text
 It is 20
 ```
 
@@ -206,7 +206,7 @@ class Main {
 
 _~={pink}Output=~_
 
-```
+```text
 Maximum is 20
 ```
 

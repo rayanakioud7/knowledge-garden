@@ -43,7 +43,7 @@ public class SetExample {
 }
 ```
 *Output*
-```
+```text
 Was the second Apple added? false
 Current Set: [Apple, Orange, Banana]
 

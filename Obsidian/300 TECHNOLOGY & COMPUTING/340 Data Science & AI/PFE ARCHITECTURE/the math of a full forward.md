@@ -10,7 +10,7 @@ Tags:
 
 ## Input
 
-```
+```text
 X  ∈  ℝ^(64 × 690)
 
 64  = number of frames (T)
@@ -135,7 +135,7 @@ Each layer $\ell = 1, \ldots, 6$ receives $Z^{(\ell-1)} \in \mathbb{R}^{64 \time
 
 The structure of each layer (Pre-LN):
 
-```
+```text
 input Z^(ℓ-1)
     │
     ├── LayerNorm → Multi-Head Attention → + residual
@@ -360,7 +360,7 @@ $$\hat{p}_c = \frac{e^{\hat{y}_c}}{\sum_{j=1}^{250} e^{\hat{y}_j}}$$
 
 ## Complete Shape Summary
 
-```
+```python
 Input:                (64, 690)
 
 Stage 1:

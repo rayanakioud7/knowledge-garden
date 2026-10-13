@@ -4,7 +4,7 @@
 
 ## First — Your Teammate's Access Question
 
-```
+```text
 You made the right call. Here is the explanation
 you can give him so he understands why:
 
@@ -49,7 +49,7 @@ When to upgrade him to Owner:
 
 ## Day 2 Overview
 
-```
+```text
 What we build today:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -77,7 +77,7 @@ End of Day Verification:
 
 ### Why a New Environment and Not ai_env
 
-```
+```python
 ai_env is your personal laboratory.
 You experiment there freely.
 Packages are installed ad-hoc as you explore.
@@ -95,13 +95,13 @@ versus a project that only works on one specific machine.
 
 ### Step 1 — Create the Environment
 
-```
+```bash
 Open your terminal and run:
 
 micromamba create -n lifeagent_dev python=3.12 -c conda-forge -y
 ```
 
-```
+```text
 Why Python 3.12 specifically?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -115,13 +115,13 @@ Consistency across environments avoids subtle bugs.
 
 Activate it:
 
-```
+```bash
 micromamba activate lifeagent_dev
 ```
 
 Your prompt should now show:
 
-```
+```text
 (lifeagent_dev)
 ~ via 🅒 lifeagent_dev
 ❯
@@ -133,7 +133,7 @@ We install in groups so if something fails you know exactly which category cause
 
 **Group 1 — Core System Libraries via conda-forge:**
 
-```
+```bash
 micromamba install -c conda-forge \
   git \
   curl \
@@ -143,14 +143,14 @@ micromamba install -c conda-forge \
 
 **Group 2 — PyTorch with ROCm (from PyPI, same as your ai_env):**
 
-```
+```bash
 pip install torch==2.9.1+rocm6.3 \
             torchaudio==2.9.1+rocm6.3 \
             torchvision==0.24.1+rocm6.3 \
             --index-url https://download.pytorch.org/whl/rocm6.3
 ```
 
-```
+```python
 Why install PyTorch manually instead of conda?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -162,7 +162,7 @@ This guarantees identical behavior to your ai_env.
 
 **Group 3 — ML and Training Stack:**
 
-```
+```bash
 pip install \
   transformers==5.12.1 \
   accelerate==1.14.0 \
@@ -179,7 +179,7 @@ pip install \
 
 **Group 4 — Agent Framework (installing both for evaluation):**
 
-```
+```bash
 pip install \
   langchain-core==0.3.29 \
   langchain-community==0.3.17 \
@@ -188,7 +188,7 @@ pip install \
   crewai==0.86.0
 ```
 
-```
+```text
 Why install both LangGraph and CrewAI?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -201,7 +201,7 @@ After the decision is made, we remove the loser.
 
 **Group 5 — Backend API and Database:**
 
-```
+```bash
 pip install \
   fastapi==0.115.6 \
   uvicorn[standard]==0.32.1 \
@@ -218,7 +218,7 @@ pip install \
 
 **Group 6 — Voice Pipeline:**
 
-```
+```bash
 pip install \
   faster-whisper==1.1.0 \
   sounddevice==0.5.1 \
@@ -228,7 +228,7 @@ pip install \
   httpx==0.28.1
 ```
 
-```
+```python
 Note on Piper TTS:
 ━━━━━━━━━━━━━━━━━
 Piper TTS is installed separately from its GitHub releases
@@ -239,7 +239,7 @@ For now the above covers the input side of voice.
 
 **Group 7 — Development Quality Tools:**
 
-```
+```bash
 pip install \
   ruff==0.8.4 \
   pyright==1.1.391 \
@@ -256,7 +256,7 @@ pip install \
 
 Run these checks one by one:
 
-```
+```python
 # Verify PyTorch sees your GPU
 python -c "
 import torch
@@ -267,7 +267,7 @@ print(f'VRAM: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.1f} G
 "
 ```
 
-```
+```text
 Expected output:
 PyTorch version: 2.9.1+rocm6.3
 ROCm available: True
@@ -275,7 +275,7 @@ GPU name: AMD Radeon RX 7900 XT
 VRAM: 20.0 GB
 ```
 
-```
+```python
 # Verify FastAPI is importable
 python -c "import fastapi; print(f'FastAPI: {fastapi.__version__}')"
 
@@ -289,7 +289,7 @@ python -c "import asyncpg; import psycopg2; print('Database drivers: OK')"
 python -c "import redis; print(f'Redis client: {redis.__version__}')"
 ```
 
-```
+```text
 If any of these fail:
 ━━━━━━━━━━━━━━━━━━━━
 Note the exact error message.
@@ -301,7 +301,7 @@ Each one represents a critical system dependency.
 
 This is the most important step of Block 1. This file is what your teammate uses to replicate your environment exactly:
 
-```
+```bash
 Navigate to your project directory first:
 cd ~/projects/lifeagent
 
@@ -311,7 +311,7 @@ micromamba env export -n lifeagent_dev > environment.yml
 
 Now open and review the file:
 
-```
+```text
 code environment.yml
 ```
 
@@ -330,7 +330,7 @@ dependencies:
     ... all pip packages ...
 ```
 
-```
+```text
 One important edit to make:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -348,13 +348,13 @@ Remove it and the file becomes portable.
 
 Also create a human-readable requirements file for reference:
 
-```
+```bash
 pip list --format=freeze > docs/requirements-reference.txt
 ```
 
 ### Step 5 — Commit the Environment File
 
-```
+```bash
 git add environment.yml
 git add docs/requirements-reference.txt
 git commit -m "chore: add lifeagent_dev environment definition
@@ -375,7 +375,7 @@ git push origin main
 
 ### The Mental Model Before We Start
 
-```
+```python
 What we are building:
 
 Your Machine (Fedora)
@@ -404,7 +404,7 @@ These containers:
 
 ### Step 6 — Create the Infrastructure Directory Structure
 
-```
+```bash
 cd ~/projects/lifeagent
 
 mkdir -p infra/docker/postgres
@@ -416,7 +416,7 @@ mkdir -p infra/scripts
 
 This script runs automatically the first time PostgreSQL starts. It creates our database extensions:
 
-```
+```text
 code infra/docker/postgres/init.sql
 ```
 
@@ -446,7 +446,7 @@ WHERE extname IN ('vector', 'timescaledb', 'uuid-ossp', 'citext');
 
 ### Step 8 — Redis Configuration
 
-```
+```text
 code infra/docker/redis/redis.conf
 ```
 
@@ -479,7 +479,7 @@ bind 0.0.0.0
 protected-mode no
 ```
 
-```
+```python
 Why a password even for local development?
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -497,7 +497,7 @@ Two reasons:
 
 ### Step 9 — The Environment Variables File
 
-```
+```text
 code .env.development
 ```
 
@@ -561,11 +561,11 @@ WANDB_MODE=online
 
 Now verify this file is properly gitignored:
 
-```
+```bash
 git check-ignore -v .env.development
 ```
 
-```
+```text
 Expected output:
 .gitignore:XX:.env    .env.development
 
@@ -582,7 +582,7 @@ This is critical — passwords must never reach GitHub.
 
 Create a safe template that IS committed:
 
-```
+```text
 code .env.example
 ```
 
@@ -636,7 +636,7 @@ WANDB_MODE=online
 
 This is the central infrastructure definition:
 
-```
+```text
 code docker-compose.yml
 ```
 
@@ -744,7 +744,7 @@ networks:
     driver: bridge
 ```
 
-```
+```python
 Understanding the key concepts in this file:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -788,7 +788,7 @@ volumes:
 
 A Makefile gives you short memorable commands instead of long podman compose strings. This is standard professional practice:
 
-```
+```text
 code Makefile
 ```
 
@@ -913,7 +913,7 @@ clean:
 	podman system prune -f
 ```
 
-```
+```text
 Important: Makefiles require TABS not spaces.
 When you paste this into VS Code, verify the
 indentation under each target uses actual Tab characters.
@@ -929,7 +929,7 @@ Spaces appear as dots ·
 
 Now start everything:
 
-```
+```bash
 cd ~/projects/lifeagent
 
 make up
@@ -943,11 +943,11 @@ Watch the output carefully. You should see containers being pulled and started. 
 
 ### Step 13 — Verify All Services Are Running
 
-```
+```text
 make ps
 ```
 
-```
+```text
 Expected output:
 ━━━━━━━━━━━━━━━
 NAME                    IMAGE                           STATUS
@@ -964,7 +964,7 @@ to see what went wrong.
 
 ### Step 14 — Verify PostgreSQL and Extensions
 
-```
+```text
 make db-shell
 ```
 
@@ -977,7 +977,7 @@ FROM pg_extension
 ORDER BY extname;
 ```
 
-```
+```text
 Expected output includes:
 ━━━━━━━━━━━━━━━━━━━━━━━━
   extname    | extversion
@@ -997,17 +997,17 @@ Exit the shell:
 
 ### Step 15 — Verify Redis
 
-```
+```text
 make redis-shell
 ```
 
 Inside the Redis shell:
 
-```
+```text
 PING
 ```
 
-```
+```text
 Expected output: PONG
 
 SET test_key "lifeagent works"
@@ -1023,11 +1023,11 @@ EXIT
 
 Open your browser:
 
-```
+```text
 http://localhost:5050
 ```
 
-```
+```text
 Login with:
 Email:    admin@lifeagent.dev
 Password: pgadmin_dev
@@ -1055,7 +1055,7 @@ Expand it to verify tables (empty for now) and extensions.
 
 Back in your terminal with lifeagent_dev activated:
 
-```
+```python
 python -c "
 import asyncio
 import asyncpg
@@ -1092,7 +1092,7 @@ asyncio.run(main())
 "
 ```
 
-```
+```text
 Expected output:
 ━━━━━━━━━━━━━━━
 PostgreSQL: Connected
@@ -1108,7 +1108,7 @@ All infrastructure services verified.
 
 ### Step 18 — Update Hardware Validation Log
 
-```
+```text
 code HARDWARE_VALIDATION.md
 ```
 
@@ -1138,7 +1138,7 @@ Update the Infrastructure Services section:
 
 ### Step 19 — Final Commit
 
-```
+```bash
 git add docker-compose.yml
 git add Makefile
 git add .env.example
@@ -1171,7 +1171,7 @@ git push origin main
 
 ## End of Day 2 — What You Have Built
 
-```
+```bash
 Completed Today:
 ━━━━━━━━━━━━━━━
 
@@ -1209,7 +1209,7 @@ make up
 
 ## Your Teammate's Day 2 Tasks (Send Him This)
 
-```
+```bash
 After Linux is installed and NVIDIA verified:
 
 1. Install micromamba:

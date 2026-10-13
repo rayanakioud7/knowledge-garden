@@ -42,7 +42,7 @@ Run a script and enter REPL afterward.
 
 Bash
 
-```
+```bash
 $ python -i my_script.py
 ```
 
@@ -783,7 +783,7 @@ $ python -m pip install requests
 
 Bash
 
-```
+```bash
 $ python -m pip freeze > requirements.txt
 $ python -m pip install -r requirements.txt
 ```

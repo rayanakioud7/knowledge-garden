@@ -66,7 +66,7 @@ Identical structure to the left hand.
 
 ### Total Breakdown
 
-```
+```text
 Face:        468 landmarks
 Pose:         33 landmarks  
 Left Hand:    21 landmarks
@@ -85,7 +85,7 @@ The dataset contains **94,477 parquet files** — one file per sign video sample
 
 Each file is in **long format** (one row per landmark per frame):
 
-```
+```text
 frame | type       | landmark_index | x     | y     | z
 ──────────────────────────────────────────────────────────
   20  | face       |       0        | 0.494 | 0.380 | -0.030
@@ -120,7 +120,7 @@ frame | type       | landmark_index | x     | y     | z
 
 ### Why We Cannot Train Directly On The Raw Files
 
-```
+```text
 Problem 1: FORMAT
   The model needs a fixed-size tensor as input.
   Raw parquet files have variable numbers of rows.
@@ -141,7 +141,7 @@ Problem 3: REDUNDANCY
 
 ETL stands for **Extract, Transform, Load**. We run this script exactly once to convert the raw data into training-ready format.
 
-```
+```text
 EXTRACT:   Read all 94,477 parquet files
 TRANSFORM: Filter landmarks + normalize + pad/truncate
 LOAD:      Save as two numpy arrays
@@ -149,7 +149,7 @@ LOAD:      Save as two numpy arrays
 
 #### Step 1: Filter 543 → 115 Landmarks
 
-```
+```text
 Keep:
   Key face points:   40   (eyebrows, eyes, lips, nose)
   Pose:              33   (all — location matters)
@@ -166,7 +166,7 @@ Drop:
 
 #### Step 2: Convert Long → Wide Format
 
-```
+```text
 BEFORE (long format, one row per landmark):
   12,489 rows × 7 columns for ONE sign
 
@@ -177,7 +177,7 @@ AFTER (wide format, one row per frame):
 
 #### Step 3: Pad or Truncate to Fixed Length
 
-```
+```text
 Every sign must become exactly 64 frames.
 
 Short sign (23 frames → 64 frames):
@@ -192,7 +192,7 @@ Long sign (150 frames → 64 frames):
 
 #### Step 4: Normalize Coordinates
 
-```
+```python
 Problem: Raw (x, y, z) values depend on where the 
          signer stands in the camera frame.
          
@@ -216,7 +216,7 @@ Result: The model learns the SHAPE of the sign,
 
 #### Step 5: Handle Missing Values (NaN)
 
-```
+```text
 MediaPipe outputs NaN when it cannot detect a body part.
 (Example: one hand is hidden behind the body)
 
@@ -228,7 +228,7 @@ Strategy:
 
 ### ETL Output
 
-```
+```python
 BEFORE:   94,477 parquet files   ~56 GB on disk
 AFTER:    2 numpy files          ~8.3 GB total
 
@@ -245,7 +245,7 @@ Loading during training:
 
 ## The Full Picture — What We Are Building
 
-```
+```text
 Phase 1 (NOW): ETL Pipeline
   94,477 parquet files → X_train.npy + y_train.npy
   Run once. Takes ~30-60 minutes on Ryzen 7 7700.
@@ -350,7 +350,7 @@ Verify the prompt template produces natural sentences.
 
 **7. Practice 10 Signs**
 Learn these specifically from YouTube ASL tutorials:
-```
+```text
 hello, thankyou, yes, no, water,
 drink, hungry, sick, happy, please
 ```
@@ -395,7 +395,7 @@ Latency measurements.
 ### OBSIDIAN ARCHITECTURE NOTES — When You Have Time
 
 **12. Complete Concepts 11-20**
-```
+```text
 11. Self-Attention          ← most important, do first
 12. Multi-Head Attention
 13. The Feed-Forward Block
@@ -409,7 +409,7 @@ Latency measurements.
 ```
 
 **13. Complete Excalidraw Diagrams**
-```
+```text
 
 Drawing 6: Self-Attention mechanism
 Drawing 7: Full model end-to-end
@@ -438,7 +438,7 @@ Not started yet.
 
 ## Priority Summary
 
-```
+```text
 This week:
   1. Experiment 6b (merge classes)
   2. Retrain on 67 signs

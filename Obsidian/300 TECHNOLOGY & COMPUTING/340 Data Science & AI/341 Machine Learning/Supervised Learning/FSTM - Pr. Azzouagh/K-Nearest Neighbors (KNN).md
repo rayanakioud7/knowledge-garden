@@ -234,7 +234,7 @@ y_pred = knn.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print(confusion_matrix(y_test, y_pred))
-```
+```text
 
 ### R Implementation (class::knn)
 

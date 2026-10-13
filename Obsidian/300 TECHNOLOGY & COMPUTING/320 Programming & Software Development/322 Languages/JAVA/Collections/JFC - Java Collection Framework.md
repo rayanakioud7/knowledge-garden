@@ -330,7 +330,7 @@ public class CollectionDemo {
 ```
 
 **~={green}Output=~**
-```
+```text
 [Rayan, Fatine, Akioud]
 
 [Rayan, Fatine]

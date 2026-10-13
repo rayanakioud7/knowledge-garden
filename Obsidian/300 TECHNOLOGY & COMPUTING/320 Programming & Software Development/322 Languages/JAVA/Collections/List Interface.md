@@ -27,7 +27,7 @@ List<Object> myList = new ArrayList<>();
 		System.out.println(myList);
 ```
 *Output*
-```
+```text
 [1, 4, 3, 2, 3, 9.77, null]
 //we can also obvserve the maintenance of insertion and allowance of duplicates and null
 ```
