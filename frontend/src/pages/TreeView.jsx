@@ -3,15 +3,15 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { api } from "../api.js";
 
 // ============================================================================
-// Japanese Sumi-e Procedural Ink Bonsai Knowledge Tree (水墨画 · 松盆栽)
+// Japanese Sumi-e Procedural Ink Bonsai Knowledge Tree (水墨画 · 竹笹盆栽)
 // Features:
 // - HTML5 Canvas 2D Procedural Calligraphy Engine (Real brushwork, zero plastic SVG)
+// - Classical Sumi-e Bamboo Leaves (笹葉 Sasa-ha): Every note is an individual, clickable leaf!
 // - Pixel-Perfect Coordinate Alignment (Screen-to-World synced with getBoundingClientRect)
 // - Full-Branch & Floating Label Hit-Testing with Visual Hover Highlights
 // - Multi-Bristle Simulation (毛筆 Kehitsu) with Dry-Brush (飛白 Kasure) & Ink Bleed (滲み Nijimi)
 // - Wide Lateral Moyogi Bonsai Boughs: Spreads widely across 120°-160° fans (Zero vertical broom)
 // - Floating Calligraphy & Vermilion Hanko Seals (印鑑): Zero clunky boxes
-// - Cloud-Pruned Tamabuki (玉吹) Foliage Clouds & 5-Needle Pine Tufts (松葉 Matsuba)
 // - Interactive Slide-Out Washi Parchment Drawer for Note Inspection
 // ============================================================================
 
@@ -249,7 +249,7 @@ export default function TreeView() {
     // Subtle Washi Paper Texture Specks (Organic fibers)
     drawWashiFibers(ctx, width, height, isDark);
 
-    // Apply Camera Transform (Exact same width/2 & height/2 as screenToWorld)
+    // Apply Camera Transform
     ctx.save();
     ctx.translate(width / 2 - camera.x * camera.zoom, height / 2 - camera.y * camera.zoom);
     ctx.scale(camera.zoom, camera.zoom);
@@ -260,7 +260,7 @@ export default function TreeView() {
     // 2. Moyogi S-Curve Trunk & Nebari Spreading Roots
     drawSumiTrunk(ctx, treeLayout.rootOrigin, treeLayout.trunkApex, inkBase, inkSoft, vermilion);
 
-    // 3. Calligraphic Tapered Boughs & Branches
+    // 3. Calligraphic Tapered Boughs & Branches (Categories)
     treeLayout.branches.forEach((branch) => {
       if (branch.path === "") return;
       const isActive = currentPath === branch.path;
@@ -270,16 +270,15 @@ export default function TreeView() {
       drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered);
     });
 
-    // 4. Cloud-Pruned Tamabuki Foliage Pads (玉吹) & Note Pine Tufts
-    treeLayout.foliagePads.forEach((pad) => {
-      const isHovered = hoveredNode?.pad?.id === pad.id || hoveredNode?.id === pad.id;
-      const isSelected = selectedLeaf?.id === pad.id;
-      const isActive = currentPath === pad.path;
+    // 4. Classical Sumi-e Bamboo Leaves (笹葉 Sasa-ha): Every note is an individual leaf!
+    treeLayout.leaves.forEach((leaf) => {
+      const isHovered = hoveredNode?.leaf?.id === leaf.id || hoveredNode?.id === leaf.id;
+      const isSelected = selectedLeaf?.id === leaf.id;
 
-      drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, isSelected, isActive);
+      drawBambooLeaf(ctx, leaf, inkBase, inkSoft, vermilion, isDark, isHovered, isSelected);
     });
 
-    // 5. Floating Calligraphy Titles & Vermilion Hanko Stamps (Zero Boxes)
+    // 5. Floating Calligraphy Titles & Vermilion Hanko Stamps for Categories (Zero Boxes)
     treeLayout.branches.forEach((branch) => {
       if (branch.path === "") return;
       const isActive = currentPath === branch.path;
@@ -299,7 +298,7 @@ export default function TreeView() {
       ctx.setLineDash(isHovering ? [] : [3, 3]);
 
       ctx.beginPath();
-      ctx.arc(cw.x, cw.y, isHovering ? 18 : 10, 0, Math.PI * 2);
+      ctx.arc(cw.x, cw.y, isHovering ? 16 : 10, 0, Math.PI * 2);
       ctx.stroke();
 
       if (isHovering) {
@@ -399,15 +398,12 @@ export default function TreeView() {
 
     if (!hit) return;
 
-    if (hit.type === "pad") {
-      if (hit.pad.notes && hit.pad.notes.length > 0) {
-        setSelectedLeaf({
-          ...hit.pad.notes[0],
-          sectionName: hit.pad.name,
-          domainCode: hit.pad.code,
-          pad: hit.pad,
-        });
-      }
+    if (hit.type === "leaf") {
+      setSelectedLeaf({
+        ...hit.note,
+        sectionName: hit.sectionName,
+        domainCode: hit.domainCode,
+      });
     } else if (hit.type === "branch") {
       zoomIntoBranch(hit.branch.path);
     }
@@ -418,8 +414,8 @@ export default function TreeView() {
     const world = screenToWorld(e.clientX, e.clientY);
     const hit = findHitTarget(world, treeLayout);
 
-    if (hit && hit.type === "pad" && hit.pad.notes && hit.pad.notes.length > 0) {
-      navigate(`/garden/note/${encodeURIComponent(hit.pad.notes[0].id)}`);
+    if (hit && hit.type === "leaf") {
+      navigate(`/garden/note/${encodeURIComponent(hit.id)}`);
     } else if (hit && hit.type === "branch") {
       zoomIntoBranch(hit.branch.path);
     }
@@ -497,7 +493,7 @@ export default function TreeView() {
       <article className="mx-auto max-w-6xl px-6 py-20">
         <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-ink-mute">
           <span className="inline-block h-3 w-3 animate-spin border border-ink border-t-transparent" />
-          Grinding Sumi ink and preparing washi parchment...
+          Grinding Sumi ink and painting bamboo foliage...
         </div>
       </article>
     );
@@ -513,9 +509,9 @@ export default function TreeView() {
         <div className="flex items-center gap-4">
           <div>
             <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-mute">
-              <span>Sumi-e Knowledge Bonsai</span>
+              <span>Sumi-e Knowledge Garden</span>
               <span className="text-ink-faint">·</span>
-              <span className="text-[#9e2a2b] dark:text-accent font-semibold">水墨画 · 松盆栽</span>
+              <span className="text-[#9e2a2b] dark:text-accent font-semibold">水墨画 · 竹笹盆栽</span>
             </div>
             <div className="font-serif text-lg font-bold tracking-tight text-ink flex items-center gap-2">
               <span>{stripCode(currentName)}</span>
@@ -608,7 +604,7 @@ export default function TreeView() {
         })}
 
         <span className="ml-auto shrink-0 font-mono text-[10px] uppercase tracking-wider text-ink-faint">
-          Moyogi Pine Bonsai · Click labels or boughs to zoom · Click foliage clouds for notes · Drag to pan
+          Sumi-e Bamboo Tree · Click branch to zoom in · Click individual bamboo leaf to inspect note · Drag to pan
         </span>
       </div>
 
@@ -637,21 +633,21 @@ export default function TreeView() {
         {/* ---------------- Floating Tooltip Follower ---------------- */}
         {cursorScreenPos && hoveredNode && (
           <div
-            className="pointer-events-none fixed z-30 -translate-x-1/2 -translate-y-12 border border-ink bg-paper/95 px-3 py-1 font-mono text-xs text-ink shadow-lg backdrop-blur-md rounded-sm whitespace-nowrap"
+            className="pointer-events-none fixed z-30 -translate-x-1/2 -translate-y-12 border border-ink bg-paper/95 px-3.5 py-1 font-mono text-xs text-ink shadow-xl backdrop-blur-md rounded-sm whitespace-nowrap"
             style={{ left: cursorScreenPos.x, top: cursorScreenPos.y }}
           >
-            {hoveredNode.type === "pad" ? (
+            {hoveredNode.type === "leaf" ? (
               <div className="flex items-center gap-1.5">
                 <span className="h-2 w-2 rounded-full bg-[#9e2a2b]" />
                 <span>
-                  Inspect Note: <strong>{stripCode(hoveredNode.name)}</strong> ({hoveredNode.noteCount || 0} notes)
+                  Note: <strong>{hoveredNode.title}</strong> — Click to inspect
                 </span>
               </div>
             ) : (
               <div className="flex items-center gap-1.5">
                 <span className="text-[#9e2a2b] font-bold">⤢</span>
                 <span>
-                  Zoom Into: <strong>{stripCode(hoveredNode.name)}</strong>
+                  Category: <strong>{stripCode(hoveredNode.name)}</strong> — Click to zoom
                 </span>
               </div>
             )}
@@ -665,7 +661,7 @@ export default function TreeView() {
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#9e2a2b] dark:bg-accent" />
                 <span className="font-mono text-[10px] uppercase tracking-widest text-ink-mute">
-                  Pine Note · 松の葉
+                  Bamboo Leaf · 笹の葉
                 </span>
               </div>
               <button
@@ -698,26 +694,16 @@ export default function TreeView() {
               </div>
             </div>
 
-            {selectedLeaf.pad && selectedLeaf.pad.notes && selectedLeaf.pad.notes.length > 1 && (
-              <div className="mt-4 border-t border-paper-line2/60 pt-2.5">
-                <div className="font-mono text-[10px] uppercase tracking-wider text-ink-mute mb-1.5">
-                  Cluster Notes ({selectedLeaf.pad.notes.length}):
-                </div>
-                <div className="max-h-32 overflow-y-auto space-y-1">
-                  {selectedLeaf.pad.notes.map((n) => (
-                    <button
-                      key={n.id}
-                      onClick={() => setSelectedLeaf({ ...n, pad: selectedLeaf.pad })}
-                      className={`block w-full text-left font-serif text-xs truncate px-1 py-0.5 transition-colors ${
-                        selectedLeaf.id === n.id
-                          ? "font-bold text-ink bg-paper-shade"
-                          : "text-ink-soft hover:text-ink"
-                      }`}
-                    >
-                      • {n.title}
-                    </button>
-                  ))}
-                </div>
+            {selectedLeaf.tags && selectedLeaf.tags.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-1 border-t border-paper-line2/60 pt-2.5">
+                {selectedLeaf.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="font-mono text-[10px] border border-paper-line2 px-1.5 py-0.5 text-ink-mute"
+                  >
+                    #{t}
+                  </span>
+                ))}
               </div>
             )}
 
@@ -735,13 +721,13 @@ export default function TreeView() {
         {/* Floating status badge on hover */}
         {hoveredNode && !selectedLeaf && (
           <div className="pointer-events-none absolute bottom-5 left-6 z-20 border border-paper-line2 bg-paper/95 px-3.5 py-1.5 font-mono text-xs text-ink shadow-sm backdrop-blur-sm">
-            {hoveredNode.type === "pad" ? (
+            {hoveredNode.type === "leaf" ? (
               <span>
-                Foliage Pad: <strong>{stripCode(hoveredNode.name)}</strong> ({hoveredNode.noteCount || 0} notes) — Click to inspect
+                Note Leaf: <strong>{hoveredNode.title}</strong> — Click to inspect · Double-click to open
               </span>
             ) : (
               <span>
-                Bough: <strong>{stripCode(hoveredNode.name)}</strong> — Click to zoom in
+                Category Limb: <strong>{stripCode(hoveredNode.name)}</strong> — Click to zoom in
               </span>
             )}
           </div>
@@ -877,7 +863,7 @@ function drawSumiTrunk(ctx, root, apex, inkBase, inkSoft, vermilion) {
   ctx.restore();
 }
 
-// 4. Calligraphic Sumi-e Branch Limb
+// 4. Calligraphic Sumi-e Branch Limb (Category Folders)
 function drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered) {
   const { start, cp1, cp2, tip, strokeWidth } = branch;
 
@@ -914,7 +900,7 @@ function drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAn
   const color = isHovered ? vermilion : isActive ? inkBase : isAncestor ? inkSoft : inkSoft;
   drawMultiBristleCurve(ctx, start, cp1, cp2, tip, strokeWidth, endW, color);
 
-  // Branch Knuckle Joint (Bonsai Joint)
+  // Branch Knuckle Joint (Bonsai Node)
   ctx.fillStyle = isHovered ? vermilion : inkBase;
   ctx.beginPath();
   ctx.arc(tip.x, tip.y, Math.max(2.8, endW * 0.75), 0, Math.PI * 2);
@@ -923,78 +909,126 @@ function drawSumiBranch(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAn
   ctx.restore();
 }
 
-// 5. Cloud-Pruned Tamabuki (玉吹) Foliage Clouds & Pine Tufts
-function drawTamabukiFoliage(ctx, pad, inkBase, inkSoft, vermilion, isHovered, isSelected, isActive) {
-  const { x, y, radius } = pad;
+// 5. Classical Sumi-e Bamboo Leaf Blades (笹葉 Sasa-ha) for Individual Notes
+function drawBambooLeaf(ctx, leaf, inkBase, inkSoft, vermilion, isDark, isHovered, isSelected) {
+  const { twigStart, base, angle, length, width, title } = leaf;
 
   ctx.save();
 
-  // Highlighted Glow
-  if (isHovered || isSelected || isActive) {
+  // 1. Petiole Twig: connects branch knuckle cleanly to leaf base
+  ctx.save();
+  ctx.strokeStyle = isHovered || isSelected ? vermilion : isDark ? "rgba(244, 244, 245, 0.45)" : "rgba(18, 18, 20, 0.35)";
+  ctx.lineWidth = isHovered ? 1.4 : 0.9;
+  ctx.beginPath();
+  ctx.moveTo(twigStart.x, twigStart.y);
+  ctx.lineTo(base.x, base.y);
+  ctx.stroke();
+  ctx.restore();
+
+  // 2. Leaf Blade Dynamic Dimensions
+  const curWidth = isHovered ? width * 1.3 : width;
+  const curLength = isHovered ? length * 1.15 : length;
+
+  const actualTip = {
+    x: base.x + Math.cos(angle) * curLength,
+    y: base.y + Math.sin(angle) * curLength,
+  };
+
+  const perpX = -Math.sin(angle);
+  const perpY = Math.cos(angle);
+
+  // Curved belly control points
+  const cpLeft = {
+    x: base.x + Math.cos(angle) * (curLength * 0.36) + perpX * (curWidth * 0.55),
+    y: base.y + Math.sin(angle) * (curLength * 0.36) + perpY * (curWidth * 0.55),
+  };
+  const cpRight = {
+    x: base.x + Math.cos(angle) * (curLength * 0.36) - perpX * (curWidth * 0.55),
+    y: base.y + Math.sin(angle) * (curLength * 0.36) - perpY * (curWidth * 0.55),
+  };
+
+  // Hover Glowing Halo
+  if (isHovered || isSelected) {
     ctx.save();
-    const glowGrad = ctx.createRadialGradient(x, y, radius * 0.2, x, y, radius * 1.6);
-    glowGrad.addColorStop(0, isSelected ? "rgba(158, 42, 43, 0.32)" : "rgba(158, 42, 43, 0.2)");
-    glowGrad.addColorStop(1, "transparent");
-    ctx.fillStyle = glowGrad;
+    ctx.globalAlpha = 0.28;
+    ctx.fillStyle = vermilion;
     ctx.beginPath();
-    ctx.arc(x, y, radius * 1.6, 0, Math.PI * 2);
+    ctx.moveTo(base.x, base.y);
+    ctx.quadraticCurveTo(cpLeft.x + perpX * 4, cpLeft.y + perpY * 4, actualTip.x, actualTip.y);
+    ctx.quadraticCurveTo(cpRight.x - perpX * 4, cpRight.y - perpY * 4, base.x, base.y);
     ctx.fill();
     ctx.restore();
   }
 
-  // Multi-Layer Translucent Ink Wash Cloud Foundation (Tamabuki Cloud)
-  ctx.save();
-  ctx.globalAlpha = isHovered ? 0.24 : 0.12;
-  ctx.fillStyle = inkBase;
+  // 3. Bamboo Leaf Blade Body (Classic Sumi-e Wash Fill)
   ctx.beginPath();
-  ctx.ellipse(x, y, radius * 1.25, radius * 0.72, 0.1, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.moveTo(base.x, base.y);
+  ctx.quadraticCurveTo(cpLeft.x, cpLeft.y, actualTip.x, actualTip.y);
+  ctx.quadraticCurveTo(cpRight.x, cpRight.y, base.x, base.y);
+  ctx.closePath();
 
-  ctx.globalAlpha = isHovered ? 0.34 : 0.18;
-  ctx.beginPath();
-  ctx.ellipse(x - radius * 0.15, y - radius * 0.1, radius * 0.85, radius * 0.55, -0.15, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.ellipse(x + radius * 0.2, y + radius * 0.08, radius * 0.75, radius * 0.5, 0.2, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
-
-  // 5-Needle Pine Needle Tufts (Matsuba 松葉) Radiating along Cloud Periphery
-  const tuftCount = Math.min(7, Math.max(3, Math.floor(radius / 12)));
-  const needleLen = isHovered ? 20 : 16;
-
-  ctx.save();
-  ctx.strokeStyle = isHovered ? vermilion : inkSoft;
-  ctx.lineWidth = isHovered ? 1.4 : 1.0;
-  ctx.lineCap = "round";
-
-  for (let i = 0; i < tuftCount; i++) {
-    const tuftAng = -Math.PI + 0.3 + (i / (tuftCount - 1 || 1)) * (Math.PI - 0.6);
-    const tx = x + Math.cos(tuftAng) * (radius * 0.85);
-    const ty = y + Math.sin(tuftAng) * (radius * 0.55);
-
-    for (let s = -2; s <= 2; s++) {
-      const nAng = tuftAng + s * 0.22;
-      ctx.beginPath();
-      ctx.moveTo(tx, ty);
-      ctx.lineTo(tx + Math.cos(nAng) * needleLen, ty + Math.sin(nAng) * needleLen);
-      ctx.stroke();
-    }
+  if (isSelected) {
+    ctx.fillStyle = "rgba(158, 42, 43, 0.88)";
+  } else if (isHovered) {
+    ctx.fillStyle = isDark ? "rgba(244, 244, 245, 0.78)" : "rgba(18, 18, 20, 0.78)";
+  } else {
+    ctx.fillStyle = isDark ? "rgba(244, 244, 245, 0.22)" : "rgba(18, 18, 20, 0.18)";
   }
-  ctx.restore();
-
-  // Central Pearl Node
-  ctx.save();
-  ctx.fillStyle = isHovered || isSelected ? vermilion : inkBase;
-  ctx.beginPath();
-  ctx.arc(x, y, isHovered ? 4 : 2.5, 0, Math.PI * 2);
   ctx.fill();
-  ctx.restore();
+
+  // 4. Calligraphic Edge Contour
+  ctx.strokeStyle = isSelected
+    ? vermilion
+    : isHovered
+    ? (isDark ? "#f4f4f5" : "#121214")
+    : (isDark ? "rgba(244, 244, 245, 0.6)" : "rgba(18, 18, 20, 0.5)");
+  ctx.lineWidth = isHovered ? 1.6 : 1.0;
+  ctx.stroke();
+
+  // 5. Central Midrib Vein (Single swift calligraphic stroke)
+  ctx.beginPath();
+  ctx.moveTo(base.x, base.y);
+  ctx.lineTo(actualTip.x, actualTip.y);
+  ctx.strokeStyle = isSelected
+    ? "#ffffff"
+    : isHovered
+    ? (isDark ? "#121214" : "#ffffff")
+    : (isDark ? "rgba(244, 244, 245, 0.35)" : "rgba(18, 18, 20, 0.3)");
+  ctx.lineWidth = 0.8;
+  ctx.stroke();
+
+  // 6. Floating Title Label when this specific leaf is hovered
+  if (isHovered) {
+    ctx.save();
+    const isLeft = Math.cos(angle) < 0;
+    const labelX = actualTip.x + (isLeft ? -10 : 10);
+    const labelY = actualTip.y;
+
+    ctx.font = "bold 11px 'Source Serif 4', Georgia, serif";
+    ctx.textAlign = isLeft ? "right" : "left";
+    ctx.textBaseline = "middle";
+
+    const metrics = ctx.measureText(title);
+    const textW = metrics.width;
+
+    ctx.fillStyle = isDark ? "rgba(13, 13, 15, 0.95)" : "rgba(251, 249, 245, 0.95)";
+    ctx.strokeStyle = vermilion;
+    ctx.lineWidth = 1;
+    const pillX = isLeft ? labelX - textW - 8 : labelX - 4;
+    ctx.beginPath();
+    ctx.roundRect(pillX, labelY - 10, textW + 12, 20, 3);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = isDark ? "#f4f4f5" : "#121214";
+    ctx.fillText(title, labelX, labelY);
+    ctx.restore();
+  }
 
   ctx.restore();
 }
 
-// 6. Floating Calligraphy Titles & Vermilion Hanko Stamps (Zero Boxes!)
+// 6. Floating Calligraphy Titles & Vermilion Hanko Stamps for Categories (Zero Boxes!)
 function drawFloatingCalligraphy(ctx, branch, inkBase, inkSoft, vermilion, isActive, isAncestor, isHovered) {
   if (!branch.labelPos) return;
   const { x, y, align } = branch.labelPos;
@@ -1168,11 +1202,20 @@ function getBranchLabelBounds(b) {
 function findHitTarget(world, treeLayout) {
   if (!treeLayout) return null;
 
-  // 1. Foliage Pads (Highest priority for notes)
-  for (const pad of treeLayout.foliagePads) {
-    const dist = Math.hypot(world.x - pad.x, world.y - pad.y);
-    if (dist <= pad.radius + 14) {
-      return { type: "pad", pad, name: pad.name, noteCount: pad.noteCount, x: pad.x, y: pad.y, path: pad.path };
+  // 1. Individual Bamboo Leaves (Highest priority: individual notes)
+  for (const leaf of treeLayout.leaves) {
+    const dist = Math.hypot(world.x - leaf.center.x, world.y - leaf.center.y);
+    if (dist <= leaf.hitRadius) {
+      return {
+        type: "leaf",
+        leaf,
+        title: leaf.title,
+        id: leaf.id,
+        note: leaf.note,
+        path: leaf.path,
+        sectionName: leaf.sectionName,
+        domainCode: leaf.domainCode,
+      };
     }
   }
 
@@ -1206,12 +1249,12 @@ function findHitTarget(world, treeLayout) {
 }
 
 // ============================================================================
-// Wide Lateral Moyogi Bonsai Layout Engine
+// Wide Lateral Moyogi Bonsai Layout Engine with Bamboo Leaf Sprigs
 // ============================================================================
 
 function generateMoyogiBonsaiLayout(treeData, activePath) {
   const branches = [];
-  const foliagePads = [];
+  const leaves = [];
 
   const rootOrigin = { x: 0, y: 380 };
   const trunkApex = { x: 10, y: 140 };
@@ -1233,7 +1276,7 @@ function generateMoyogiBonsaiLayout(treeData, activePath) {
   const topCategories = treeData.children || [];
   const totalTop = topCategories.length;
   if (totalTop === 0) {
-    return { rootOrigin, trunkApex, branches, foliagePads };
+    return { rootOrigin, trunkApex, branches, leaves };
   }
 
   // 2. Moyogi Bonsai Primary Boughs (Alternating Wide Left and Right Lateral Wings)
@@ -1290,17 +1333,20 @@ function generateMoyogiBonsaiLayout(treeData, activePath) {
     branches.push(branch);
 
     if (activePath.startsWith(cat.path)) {
-      blossomMoyogiSubtree(cat, branch, activePath, 2, branches, foliagePads);
+      blossomMoyogiSubtree(cat, branch, activePath, 2, branches, leaves);
     } else {
-      cultivateTamabukiPad(cat, branch, foliagePads);
+      // If terminal/inactive, sprout bamboo leaves for direct notes
+      if (cat.notes && cat.notes.length > 0) {
+        generateBambooLeaves(cat.notes, branch.tip, branch.angle, leaves, cat.name, cat.code);
+      }
     }
   });
 
-  return { rootOrigin, trunkApex, branches, foliagePads };
+  return { rootOrigin, trunkApex, branches, leaves };
 }
 
 // Recursive Lateral Subtree Blossom
-function blossomMoyogiSubtree(node, parentBranch, activePath, depth, branches, foliagePads) {
+function blossomMoyogiSubtree(node, parentBranch, activePath, depth, branches, leaves) {
   const children = node.children || [];
   const total = children.length;
 
@@ -1355,32 +1401,65 @@ function blossomMoyogiSubtree(node, parentBranch, activePath, depth, branches, f
       branches.push(branch);
 
       if (activePath.startsWith(child.path)) {
-        blossomMoyogiSubtree(child, branch, activePath, depth + 1, branches, foliagePads);
+        blossomMoyogiSubtree(child, branch, activePath, depth + 1, branches, leaves);
       } else {
-        cultivateTamabukiPad(child, branch, foliagePads);
+        if (child.notes && child.notes.length > 0) {
+          generateBambooLeaves(child.notes, branch.tip, branch.angle, leaves, child.name, child.code);
+        }
       }
     });
   }
 
-  cultivateTamabukiPad(node, parentBranch, foliagePads);
+  // Sprout bamboo leaves for direct notes on this active node
+  if (node.notes && node.notes.length > 0) {
+    generateBambooLeaves(node.notes, parentBranch.tip, parentBranch.angle, leaves, node.name, node.code);
+  }
 }
 
-// Cultivate Cloud-Pruned Tamabuki Foliage Pad
-function cultivateTamabukiPad(node, branch, foliagePads) {
-  const notes = node.notes || [];
-  const pad = {
-    id: node.path || node.name,
-    name: node.name,
-    code: node.code,
-    path: node.path,
-    x: branch.tip.x,
-    y: branch.tip.y,
-    angle: branch.angle,
-    radius: Math.min(65, 24 + Math.sqrt(Math.max(1, notes.length)) * 12),
-    noteCount: notes.length,
-    notes: notes.slice(0, 24),
-  };
-  foliagePads.push(pad);
+// Generate Individual Bamboo Leaves for Notes (笹葉 Sasa-ha)
+function generateBambooLeaves(notes, branchTip, baseAngle, leavesList, branchName, branchCode) {
+  const count = notes.length;
+  if (count === 0) return;
+
+  const visibleCount = Math.min(22, count);
+  const fanSpan = count === 1 ? 0 : Math.min(Math.PI * 0.78, 0.45 + visibleCount * 0.1);
+
+  for (let i = 0; i < visibleCount; i++) {
+    const ratio = visibleCount === 1 ? 0 : i / (visibleCount - 1) - 0.5;
+    const leafAngle = baseAngle + ratio * fanSpan;
+
+    // Staggered twigs (two tiers) to give each leaf distinct space
+    const tier = i % 2;
+    const twigLength = tier === 0 ? 44 : 74 + (i % 3) * 10;
+
+    const baseX = branchTip.x + Math.cos(leafAngle) * twigLength;
+    const baseY = branchTip.y + Math.sin(leafAngle) * twigLength;
+
+    const bladeLength = tier === 0 ? 32 : 38;
+    const bladeWidth = tier === 0 ? 9 : 11;
+    const tipX = baseX + Math.cos(leafAngle) * bladeLength;
+    const tipY = baseY + Math.sin(leafAngle) * bladeLength;
+
+    const centerX = (baseX + tipX) / 2;
+    const centerY = (baseY + tipY) / 2;
+
+    leavesList.push({
+      id: notes[i].id,
+      title: notes[i].title,
+      path: notes[i].path,
+      note: notes[i],
+      sectionName: branchName,
+      domainCode: branchCode,
+      twigStart: branchTip,
+      base: { x: baseX, y: baseY },
+      tip: { x: tipX, y: tipY },
+      center: { x: centerX, y: centerY },
+      hitRadius: Math.max(16, bladeLength / 2 + 4),
+      angle: leafAngle,
+      length: bladeLength,
+      width: bladeWidth,
+    });
+  }
 }
 
 // Helpers
