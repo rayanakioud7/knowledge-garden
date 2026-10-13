@@ -247,7 +247,7 @@ function TreeNode({ node, expanded, toggle, filter, depth = 0 }) {
 function NoteLink({ id, title, depth = 0 }) {
   return (
     <NavLink
-      to={`/garden/note/${id}`}
+      to={`/garden/note/${encodeURIComponent(id)}`}
       className={({ isActive }) =>
         `group flex items-center gap-1.5 truncate py-1 pr-1.5 text-xs transition-colors ${
           isActive

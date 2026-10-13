@@ -68,11 +68,16 @@ class VaultMirror:
         except ValueError:
             return False
         target = self.dest / rel
-        target.parent.mkdir(parents=True, exist_ok=True)
-        tmp = target.with_name(target.name + ".tmp")
-        shutil.copy2(src_path, tmp)
-        tmp.replace(target)
-        return True
+        try:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            tmp = target.with_name(target.name + ".tmp")
+            shutil.copy2(src_path, tmp)
+            tmp.replace(target)
+            return True
+        except (PermissionError, OSError) as exc:
+            # On Windows, OneDrive or an active process can temporarily lock the file.
+            print(f"[mirror] warning: could not copy {src_path.name} (locked/busy): {exc}")
+            return False
 
     def initial_sync(self) -> int:
         """Full one-time mirror of every eligible file from source -> copy."""

@@ -15,6 +15,7 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const inGarden = location.pathname.startsWith("/garden");
+  const isTree = location.pathname === "/garden" || location.pathname === "/garden/tree";
 
   // Close the mobile drawer on navigation.
   useEffect(() => setSidebarOpen(false), [location.pathname]);
@@ -133,16 +134,18 @@ export default function Layout() {
       )}
 
       {/* ---------------- Main ---------------- */}
-      <div className="flex min-h-screen min-w-0 flex-col">
+      <div className={`flex min-w-0 flex-col ${isTree ? "h-screen overflow-hidden" : "min-h-screen"}`}>
         <MobileBar onOpen={() => setSidebarOpen(true)} inGarden={inGarden} />
-        <main className="flex-1">
+        <main className={`flex-1 ${isTree ? "flex flex-col min-h-0 overflow-hidden" : ""}`}>
           <Outlet />
         </main>
-        <footer className="border-t border-paper-line px-6 py-6 text-center">
-          <div className="label">
-            Built with React · Tailwind · Django — a Knowledge Garden
-          </div>
-        </footer>
+        {!isTree && (
+          <footer className="border-t border-paper-line px-6 py-6 text-center">
+            <div className="label">
+              Built with React · Tailwind · Django — a Knowledge Garden
+            </div>
+          </footer>
+        )}
       </div>
     </div>
   );

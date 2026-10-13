@@ -92,14 +92,17 @@ class GardenIndex:
 
     def _load_cache(self) -> Optional[Dict]:
         index_path = Path(settings.GARDEN_INDEX_PATH)
-        if self._cache is not None:
-            return self._cache
         if not index_path.exists():
             return None
         try:
+            mtime = index_path.stat().st_mtime
+            if self._cache is not None and getattr(self, "_cache_mtime", 0.0) == mtime:
+                return self._cache
             self._cache = json.loads(index_path.read_text(encoding="utf-8"))
+            self._cache_mtime = mtime
+            self._apply_payload(self._cache)
         except (OSError, json.JSONDecodeError):
-            return None
+            return self._cache
         return self._cache
 
     def _cache_is_stale(self) -> bool:

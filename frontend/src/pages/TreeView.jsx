@@ -20,6 +20,7 @@ export default function TreeView() {
 
   // Viewport and interactive camera state
   const svgRef = useRef(null);
+  const containerRef = useRef(null);
   const [camera, setCamera] = useState({ x: 0, y: 0, zoom: 1 });
   const targetCamera = useRef({ x: 0, y: 0, zoom: 1 });
   const isDragging = useRef(false);
@@ -90,7 +91,7 @@ export default function TreeView() {
     return generateTreeLayout(tree, currentPath);
   }, [tree, currentPath]);
 
-  // Camera lerp animation loop
+  // Camera lerp animation loop with render-idle detection
   useEffect(() => {
     const animate = () => {
       setCamera((prev) => {
@@ -98,7 +99,14 @@ export default function TreeView() {
         const dy = targetCamera.current.y - prev.y;
         const dz = targetCamera.current.zoom - prev.zoom;
 
-        if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2 && Math.abs(dz) < 0.002) {
+        if (Math.abs(dx) < 0.15 && Math.abs(dy) < 0.15 && Math.abs(dz) < 0.001) {
+          if (
+            prev.x === targetCamera.current.x &&
+            prev.y === targetCamera.current.y &&
+            prev.zoom === targetCamera.current.zoom
+          ) {
+            return prev; // No change, tell React not to re-render!
+          }
           return {
             x: targetCamera.current.x,
             y: targetCamera.current.y,
@@ -107,9 +115,9 @@ export default function TreeView() {
         }
 
         return {
-          x: prev.x + dx * 0.14,
-          y: prev.y + dy * 0.14,
-          zoom: prev.zoom + dz * 0.14,
+          x: prev.x + dx * 0.16,
+          y: prev.y + dy * 0.16,
+          zoom: prev.zoom + dz * 0.16,
         };
       });
       animFrameId.current = requestAnimationFrame(animate);
@@ -193,15 +201,22 @@ export default function TreeView() {
     isDragging.current = false;
   };
 
-  const handleWheel = (e) => {
-    e.preventDefault();
-    const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
-    const newZoom = Math.max(0.35, Math.min(4.5, targetCamera.current.zoom * zoomFactor));
-    targetCamera.current = {
-      ...targetCamera.current,
-      zoom: newZoom,
+  // Non-passive wheel listener attached to containerRef for smooth, jank-free zoom
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onWheel = (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.87;
+      const newZoom = Math.max(0.35, Math.min(4.5, targetCamera.current.zoom * zoomFactor));
+      targetCamera.current = {
+        ...targetCamera.current,
+        zoom: newZoom,
+      };
     };
-  };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
 
   // Mobile Touch pan and pinch zoom
   const handleTouchStart = (e) => {
@@ -276,7 +291,7 @@ export default function TreeView() {
   const depth = breadcrumbs.length;
 
   return (
-    <div className="relative flex h-[calc(100vh-3.5rem)] flex-col bg-paper overflow-hidden select-none">
+    <div className="relative flex h-full flex-1 flex-col bg-paper overflow-hidden select-none">
       {/* ---------------- Top Architectural HUD ---------------- */}
       <header className="z-10 flex flex-wrap items-center justify-between gap-3 border-b border-paper-line bg-paper/95 px-6 py-3 backdrop-blur-sm">
         <div className="flex items-center gap-4">
@@ -430,11 +445,11 @@ export default function TreeView() {
 
       {/* ---------------- Main Illustrated SVG Canvas ---------------- */}
       <div
+        ref={containerRef}
         className="relative flex-1 cursor-grab active:cursor-grabbing overflow-hidden touch-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -486,7 +501,7 @@ export default function TreeView() {
                   isHovered={hoveredNode?.id === leaf.id}
                   isSelected={selectedLeaf?.id === leaf.id}
                   onClick={() => setSelectedLeaf(leaf)}
-                  onDoubleClick={() => navigate(`/garden/note/${leaf.id}`)}
+                  onDoubleClick={() => navigate(`/garden/note/${encodeURIComponent(leaf.id)}`)}
                   onHover={setHoveredNode}
                 />
               ))}
@@ -529,7 +544,7 @@ export default function TreeView() {
                   isSelected={selectedLeaf?.id === leaf.id}
                   labelScale={labelScale}
                   onClick={() => setSelectedLeaf(leaf)}
-                  onDoubleClick={() => navigate(`/garden/note/${leaf.id}`)}
+                  onDoubleClick={() => navigate(`/garden/note/${encodeURIComponent(leaf.id)}`)}
                   onHover={setHoveredNode}
                 />
               ))}
@@ -563,7 +578,7 @@ export default function TreeView() {
 
             <div className="mt-4 flex gap-2">
               <Link
-                to={`/garden/note/${selectedLeaf.id}`}
+                to={`/garden/note/${encodeURIComponent(selectedLeaf.id)}`}
                 className="btn w-full justify-center text-xs"
               >
                 Open Note
@@ -707,11 +722,13 @@ function BranchStem({ branch, isActive }) {
 // Layer 2: Leaf Stems and Illustrated Blades
 // -------------------------------------------------------------
 function LeafStemAndBlade({ leaf, isHovered, isSelected, onClick, onDoubleClick, onHover }) {
-  const { origin, tip, angle } = leaf;
+  const { origin, tip, angle, ratio = 0 } = leaf;
   const deg = (angle * 180) / Math.PI;
 
-  const midX = (origin.x + tip.x) / 2 + Math.cos(angle + Math.PI / 2) * 6;
-  const midY = (origin.y + tip.y) / 2 + Math.sin(angle + Math.PI / 2) * 6;
+  const bow = ratio < 0 ? -1 : 1;
+  const perp = angle + Math.PI / 2;
+  const midX = (origin.x + tip.x) / 2 + Math.cos(perp) * (5 * bow);
+  const midY = (origin.y + tip.y) / 2 + Math.sin(perp) * (5 * bow);
 
   const highlighted = isHovered || isSelected;
 
@@ -734,8 +751,8 @@ function LeafStemAndBlade({ leaf, isHovered, isSelected, onClick, onDoubleClick,
         }`}
       />
 
-      {/* Botanical Leaf Blade */}
-      <g transform={`translate(${tip.x}, ${tip.y}) rotate(${deg - 90}) scale(${highlighted ? 1.25 : 1})`}>
+      {/* Botanical Leaf Blade pointing OUTWARD along petiole angle */}
+      <g transform={`translate(${tip.x}, ${tip.y}) rotate(${deg + 90}) scale(${highlighted ? 1.25 : 1})`}>
         {/* Solid leaf body with opaque background and dark contour */}
         <path
           d="M 0 0 C -12 -16 -16 -36 0 -52 C 16 -36 12 -16 0 0 Z"
@@ -870,12 +887,17 @@ function LeafLabel({ leaf, mode, isHovered, isSelected, labelScale, onClick, onD
   const isLeft = Math.cos(leaf.angle) < 0;
   const width = Math.max(90, leaf.title.length * 6.5 + 18);
 
+  // The leaf blade extends 52px outward along leaf.angle.
+  // The outer apex coordinate of the leaf:
+  const apexX = leaf.tip.x + Math.cos(leaf.angle) * 54;
+  const apexY = leaf.tip.y + Math.sin(leaf.angle) * 54;
+
   // Mode 1: On-Hover only (Leaves are pure clean foliage by default; tooltip appears on hover/selection)
   if (mode === "hover") {
     if (!showActive) return null;
 
-    const tooltipX = isLeft ? leaf.tip.x - width - 12 : leaf.tip.x + 12;
-    const tooltipY = leaf.tip.y - 11;
+    const tooltipX = isLeft ? apexX - width - 8 : apexX + 8;
+    const tooltipY = apexY - 11;
 
     return (
       <g
@@ -908,7 +930,7 @@ function LeafLabel({ leaf, mode, isHovered, isSelected, labelScale, onClick, onD
     );
   }
 
-  // Mode 2: Text-Only (Clean typography without card boxes)
+  // Mode 2: Text-Only (Clean typography floating cleanly beyond blade apex)
   return (
     <g
       className="cursor-pointer select-none"
@@ -918,8 +940,8 @@ function LeafLabel({ leaf, mode, isHovered, isSelected, labelScale, onClick, onD
       onMouseLeave={() => onHover(null)}
     >
       <text
-        x={isLeft ? leaf.tip.x - 10 : leaf.tip.x + 10}
-        y={leaf.tip.y + 4}
+        x={isLeft ? apexX - 8 : apexX + 8}
+        y={apexY + 4}
         textAnchor={isLeft ? "end" : "start"}
         className={`font-sans text-[10px] tracking-tight transition-colors ${
           showActive
@@ -1067,17 +1089,24 @@ function blossomSubBranches(node, parentBranch, activePath, depth, branches, lea
     });
   }
 
-  // Botanical Leaf Notes: alternating left-right sprig foliage
+  // Botanical Leaf Notes: symmetrical tiered foliage fan (zero collision, non-overlapping)
   if (notes.length > 0) {
-    const numNotes = Math.min(36, notes.length);
+    const numNotes = Math.min(32, notes.length);
     const baseAngle = parentBranch.angle;
 
+    // Dynamic fan span based on note count
+    const fanSpan = numNotes === 1 ? 0 : Math.min(Math.PI * 0.82, 0.45 + numNotes * 0.18);
+
     notes.slice(0, numNotes).forEach((note, nIdx) => {
-      // Alternate leaves along sides like a real botanical fern/twig
-      const side = nIdx % 2 === 0 ? -1 : 1;
-      const row = Math.floor(nIdx / 2);
-      const leafAngle = baseAngle + side * (0.45 + (row % 3) * 0.15);
-      const leafDist = 65 + row * 26;
+      // Symmetrical ratio across the fan from -0.5 to +0.5
+      const ratio = numNotes === 1 ? 0 : nIdx / (numNotes - 1) - 0.5;
+      const leafAngle = baseAngle + ratio * fanSpan;
+
+      // Tiered alternating lengths: adjacent leaves alternate radius by 36px
+      const tier = nIdx % 2;
+      const baseDist = tier === 0 ? 68 : 104;
+      const stagger = (Math.floor(nIdx / 2) % 3) * 12;
+      const leafDist = baseDist + stagger;
 
       const leafTip = {
         x: parentBranch.tip.x + Math.cos(leafAngle) * leafDist,
@@ -1091,7 +1120,8 @@ function blossomSubBranches(node, parentBranch, activePath, depth, branches, lea
         origin: parentBranch.tip,
         tip: leafTip,
         angle: leafAngle,
-        side,
+        ratio,
+        tier,
       });
     });
   }
@@ -1105,6 +1135,7 @@ function resolveLabelLayout(branches, activePath) {
   branches.forEach((b) => {
     if (!b.path) return; // skip trunk
     const isParentOfSprouted = activePath.startsWith(b.path) && activePath !== b.path;
+    const hasDirectNotes = b.rawNode?.notes && b.rawNode.notes.length > 0;
 
     const width = Math.max(90, (stripCode(b.name).length + (b.code ? 6 : 0) + 7) * 7);
     const height = 22;
@@ -1113,16 +1144,17 @@ function resolveLabelLayout(branches, activePath) {
     const sinA = Math.sin(b.angle);
 
     // If this branch is an active parent that already sprouted children,
-    // position its label behind its fork along its limb so the fork is clear!
-    if (isParentOfSprouted) {
+    // OR if this branch bears foliage leaves:
+    // position its label safely along the limb BEFORE the tip so the tip canopy is 100% clear!
+    if (isParentOfSprouted || hasDirectNotes) {
       b.label = {
         name: b.name,
         code: b.code,
         noteCount: b.noteCount,
         width,
         height,
-        x: b.tip.x - cosA * 55 - width / 2,
-        y: b.tip.y - sinA * 55 - 11,
+        x: b.tip.x - cosA * (width / 2 + 35),
+        y: b.tip.y - sinA * 50 - 11,
         anchorX: b.tip.x,
         hasOffset: false,
       };
