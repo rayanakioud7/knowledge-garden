@@ -90,15 +90,28 @@ export default function TreeView() {
     const branches = layout.branches.filter((b) => reveal.draw.has(b.path));
     const foliage = [];
     for (const b of branches) {
-      if (!reveal.isFrontier(b)) continue;
-      const bold = b.depth === 0 || reveal.isSpine(b.path) || reveal.isFocusChild(b.path);
-      const notes = bold ? b.notes : b.sampleNotes;
+      if (b.depth === 0) continue;
+      const bold = reveal.isSpine(b.path) || reveal.isFocusChild(b.path);
+      const isFocus = b.path === reveal.focus;
+      if (!bold && !isFocus) continue; // ambient boughs carry no foliage
+      const frontier = reveal.isFrontier(b);
+      let notes = null;
+      let cap = 6;
+      if (frontier) {
+        // Frontier boughs show their own notes, or a representative sample of
+        // their subtree so the canopy never reads as bare spokes.
+        notes = b.notes && b.notes.length ? b.notes : b.sampleNotes;
+        cap = MAX_LEAVES;
+      } else if (isFocus) {
+        notes = b.notes;
+        cap = 8;
+      }
       if (!notes || notes.length === 0) continue;
-      for (const leaf of leafSprig(b, bold ? MAX_LEAVES : 6, notes)) {
-        foliage.push({ ...leaf, bold });
+      for (const leaf of leafSprig(b, cap, notes)) {
+        foliage.push({ ...leaf, bold: true });
       }
     }
-    return { reveal, branches, foliage, activePath: currentPath };
+    return { layout, reveal, branches, foliage, activePath: currentPath };
   }, [layout, currentPath]);
 
   // Keep the latest scene in a ref for the imperative loop + handlers.
@@ -150,6 +163,8 @@ export default function TreeView() {
   }, []);
 
   // ---- canvas sizing ----
+  // NOTE: the container only exists once loading finishes, so this must re-run
+  // when `loading` flips to false (otherwise dimsRef stays at its 1×1 default).
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -172,7 +187,7 @@ export default function TreeView() {
       ro.disconnect();
       window.removeEventListener("resize", apply);
     };
-  }, [renderNow]);
+  }, [renderNow, loading, loadError]);
 
   // ---- recolour on theme toggle ----
   useEffect(() => {
@@ -201,6 +216,7 @@ export default function TreeView() {
     } else {
       const parent = layout.byPath.get(focus.parent) || layout.trunk;
       pts.push(parent.tip, focus.start, focus.tip, foliageExtent(focus));
+      if (focus.depth <= 2) pts.push(layout.rootOrigin);
       for (const cp of focus.children) {
         const cb = layout.byPath.get(cp);
         if (!cb) continue;
@@ -228,6 +244,7 @@ export default function TreeView() {
     const s = sceneRefData.current;
     if (!canvas) return;
     const { w, h } = dimsRef.current;
+    if (w < 2 || h < 2) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
       canvas.width = Math.round(w * dpr);
@@ -254,7 +271,7 @@ export default function TreeView() {
     drawRipples(ctx, L, pal);
 
     // trunk
-    drawBrush(ctx, L.trunk.start, L.trunk.cp1, L.trunk.cp2, L.trunk.tip, 26, 13, pal.ink, 0.95);
+    drawBrush(ctx, L.trunk.start, L.trunk.cp1, L.trunk.cp2, L.trunk.tip, 26, 10, pal.ink, 0.95);
 
     // boughs
     for (const b of s.branches) {
@@ -262,13 +279,13 @@ export default function TreeView() {
       const bold = s.reveal.isSpine(b.path) || s.reveal.isFocusChild(b.path);
       const active = b.path === s.reveal.focus;
       const color = active ? pal.accent : bold ? pal.ink : pal.faint;
-      const alpha = bold ? 0.95 : 0.5;
-      drawBrush(ctx, b.start, b.cp1, b.cp2, b.tip, b.strokeWidth, Math.max(2, b.strokeWidth * 0.5), color, alpha);
+      const alpha = bold ? 0.95 : 0.16;
+      drawBrush(ctx, b.start, b.cp1, b.cp2, b.tip, b.strokeWidth, Math.max(1.4, b.strokeWidth * 0.5), color, alpha);
       // knuckle
       ctx.beginPath();
       ctx.fillStyle = color;
       ctx.globalAlpha = alpha;
-      ctx.arc(b.tip.x, b.tip.y, Math.max(2.2, b.strokeWidth * 0.34), 0, Math.PI * 2);
+      ctx.arc(b.tip.x, b.tip.y, Math.max(1.6, b.strokeWidth * 0.28), 0, Math.PI * 2);
       ctx.fill();
       ctx.globalAlpha = 1;
     }
@@ -277,7 +294,7 @@ export default function TreeView() {
     for (const leaf of s.foliage) drawLeaf(ctx, leaf, pal);
 
     // labels (collision-skipped)
-    drawLabels(ctx, s, pal, zoom);
+    drawLabels(ctx, s, pal);
 
     ctx.restore();
   }
@@ -287,6 +304,7 @@ export default function TreeView() {
     const s = sceneRefData.current;
     if (!canvas) return;
     const { w, h } = dimsRef.current;
+    if (w < 2 || h < 2) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
       canvas.width = Math.round(w * dpr);
@@ -342,61 +360,74 @@ export default function TreeView() {
     ctx.restore();
   }
 
-  function drawLabels(ctx, s, pal, zoom) {
+  function drawLabels(ctx, s, pal) {
     const placed = [];
     const isBold = (b) => s.reveal.isSpine(b.path) || s.reveal.isFocusChild(b.path);
     const ordered = [...s.branches]
-      .filter((b) => b.depth > 0)
-      .sort((a, b) => {
-        const ba = isBold(a) ? 1 : 0;
-        const bb = isBold(b) ? 1 : 0;
-        if (ba !== bb) return bb - ba;
-        return rank(b) - rank(a);
-      });
+      .filter((b) => b.depth > 0 && (isBold(b) || b.path === s.reveal.focus))
+      .sort((a, b) => rank(b) - rank(a));
     for (const b of ordered) {
       const lb = branchLabel(b);
-      const name = stripCode(b.name);
-      const bold = isBold(b);
       const active = b.path === s.reveal.focus;
-      ctx.font = `${bold ? "600" : "400"} 13px 'Source Serif 4', Georgia, serif`;
-      const textW = ctx.measureText(name).width;
-      const minX = lb.align === "right" ? lb.x - textW - 6 : lb.x - 6;
-      const maxX = minX + textW + 12;
-      const minY = lb.y - 12;
-      const maxY = lb.y + 12;
-      // collision skip vs already-placed labels (bold labels always win)
+      const name = stripCode(b.name);
+      const code = b.code ? `[${b.code}] ` : "";
+      const count = b.noteCount > 0 ? ` · ${b.noteCount}` : "";
+      ctx.font = "600 13px 'Source Serif 4', Georgia, serif";
+      const nameW = ctx.measureText(name).width;
+      ctx.font = "600 9px 'JetBrains Mono', monospace";
+      const codeW = ctx.measureText(code).width;
+      const countW = ctx.measureText(count).width;
+      const totalW = codeW + nameW + countW;
+      const left = lb.align === "right" ? lb.x - totalW : lb.x;
+      // Nudge upward/downward to avoid overlap; the focused label always wins.
+      let oy = 0;
       let clash = false;
-      for (const p of placed) {
-        if (minX < p.maxX && maxX > p.minX && minY < p.maxY && maxY > p.minY) {
-          clash = true;
+      for (const off of [0, -17, 17, -34, 34]) {
+        clash = false;
+        const minX = left - 4;
+        const maxX = left + totalW + 4;
+        const minY = lb.y + off - 9;
+        const maxY = lb.y + off + 9;
+        for (const p of placed) {
+          if (minX < p.maxX && maxX > p.minX && minY < p.maxY && maxY > p.minY) {
+            clash = true;
+            break;
+          }
+        }
+        if (!clash) {
+          oy = off;
           break;
         }
       }
-      if (clash && !bold) continue;
-      placed.push({ minX, maxX, minY, maxY });
+      if (clash && !active) continue;
+      const y = lb.y + oy;
+      placed.push({ minX: left - 4, maxX: left + totalW + 4, minY: y - 9, maxY: y + 9 });
 
-      ctx.textAlign = lb.align || "left";
       ctx.textBaseline = "middle";
+      ctx.textAlign = "left";
       if (active) {
         ctx.save();
         ctx.fillStyle = pal.accent;
         ctx.globalAlpha = 0.1;
-        roundRectPath(ctx, minX, minY, maxX - minX, maxY - minY, 3);
+        roundRectPath(ctx, left - 5, y - 11, totalW + 10, 22, 3);
         ctx.fill();
         ctx.restore();
       }
-      ctx.fillStyle = active ? pal.accent : bold ? pal.ink : pal.mute;
-      ctx.fillText(name, lb.x, lb.y);
-      if (b.code) {
+      let x = left;
+      if (code) {
         ctx.font = "600 9px 'JetBrains Mono', monospace";
         ctx.fillStyle = active ? pal.accent : pal.faint;
-        ctx.fillText(`[${b.code}]`, lb.align === "right" ? lb.x - textW - 4 : lb.x + textW + 4, lb.y - 1);
+        ctx.fillText(code, x, y + 1);
+        x += codeW;
       }
-      if (b.noteCount > 0) {
+      ctx.font = "600 13px 'Source Serif 4', Georgia, serif";
+      ctx.fillStyle = active ? pal.accent : pal.ink;
+      ctx.fillText(name, x, y);
+      x += nameW;
+      if (count) {
         ctx.font = "400 10px 'JetBrains Mono', monospace";
         ctx.fillStyle = pal.faint;
-        const cx = lb.align === "right" ? lb.x - textW - 42 : lb.x + textW + 42;
-        ctx.fillText(`· ${b.noteCount}`, cx, lb.y - 1);
+        ctx.fillText(count, x, y + 1);
       }
     }
   }
@@ -418,12 +449,12 @@ export default function TreeView() {
     ctx.beginPath();
     ctx.strokeStyle = bold ? pal.soft : pal.faint;
     ctx.globalAlpha = bold ? 0.6 : 0.35;
-    ctx.lineWidth = 0.9;
+    ctx.lineWidth = 0.8;
     ctx.moveTo(leaf.twigStart.x, leaf.twigStart.y);
     ctx.lineTo(base.x, base.y);
     ctx.stroke();
     // blade
-    ctx.globalAlpha = bold ? 0.2 : 0.12;
+    ctx.globalAlpha = bold ? 0.34 : 0.2;
     ctx.fillStyle = pal.ink;
     ctx.beginPath();
     ctx.moveTo(base.x, base.y);
@@ -431,7 +462,7 @@ export default function TreeView() {
     ctx.quadraticCurveTo(cpR.x, cpR.y, base.x, base.y);
     ctx.closePath();
     ctx.fill();
-    ctx.globalAlpha = bold ? 0.65 : 0.4;
+    ctx.globalAlpha = bold ? 0.8 : 0.55;
     ctx.strokeStyle = pal.soft;
     ctx.lineWidth = 1;
     ctx.stroke();
@@ -440,38 +471,44 @@ export default function TreeView() {
 
   function drawBrush(ctx, p0, cp1, cp2, p3, w0, w1, color, alpha) {
     const dist = Math.hypot(p3.x - p0.x, p3.y - p0.y);
-    const steps = clamp(Math.round(dist / 8), 10, 40);
-    const bristles = 5;
+    const steps = clamp(Math.round(dist / 6), 14, 52);
+    const pts = [];
+    for (let i = 0; i <= steps; i++) pts.push(bezierPoint(p0, cp1, cp2, p3, i / steps));
     ctx.save();
     ctx.strokeStyle = color;
-    ctx.globalAlpha = alpha;
     ctx.lineCap = "round";
-    for (let b = 0; b < bristles; b++) {
-      const ratio = bristles === 1 ? 0 : (b / (bristles - 1) - 0.5) * 2;
-      ctx.globalAlpha = alpha * (0.4 + (1 - Math.abs(ratio)) * 0.5);
-      ctx.lineWidth = Math.max(0.6, (w1 / bristles) * 1.5);
+    ctx.lineJoin = "round";
+    // Solid tapering core (segmented strokes give a smooth ink taper).
+    ctx.globalAlpha = alpha;
+    for (let i = 0; i < steps; i++) {
+      const t = i / steps;
+      ctx.lineWidth = Math.max(0.8, w0 * (1 - t) + w1 * t);
       ctx.beginPath();
-      let started = false;
+      ctx.moveTo(pts[i].x, pts[i].y);
+      ctx.lineTo(pts[i + 1].x, pts[i + 1].y);
+      ctx.stroke();
+    }
+    // Two soft dry-brush edges for texture (kasure).
+    ctx.globalAlpha = alpha * 0.3;
+    for (const s of [-1, 1]) {
+      ctx.lineWidth = Math.max(0.7, w1 * 0.55);
+      ctx.beginPath();
       for (let i = 0; i <= steps; i++) {
         const t = i / steps;
-        const pt = bezierPoint(p0, cp1, cp2, p3, t);
-        const dt = 1 / steps;
-        const nx2 = bezierPoint(p0, cp1, cp2, p3, Math.min(1, t + dt));
-        const tx = nx2.x - pt.x;
-        const ty = nx2.y - pt.y;
+        const a = pts[Math.min(steps, i + 1)];
+        const b = pts[i];
+        const tx = a.x - b.x;
+        const ty = a.y - b.y;
         const tl = Math.hypot(tx, ty) || 1;
         const ox = -ty / tl;
         const oy = tx / tl;
-        const bell = 1 + 0.25 * Math.sin(Math.PI * t);
-        const w = (w0 * (1 - t) + w1 * t) * bell;
-        const jitter = Math.sin(i * 1.2 + b * 2.5) * 0.5;
-        const off = ratio * (w / 2) + jitter;
-        const bx = pt.x + ox * off;
-        const by = pt.y + oy * off;
-        if (!started) {
-          ctx.moveTo(bx, by);
-          started = true;
-        } else ctx.lineTo(bx, by);
+        const w = w0 * (1 - t) + w1 * t;
+        const j = Math.sin(i * 1.7 + s * 3.1) * 0.6;
+        const off = s * (w * 0.32) + j;
+        const x = b.x + ox * off;
+        const y = b.y + oy * off;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
       }
       ctx.stroke();
     }

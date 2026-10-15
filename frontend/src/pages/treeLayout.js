@@ -59,13 +59,13 @@ function recurse(node, depth, parentStart, iv, out) {
   const perp = angle + Math.PI / 2;
   const dx = tip.x - start.x;
   const dy = tip.y - start.y;
-  const curve = Math.sin(depth * 1.3 + hashf(node.path) * 6) * Math.min(34, R * 0.15);
+  const curve = Math.sin(depth * 1.3 + hashf(node.path) * 6) * Math.min(42, R * 0.18);
   const cp1 = {
     x: start.x + dx * 0.36 + Math.cos(perp) * curve,
     y: start.y + dy * 0.36 + Math.sin(perp) * curve,
   };
   const cp2 = { x: start.x + dx * 0.74, y: start.y + dy * 0.74 };
-  const strokeWidth = Math.max(2.0, 14.0 * Math.pow(0.6, depth - 1));
+  const strokeWidth = Math.max(1.4, 8.5 * Math.pow(0.56, depth - 1));
 
   const branch = {
     path: node.path,
@@ -149,7 +149,10 @@ export function buildTreeLayout(treeData) {
     const a1 = (-8 * Math.PI) / 180;
     const w = (a1 - a0) / n;
     domains.forEach((d, i) => {
-      const child = recurse(d, 1, APEX, [a0 + i * w, a0 + (i + 1) * w], out);
+      // Limbs emerge at staggered heights along the trunk (not all from the apex).
+      const t = 0.32 + 0.6 * ((i + 0.5) / n);
+      const attach = bezierPoint(trunk.start, trunk.cp1, trunk.cp2, trunk.tip, t);
+      const child = recurse(d, 1, attach, [a0 + i * w, a0 + (i + 1) * w], out);
       child.parent = "";
       trunk.children.push(child.path);
     });
@@ -241,7 +244,7 @@ export function leafSprig(branch, maxLeaves = MAX_LEAVES, notesOverride = null) 
       y: branch.tip.y + Math.sin(angle) * twigLength,
     };
     const length = tier === 0 ? 32 : 38;
-    const width = tier === 0 ? 9 : 11;
+    const width = tier === 0 ? 7 : 9;
     const tip = { x: base.x + Math.cos(angle) * length, y: base.y + Math.sin(angle) * length };
     leaves.push({
       id: notes[i].id,
