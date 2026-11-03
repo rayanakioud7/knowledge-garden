@@ -1,3 +1,28 @@
+---
+type: note
+date: '2026-01-29'
+tags:
+- biology
+- history
+- evolution
+- anthropology
+- paleontology
+- science
+- hominids
+- taxonomy
+- genetics
+topics:
+- '[[Biology]]'
+- '[[History]]'
+- '[[Evolution]]'
+- '[[Anthropology]]'
+- '[[Paleontology]]'
+- '[[Science]]'
+- '[[Hominids]]'
+- '[[Taxonomy]]'
+- '[[Genetics]]'
+---
+
 Date: 2026-01-29
 Tags: [[Biology]], [[History]], [[Evolution]], [[Anthropology]], [[Paleontology]], [[Science]],[[Hominids]], [[Taxonomy]], [[Genetics]]
 # ~={red} Notes=~

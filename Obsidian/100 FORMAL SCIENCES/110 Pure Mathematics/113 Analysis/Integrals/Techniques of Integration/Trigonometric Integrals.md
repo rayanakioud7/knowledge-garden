@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-08-31'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+- trigonometry
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+- '[[Trigonometry]]'
+---
+
 Date: 2026-08-31
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]], [[Trigonometry]]
 

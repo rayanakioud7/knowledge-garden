@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-02-24'
+tags:
+- probability-theory
+- data-science
+- processus-stochastiques
+- markov-chain
+- mathematics
+topics:
+- '[[Probability Theory]]'
+- '[[Data Science]]'
+- '[[Processus Stochastiques]]'
+- '[[Markov Chain]]'
+- '[[Mathematics]]'
+---
+
 Date: 2026-02-24
 
 Tags: [[Probability Theory]], [[Data Science]], [[Processus Stochastiques]], [[Markov Chain]], [[Mathematics]]

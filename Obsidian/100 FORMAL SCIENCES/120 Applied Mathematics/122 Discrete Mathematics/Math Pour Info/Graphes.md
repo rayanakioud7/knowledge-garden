@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-01-29'
+tags:
+- mathematics
+- discrete-mathematics
+topics:
+- '[[Mathematics]]'
+- '[[Discrete Mathematics]]'
+---
+
 Date: 2026-01-29
 Tags: [[Mathematics]], [[Discrete Mathematics]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-12-10'
+tags:
+- sql
+- programming-language
+- database
+- cheat-sheet
+topics:
+- '[[SQL]]'
+- '[[Programming language]]'
+- '[[Database]]'
+- '[[Cheat sheet]]'
+---
+
 
 Date: 2025-12-10
 Tags: [[SQL]], [[Programming language]], [[Database]], [[Cheat sheet]] 

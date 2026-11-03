@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-04-01'
+tags:
+- deep-learning
+- neural-networks
+- backpropagation
+- optimization
+topics:
+- '[[Deep Learning]]'
+- '[[Neural Networks]]'
+- '[[Backpropagation]]'
+- '[[Optimization]]'
+---
+
 
 > **Prerequisites:** [[Neural Networks - Foundations]]
 

@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-05-23'
+tags:
+- python
+- programming-language
+- control-flow
+topics:
+- '[[Python]]'
+- '[[Programming language]]'
+- '[[Control Flow]]'
+---
+
 Date: 2026-05-23
 Tags: [[Python]], [[Programming language]], [[Control Flow]]
 

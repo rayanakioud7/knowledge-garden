@@ -1,3 +1,17 @@
+---
+type: note
+date: '2026-05-20'
+tags:
+- mathematics
+- algebra
+- logarithmic-functions
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Exponential and Logarithmic
+  Functions/Logarithmic Functions]]'
+---
+
 Date: 2026-05-20
 Tags: [[Mathematics]], [[Algebra]], [[100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Exponential and Logarithmic Functions/Logarithmic Functions]]
 

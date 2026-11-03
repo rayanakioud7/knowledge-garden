@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-10-07'
+tags:
+- programming-language
+- python
+- algorithm
+- data-structure
+- array
+- oop
+topics:
+- '[[Programming language]]'
+- '[[Python]]'
+- '[[Algorithm]]'
+- '[[Data Structure]]'
+- '[[Array]]'
+- '[[OOP]]'
+---
+
 Date: 2026-10-07
 Tags: [[Programming language]], [[Python]], [[Algorithm]], [[Data Structure]], [[Array]], [[OOP]]
 

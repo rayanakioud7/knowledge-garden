@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-01-30'
+tags:
+- mathematics
+- history
+- archaeology
+- mesopotamia
+- scribes-knowledge-transmission
+topics:
+- '[[Mathematics]]'
+- '[[History]]'
+- '[[Archaeology]]'
+- '[[Mesopotamia]]'
+- '[[Scribes & Knowledge Transmission]]'
+---
+
 Date: 2026-01-30
 Tags: [[Mathematics]], [[History]], [[Archaeology]], [[Mesopotamia]], [[Scribes & Knowledge Transmission]]
 Aliases: - **Babylonian Mathematics** - **Sexagesimal System**

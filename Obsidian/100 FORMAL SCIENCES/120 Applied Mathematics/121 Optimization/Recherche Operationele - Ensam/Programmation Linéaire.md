@@ -1,3 +1,28 @@
+---
+type: note
+date: '2026-10-08'
+tags:
+- recherche-operationnelle
+- optimization
+- mathematical-modeling
+- linear-programming
+- algorithms
+- post-optimisation
+- simplexe
+- dualite
+- ensam
+topics:
+- '[[Recherche Opérationnelle]]'
+- '[[Optimization]]'
+- '[[Mathematical Modeling]]'
+- '[[Linear Programming]]'
+- '[[Algorithms]]'
+- '[[Post-Optimisation]]'
+- '[[Simplexe]]'
+- '[[Dualité]]'
+- '[[ENSAM]]'
+---
+
 Date: 2026-10-08
 Tags: [[Recherche Opérationnelle]], [[Optimization]], [[Mathematical Modeling]], [[Linear Programming]], [[Algorithms]], [[Post-Optimisation]],  [[Simplexe]], [[Dualité]], [[ENSAM]]
 

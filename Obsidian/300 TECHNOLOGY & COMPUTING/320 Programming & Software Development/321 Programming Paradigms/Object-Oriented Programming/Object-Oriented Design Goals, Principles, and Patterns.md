@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-07-05'
+tags:
+- programming-language
+- oop
+- python
+topics:
+- '[[Programming language]]'
+- '[[OOP]]'
+- '[[Python]]'
+---
+
 Date: 2026-07-05
 Tags: [[Programming language]], [[OOP]], [[Python]]
 

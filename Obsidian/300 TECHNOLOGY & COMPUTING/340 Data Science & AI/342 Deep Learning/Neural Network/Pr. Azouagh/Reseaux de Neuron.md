@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-04-01'
+tags:
+- mathematics
+- machine-learning
+- python
+- neural-networks
+- deep-learning
+- theory
+topics:
+- '[[Mathematics]]'
+- '[[Machine Learning]]'
+- '[[Python]]'
+- '[[Neural Networks]]'
+- '[[Deep Learning]]'
+- '[[Theory]]'
+---
+
 Date: 2026-04-01
 Tags: [[Mathematics]], [[Machine Learning]], [[Python]], [[Neural Networks]], [[Deep Learning]], [[Theory]]
 
@@ -20,7 +39,7 @@ Chaque neurons reçois des signaux électrique d'autres et réagit en envoyant u
 # C'est quoi un neuron artificiel?
 C'est le compose de deux fonctions, c-a-d un neuron artificiel est une fonction définit par deux parties 
 
-![[reseau de neuron#^clippedframe=percepton|center|600]]
+![[{95B48B7E-A24C-40BD-AA12-C1945FE09248}.png|592]]
 $$
 F(x_1,x_2,...,x_n)=\phi(f(x_1,x_2,...,x_n))=\phi(\sum\limits_{i=1}^n a_i x_i)
 $$
@@ -40,7 +59,7 @@ $$
 
 ---
 
-![[reseau de neuron#^clippedframe=hevuside|center|600]]
+![[{B1F16962-D82E-42F4-A0C1-B45149FD08A7}.png]]
 
 **On a:**
 
@@ -52,13 +71,15 @@ F(x_1,x_2,...,x_n)=H(a_1x_1+a_2x_2+...+a_nx_n)=\begin{cases}
 $$
 ## Exemple
 
-![[reseau de neuron#^clippedframe=exemple|center|600]]
-
+![[{3D3E2434-B0F9-4AD9-AC82-C47DC57B5DC1}.png]]
 $$
 F(x,y)=H(2x+3y)=\begin{cases} 1 \quad \text{si} \quad 2x+3y \geq 0 \\
 0\quad \text{si} \quad 2x+3y < 0
 \end{cases}
 $$
+
+![[{5D5B796B-389C-4255-9BEB-FD60BBF6834B}.png]]
+
 $$
 \begin{align}
 F(4,-1)=H(2\times4+3\times(-1))=H(5)=1 \\
@@ -66,7 +87,7 @@ F(-3,1)=H(2\times3+3\times1)=H(-3)=0
 \end{align}
 $$
 **Representation Graphique:**
-![[Excalidraw/reseau de neuron.md#^clippedframe=exemple function|center|500]]
+![[{42C03AD4-EDAD-43C1-A176-1039D48F4C47}.png]]
 
 ![[Pasted image 20260414212912.png]]
 
@@ -84,7 +105,7 @@ Le perceptron linéaire ou neurone artificiel, a un biais qui vaut 0, à la diff
 
 ## Exemple 
 
-![[Excalidraw/reseau de neuron.md#^clippedframe=exooo|center|500]]
+![[{03A09E27-7913-418D-9BEC-B0605B1A7F6D}.png|391]]
 
 $$
 F(x,y)=H(4x-y+2)=\begin{cases}
@@ -306,8 +327,7 @@ $$\begin{align} F(x,y)=1 \quad &\text{pour tout } (x,y) \in Int(A) \\ F(x,y)=0 \
 ### Remarque 
 On n'exige rien sur la frontière $Fr(A)$. F peut  prendre la valeur 0 ou la valeur 1 
 
-![[Excalidraw/reseau de neuron.md#^clippedframe=rmrq frontiere|center|600]]
-
+![[{0FC2AAD9-2947-46F2-9E8F-81E4C20490C9}.png]]
 ## Proposition
 Toute zone polygonale convexe à $n$ côtés est réalisable par un réseau de $n + 1$ neurones.
 
@@ -378,11 +398,11 @@ $$F(x) \simeq f(x) \quad \forall x \in [a,b]$$
 **Voici différents neurones et les fonctions qu'ils réalisent**
 La fonction marche de *Heaviside*. Avec $a>0$
 
-![[Excalidraw/reseau de neuron.md#^clippedframe=fonction marche|center|700]]
+![[{CF0D55F5-6191-406A-A95B-3C7FACF99A69}.png]]
 
-La fonction marche à l'envers décalée vers la droite, avec $b > 0$.
+La fonction marche à l'envers décalée vers la droite, avec $b > 0$
 
-![[Excalidraw/reseau de neuron.md#^clippedframe=fsgas|center|5000]]
+![[{3CEADDE0-6A9A-4A3D-AF66-659A556BE126}.png]]
 
 Selon les cas, la valeur au niveau de la marche est 0 ou 1. On peut obtenir l'autre situation en rajoutant un neurone de type `NON`.
 
@@ -390,7 +410,8 @@ Selon les cas, la valeur au niveau de la marche est 0 ou 1. On peut obtenir l'au
 
 ## Fonctions Créneaux
  Pour réaliser un "créneau", l'idée est d'additionner une marche à l'endroit et une marche à l'envers.
-![[Excalidraw/reseau de neuron.md#^clippedframe=QlM93ixu|center|600]]
+
+![[{10A0F8E4-68F0-4EAF-BE1A-44A52536C743}.png]]
 
 ## Conclusion 
 Si on veut une marche plus haute il suffit de changer les poids du neurone de sortie d'un facteur k.

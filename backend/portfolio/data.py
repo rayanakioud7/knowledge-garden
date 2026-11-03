@@ -104,78 +104,12 @@ LANGUAGES: List[Dict[str, str]] = [
 def github_token() -> Optional[str]:
     return os.environ.get("GITHUB_TOKEN") or None
 
-# Curated, ordered project cards. ``repo`` keys are matched against the live
-# GitHub API to pull stars/language/url; entries without a match keep the
-# static description only.
-PROJECTS: List[Dict[str, object]] = [
-    {
-        "slug": "signlang",
-        "repo": "signlang",
-        "title": "Real-Time American Sign Language Recognition",
-        "year": "2026",
-        "featured": True,
-        "tags": ["PyTorch", "Transformers", "MediaPipe", "ROCm", "PySide6"],
-        "summary": "1D-CNN + Transformer encoder (~21M params) for 250-way sign classification.",
-        "bullets": [
-            "Designed and trained a 1D-CNN + Transformer Encoder (~21M parameters) from scratch for 250-way sign classification.",
-            "Spatial feature pipeline using 115 MediaPipe landmarks, computing position/velocity vectors relative to shoulder baselines (690 features/frame).",
-            "13 structured training experiments across 4 datasets: 86.89% Top-1 accuracy on unseen signers, 100% user-specific accuracy.",
-            "Native desktop monitor (PySide6) using local AMD RX 7900 XT ROCm compute for live 30 FPS inference.",
-        ],
-    },
-    {
-        "slug": "smart-eval",
-        "repo": None,
-        "title": "Smart-Eval: Multimodal Educational Assessment",
-        "year": "2026",
-        "featured": True,
-        "tags": ["YOLO", "Roboflow", "VLM OCR", "CamemBERT"],
-        "summary": "Automated engine to scan, categorize, and evaluate unstructured exam documents.",
-        "bullets": [
-            "Automated processing engine to scan, categorize, and evaluate unstructured exam documents.",
-            "Integrated YOLO via Roboflow for document layout analysis and boundary parsing.",
-            "Vision-Language Model (VLM OCR) pipeline for text extraction from handwritten responses.",
-            "PyTorch CamemBERT-large classifier contextualizing raw text into curricula nodes.",
-        ],
-    },
-    {
-        "slug": "sdid-portal",
-        "repo": "SDID-portal-fullstack",
-        "title": "SDID Portal: Academic Management Architecture",
-        "year": "2025",
-        "featured": True,
-        "tags": ["Spring Boot", "React", "MySQL", "RBAC"],
-        "summary": "Decoupled full-stack portal for SDID students to access courses, submit projects, check grades.",
-        "bullets": [
-            "Decoupled framework: secure Java Spring Boot API backend + responsive React.js UI.",
-            "Controller-Service-Repository pattern for safe transactional database operations.",
-            "Role-Based Access Control (RBAC) over a MySQL backend for persistent state security.",
-        ],
-    },
-    {
-        "slug": "adam-optimizer",
-        "repo": "adam-optimizer-masterpiece",
-        "title": "Interactive 3D Optimization Engine (Adam)",
-        "year": "2025",
-        "featured": False,
-        "tags": ["Python", "MATLAB", "React", "Plotly.js"],
-        "summary": "Hand-implemented Adam optimizer visualized on an interactive React + Plotly canvas.",
-        "bullets": [
-            "Implemented Adam optimizer calculus and weight-update mechanics explicitly in Python and MATLAB.",
-            "Bound the math backend to a React.js + Plotly.js canvas to observe convergence in real time.",
-        ],
-    },
-    {
-        "slug": "python-avance",
-        "repo": "Python-Avance",
-        "title": "Python Avancé — IAGI Coursework",
-        "year": "2026",
-        "featured": False,
-        "tags": ["Python"],
-        "summary": "Ateliers et travaux pratiques for the IAGI Advanced Python module.",
-        "bullets": [
-            "Course labs and practical work completed for the Advanced Python module at ENSAM.",
-        ],
-    },
-]
+# Curated summaries reviewed against public repository READMEs on 2026-10-31.
+import json
+from pathlib import Path
 
+PROJECTS = json.loads((Path(__file__).with_name("projects.json")).read_text(encoding="utf-8"))
+INDEPENDENT_PROJECTS = [
+    {"slug": "smart-eval", "title": "Smart-Eval", "category": "Independent work", "summary": "Multimodal educational assessment using document layout analysis, OCR and text classification.", "tags": ["YOLO", "VLM OCR", "CamemBERT"], "repo": None, "featured": False, "year": "2026", "bullets": []},
+    {"slug": "adam-optimizer", "title": "Interactive Adam Optimizer", "category": "Independent work", "summary": "An optimizer implementation with an interactive convergence visualization in React and Plotly.", "tags": ["Python", "MATLAB", "Plotly"], "repo": None, "featured": False, "year": "2025", "bullets": []},
+]

@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-01-29'
+tags:
+- education
+- learning
+- psychology
+topics:
+- '[[Education]]'
+- '[[Learning]]'
+- '[[Psychology]]'
+---
+
 Date: 2026-01-29
 Tags: [[Education]], [[Learning]], [[Psychology]]
 

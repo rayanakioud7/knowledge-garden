@@ -1,6 +1,7 @@
 ---
 tags: [data-science, statistics, computer-science, formal-sciences]
 source: https://virgili0.github.io/Virgilio/, https://en.wikipedia.org/wiki/Data_science
+type: note
 ---
 
 # Data Science

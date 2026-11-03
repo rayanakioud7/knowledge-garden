@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 # Levels of Causation: The Architecture of Events
 

@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-05'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+- partial-fractions
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+- '[[Partial Fractions]]'
+---
+
 Date: 2026-09-05
 Tags:  [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]], [[Partial Fractions]]
 

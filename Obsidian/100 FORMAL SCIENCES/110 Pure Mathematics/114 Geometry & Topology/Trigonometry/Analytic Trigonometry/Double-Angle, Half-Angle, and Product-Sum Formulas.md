@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-06-07'
+tags:
+- mathematics
+- trigonometry
+topics:
+- '[[Mathematics]]'
+- '[[Trigonometry]]'
+---
+
 Date: 2026-06-07
 Tags: [[Mathematics]], [[Trigonometry]]
 

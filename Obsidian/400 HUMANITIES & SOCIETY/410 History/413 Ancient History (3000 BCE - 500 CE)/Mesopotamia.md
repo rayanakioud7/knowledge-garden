@@ -1,3 +1,10 @@
+---
+type: note
+date: '2026-02-15'
+tags:
+- note
+---
+
 Date: 2026-02-15
 Tags:
 

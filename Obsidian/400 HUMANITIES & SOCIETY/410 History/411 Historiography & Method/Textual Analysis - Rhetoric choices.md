@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 # Textual Analysis: The Power of Rhetoric
 

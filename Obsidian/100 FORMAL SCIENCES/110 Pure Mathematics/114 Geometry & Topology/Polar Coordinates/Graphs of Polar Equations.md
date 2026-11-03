@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-06-08'
+tags:
+- mathematics
+- coordinates
+- equations
+topics:
+- '[[Mathematics]]'
+- '[[Coordinates]]'
+- '[[Equations]]'
+---
+
 Date: 2026-06-08
 Tags: [[Mathematics]], [[Coordinates]], [[Equations]]
 

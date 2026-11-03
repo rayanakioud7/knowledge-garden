@@ -1,3 +1,20 @@
+---
+type: note
+date: '2025-12-16'
+tags:
+- history
+- methodology
+- historiography
+- conquest-of-mexico
+- primary-sources
+topics:
+- '[[History]]'
+- '[[Methodology]]'
+- '[[Historiography]]'
+- '[[Conquest of Mexico]]'
+- '[[Primary Sources]]'
+---
+
 Date: 2025-12-16
 **Last Updated:** 2026-02-07  
 Tags: [[History]], [[Methodology]], [[Historiography]], [[Conquest of Mexico]], [[Primary Sources]]

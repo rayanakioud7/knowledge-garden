@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-24'
+tags:
+- java
+- programming-language
+- debugging
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Debugging]]'
+---
+
 Date: 2025-12-24
 Tags: [[JAVA]], [[Programming language]], [[Debugging]]
 

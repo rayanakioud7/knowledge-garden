@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-05-10'
+tags:
+- mathematics
+- foundations
+topics:
+- '[[Mathematics]]'
+- '[[Foundations]]'
+---
+
 Date: 2026-05-10
 Tags: [[Mathematics]], [[Foundations]]
 

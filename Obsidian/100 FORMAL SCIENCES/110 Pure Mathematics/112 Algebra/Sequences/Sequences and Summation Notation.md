@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-06-22'
+tags:
+- mathematics
+- algebra
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+---
+
 Date: 2026-06-22
 Tags: [[Mathematics]], [[Algebra]]
 

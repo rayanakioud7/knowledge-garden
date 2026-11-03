@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-06-09'
+tags:
+- mathematics
+- coordinates
+- algebra
+- complex-numbers
+topics:
+- '[[Mathematics]]'
+- '[[Coordinates]]'
+- '[[Algebra]]'
+- '[[Complex Numbers]]'
+---
+
 
 Date: 2026-06-09
 Tags: [[Mathematics]], [[Coordinates]], [[Algebra]], [[Complex Numbers]]

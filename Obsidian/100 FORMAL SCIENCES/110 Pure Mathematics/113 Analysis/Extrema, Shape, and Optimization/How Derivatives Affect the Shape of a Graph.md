@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-07-06'
+tags:
+- mathematics
+- analysis
+- functions
+- derivatives
+- the-graph-of-a-function
+topics:
+- '[[Mathematics]]'
+- '[[Analysis]]'
+- '[[Functions]]'
+- '[[Derivatives]]'
+- '[[The Graph of a Function]]'
+---
+
 Date: 2026-07-06
 Tags: [[Mathematics]], [[Analysis]], [[Functions]], [[Derivatives]], [[The Graph of a Function]]
 

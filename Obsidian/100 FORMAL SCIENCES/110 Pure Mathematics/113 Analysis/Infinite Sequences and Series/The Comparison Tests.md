@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-29'
+tags:
+- analysis
+- stewart
+- mathematics
+- comparison-tests
+- series
+topics:
+- '[[Analysis]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Comparison Tests]]'
+- '[[Series]]'
+---
+
 Date: 2026-09-29
 Tags: [[Analysis]], [[Stewart]], [[Mathematics]], [[Comparison Tests]], [[Series]]
 

@@ -1,3 +1,12 @@
+---
+type: note
+date: '2025-10-29'
+tags:
+- datawarehouse
+topics:
+- '[[Datawarehouse]]'
+---
+
 
 Date: 2025-10-29
 Tags: [[Datawarehouse]]

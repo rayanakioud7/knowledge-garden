@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-07-05'
+tags:
+- mathematics
+- analysis
+- functions
+- derivatives
+- optimization
+topics:
+- '[[Mathematics]]'
+- '[[Analysis]]'
+- '[[Functions]]'
+- '[[Derivatives]]'
+- '[[Optimization]]'
+---
+
 Date: 2026-07-05
 Tags: [[Mathematics]], [[Analysis]], [[Functions]], [[Derivatives]], [[Optimization]]
 

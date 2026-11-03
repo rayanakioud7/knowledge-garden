@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-05-18'
+tags:
+- mathematics
+- algebra
+- polynomials
+- functions
+- complex-numbers
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Polynomials]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]]'
+- '[[Complex Numbers]]'
+---
+
 Date: 2026-05-18
 Tags: [[Mathematics]], [[Algebra]], [[Polynomials]], [[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]], [[Complex Numbers]]
 

@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-08-04'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+- limits
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+- '[[Limits]]'
+---
+
 Date: 2026-08-04
 Tags:  [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]], [[Limits]]
 

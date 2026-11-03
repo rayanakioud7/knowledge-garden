@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-05-24'
+tags:
+- mathematics
+- geometry
+- trigonometry
+- graphes
+- functions
+topics:
+- '[[Mathematics]]'
+- '[[Geometry]]'
+- '[[Trigonometry]]'
+- '[[Graphes]]'
+- '[[Functions]]'
+---
+
 Date: 2026-05-24
 Tags: [[Mathematics]], [[Geometry]], [[Trigonometry]], [[Graphes]], [[Functions]]
 

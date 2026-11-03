@@ -1,252 +1,74 @@
-
-
-  
+---
+type: moc
+tags:
+- moc
+---
 
 # 💻 MOC — Computer Science & Programming
 
-  
-
 > [!INFO] Navigation Hub
-> This Map of Content indexes all notes under **300 TECHNOLOGY & COMPUTING** that relate to Computer Science Theory, Programming Languages, Software Engineering, and Tools. For Data Science & AI, see [[_MOC - Data Science & AI]].
-
-  
-
----
-
-  
-
-## 310 Computer Science Theory
-
-  
-
-- 📝 [[Discovering Errors & Debugging]] — Error types, debugging strategies
-
-  
-
-### Empty Subfolders (future growth)
-
-- 🚧 311 Algorithms & Data Structures
-
-- 🚧 312 Automata & Formal Languages → *Related:* [[Langages et Automates]] in [[_MOC - Formal Sciences|Formal Sciences]]
-
-- 🚧 314 Computability Theory
-
-- 🚧 315 Cryptography → *Related:* Diffie-Hellman in [[Algebra]] §6.3
-
-  
+> This Map of Content indexes **300 TECHNOLOGY & COMPUTING** — computer science theory, programming languages, software engineering, tools, and systems (145 notes). Data Science & AI lives in its own section-level MOC: [[MOC — Data Science & AI]].
+>
+> Each division below has its own detailed MOC — start here, then dive in.
 
 ---
 
-  
+## 310 Computer Science Theory → [[MOC — Algorithms & Data Structures]]
 
-## 320 Programming & Software Development
+Algorithm analysis, data structures (arrays, recursion, stacks/queues) and debugging (20 notes).
 
-  
+**Highlights:** [[Discovering Errors & Debugging]] · [[Asymptotic Analysis and Big-Oh]] · [[02. Dynamic Arrays & Amortized Analysis]]
 
-### Overview
+## 320 Programming & Software Development → [[MOC — Programming & Software Development]]
 
-- 📝 [[Programming language]] — Programming paradigms overview
+Five language tracks — Java ([[MOC — Java]]), Python ([[MOC — Python]]), C, R, SQL — plus paradigms and design notes (58 notes).
 
-  
+**Highlights:** [[Mémoire, Pointeurs, Tableaux et Allocation Dynamique en C]] ⭐ **(FR)** · [[Java Cheat Sheet]] ⭐ · [[Numpy Library Cheat sheet]] ⭐ · [[1. Concepts de Base - La Base de Données]] **(FR)**
 
-### 🔷 Java
+## 330 Software Engineering → [[MOC — Software Engineering]]
 
-  
+UML and Merise modeling, system design, software engineering fundamentals (5 notes).
 
-**Hub note:**
+**Highlights:** [[Partie 1 - Introduction et Modélisation]] **(FR)** · [[Diagramme de Classes]] **(FR)** · [[Diagramme de Cas d'Utilisation (Use Case)]] **(FR)**
 
-- 📝 [[JAVA]] — Java platform overview, JDK architecture, OOP principles
+## 340 Data Science & AI → [[MOC — Data Science & AI]]
 
-- 📝 [[Java Cheat Sheet]] — Quick reference with syntax patterns
+Machine learning, deep learning, NLP, business intelligence, data analysis, and the sign-language PFE project (52 notes).
 
-  
+**Highlights:** [[GPT-2 Architecture - The Transformer pipeline]] ⭐ · [[Reseaux de Neuron]] ⭐ **(FR)** · [[Support Vector Machines (SVM)]] ⭐ **(FR)** · [[Big Data - Chekhtouna]] **(FR)** · [[MOC — PFE Architecture|PFE Architecture series]]
 
-**Java Basics:**
+## 350 Tools & Environment → [[MOC — Tools & Environment]]
 
-- 📝 [[JDK, JRE and JVM]] — Java platform architecture
+LaTeX publishing and productivity tooling (Power BI/DAX) (3 notes).
 
-- 📝 [[Java Variables]] — Primitives, reference types, naming conventions
+**Highlights:** [[LaTeX Cheat sheet]] ⭐ · [[Langage DAX]]
 
-- 📝 [[Operators]] — Arithmetic, logical, bitwise operators
+## 360 Computer Systems & Infrastructure → [[MOC — Computer Systems & Infrastructure]]
 
-- 📝 [[Conditional Logic]] — if/else, switch, ternary
+Operating systems (Linux, FR), networks and cybersecurity (6 notes).
 
-- 📝 [[Java Loops]] — for, while, do-while, enhanced for
-
-- 📝 [[Arrays in Java]] — Declaration, initialization, operations
-
-- 📝 [[Methods]] — Method definition, parameters, overloading
-
-- 📝 [[Scanner class in Java]] — Console I/O
-
-  
-
-**Object-Oriented Programming:**
-
-- 📝 [[OOP]] — Four pillars: encapsulation, inheritance, polymorphism, abstraction
-
-- 📝 [[Constructors]] — Default, parameterized, constructor chaining
-
-- 📝 [[Getters and Setters]] — Encapsulation in practice
-
-- 📝 [[Interfaces]] — Contract-based design, default methods
-
-- 📝 [[Polymorphism]] — Runtime/compile-time polymorphism, method overriding
-
-- 📝 [[Exceptions]] — Try/catch, custom exceptions, exception hierarchy
-
-  
-
-**Collections Framework:**
-
-- 📝 [[List Interface]] — ArrayList, LinkedList
-
-- 📝 [[Set Interface]] — HashSet, TreeSet
-
-- 📝 [[Map Interface]] — HashMap, TreeMap
-
-  
-
-> [!TIP] Cross-Domain Links
-> - Java OOP concepts apply directly to the [[Diagramme de Classes|UML Class Diagrams]]
-> - Java Collections are used extensively in the exam code in `z.RAW NOTES/Examen.md` (should be moved here)
-> - [[Interfaces]] and [[Polymorphism]] map to UML design patterns
-
-  
-
-### 🐍 Python
-
-- 📝 [[Python]] — Language overview
-
-- 📝 [[Python Cheat Sheet]] — Core syntax quick reference
-
-- 📝 [[Numpy Library Cheat sheet]] — NumPy arrays, operations, broadcasting
-
-- 📝 [[Pandas library Cheat Sheet]] — DataFrames, series, data manipulation
-
-  
-
-> [!TIP] Cross-Domain Links
-> - Python is the primary tool for [[_MOC - Data Science & AI|Data Science & AI]]
-> - NumPy concepts connect to [[Neural Networks — Implementation]]
-
-  
-
-### 📊 SQL & Databases
-
-- 📝 [[SQL & Database Fundamentals]] — RDBMS concepts, normalization, keys
-
-- 📝 [[SQL Commands]] — DDL, DML, DCL, TCL command reference
-
-- 📝 [[SQL Subqueries]] — Correlated/non-correlated, EXISTS, IN
-
-- 🚧 [[PostgreSQl]] — *(Nearly empty — 87 bytes)*
-
-  
-
-> [!TIP] Cross-Domain Links
-> - SQL connects to [[Data Warehouse Architecture]] and [[Business Intelligence et Data warehouse - FR]]
-> - Database design relates to [[Diagramme de Classes|UML Class Diagrams]]
-
-  
-
-### 📈 R
-
-- 📝 [[R & Machine Learning Cheat Sheet]] — R syntax + ML workflow reference
-
-  
-
-> [!TIP] Cross-Domain Links
-> - R is used alongside Python in [[_MOC - Data Science & AI|Data Science & AI]] workflows
-
-  
-
-### Programming Paradigms (empty)
-
-- 🚧 Functional Programming
-
-- 🚧 Object-Oriented Programming → *Content exists in* [[OOP]]
-
-- 🚧 Procedural Programming
-
-  
+**Highlights:** [[1. Réseaux et Protocoles - Concepts de Base et Modèle OSI]] **(FR)** · [[Partie 1 - Introduction aux Systèmes d'Exploitation]] **(FR)** · [[1. Cybersécurité — Fondamentaux, Anatomie d'une Attaque et Méthodologie Offensive]] **(FR)**
 
 ---
 
-  
+## 🚧 Empty Sub-areas (planned)
 
-## 330 Software Engineering
-
-  
-
-### UML (Unified Modeling Language)
-
-- 📝 [[Introduction au Génie Logiciel et UML]] — Software engineering fundamentals, UML overview
-
-- 📝 [[Diagramme de Classes]] — Class relationships, associations, composition
-
-- 📝 [[Diagramme de Cas d'Utilisation (Use Case)]] — Actor-system interactions
-
-- 📝 [[Diagramme de Séquence]] — Message flow, lifelines, activation bars
-
-  
+- 🚧 311 Automata (312) & Computability (314) — formal languages, Turing machines *(starter content: [[Langages et Automates]], FR)*
+- 🚧 315 Cryptography — *(foundations: [[Groups]] §general linear group, Diffie-Hellman in [[Algebra]] §6.3)*
+- 🚧 321 Functional & Procedural Programming · 324 Web Development
+- 🚧 332 QA · 333 Version Control · 334 DevOps/CI · 335 Frameworks
+- 🚧 353 Development Environments (Matlab) · 354 Research Tools
+- 🚧 344 Computer Vision · 345 Data Engineering (inside 340)
 
 > [!TIP] Cross-Domain Links
-> - UML class diagrams model the same structures coded in [[JAVA]] and [[OOP]]
-> - Sequence diagrams are used in the [[Sign Language Recognition - Data Understanding & ETL Plan|PFE ETL Plan]]
-
-  
-
-### Empty Subfolders
-
-- 🚧 332 Testing & Quality Assurance
-
-- 🚧 333 Version Control & Collaboration
-
-- 🚧 334 DevOps & CI/CD
-
-- 🚧 335 Frameworks
-
-  
-
----
-
-  
-
-## 350 Tools & Environment
-
-  
-
-### Publishing
-
-- 📝 [[LaTeX]] — LaTeX overview, installation
-
-- 📝 [[LaTeX Cheat sheet]] — ⭐ **Comprehensive**: 38KB of syntax, commands, environments, math typesetting
-
-  
-
-### Productivity
-
-- 📝 [[Langage DAX]] — Power BI DAX formula language basics
-
-  
-
-### Empty Subfolders
-
-- 🚧 353 Development Environments / Matlab
-
-- 🚧 354 Research Tools
-
-  
-
----
-
-  
+> - CS theory sits on [[MOC — Formal Sciences]]: discrete math ([[Graphes]], [[Algèbre de Boole]]) and proof techniques.
+> - Python & NumPy bridge into [[MOC — Data Science & AI]]; Java OOP maps to [[Diagramme de Classes|UML class diagrams]].
+> - Markup & typesetting: [[LaTeX Cheat sheet]] is how the vault's math notes were born.
+> - Programming-interview prep material and exam code currently live in `000/z.RAW NOTES` — flagged for migration in [[Vault Consistency Audit]].
 
 ## 🗺️ Related MOCs
 
-- [[MOC — Data Science & AI]] — ML, Deep Learning, NLP, BI (in 340)
-
-- [[MOC - Formal Sciences]] — Math foundations used in algorithms & CS theory
-
-- [[_MOC - PFE Architecture]] — Transformer architecture deep dive
+- [[MOC — Vault Index]] — master index
+- [[MOC — Data Science & AI]] — the sibling 340 section-level MOC
+- [[MOC — Formal Sciences]] — mathematical foundations
+- [[MOC — PFE Architecture]] — the project deep-dive

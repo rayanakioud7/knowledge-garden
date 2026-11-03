@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-10-06'
+tags:
+- calculus
+- stewart
+- mathematics
+- power-series
+- radius-of-convergence
+topics:
+- '[[Calculus]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Power Series]]'
+- '[[Radius of Convergence]]'
+---
+
 Date: 2026-10-06
 Tags: [[Calculus]], [[Stewart]], [[Mathematics]], [[Power Series]], [[Radius of Convergence]]
 

@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-06-24'
+tags:
+- programming-language
+- python
+topics:
+- '[[Programming language]]'
+- '[[Python]]'
+---
+
 
 Date: 2026-06-24
 Tags: [[Programming language]], [[Python]]

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-12-27'
+tags:
+- mathematics
+- machine-learning
+- python
+- supervised-learning
+topics:
+- '[[Mathematics]]'
+- '[[Machine Learning]]'
+- '[[Python]]'
+- '[[Supervised Learning]]'
+---
+
 Date: 2025-12-27
 Tags:  [[Mathematics]], [[Machine Learning]], [[Python]], [[Supervised Learning]]
 

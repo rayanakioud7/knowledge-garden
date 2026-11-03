@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-09-22'
+tags:
+- mathematics
+- limits
+- analysis
+topics:
+- '[[Mathematics]]'
+- '[[Limits]]'
+- '[[Analysis]]'
+---
+
 Date: 2026-09-22
 Tags: [[Mathematics]], [[Limits]], [[Analysis]]
 

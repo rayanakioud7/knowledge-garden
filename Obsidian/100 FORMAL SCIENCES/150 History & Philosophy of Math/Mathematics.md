@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-01-30'
+tags:
+- history
+- evolution
+- education
+- philosophy
+- logic
+- archaeology
+topics:
+- '[[History]]'
+- '[[Evolution]]'
+- '[[Education]]'
+- '[[Philosophy]]'
+- '[[Logic]]'
+- '[[Archaeology]]'
+---
+
 Date: 2026-01-30
 Tags: [[History]], [[Evolution]], [[Education]], [[Philosophy]], [[Logic]], [[Archaeology]]
 

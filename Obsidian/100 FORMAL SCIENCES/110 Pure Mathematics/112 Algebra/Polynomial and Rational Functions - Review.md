@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-19'
+tags:
+- mathematics
+- algebra
+- polynomials
+- cheat-sheet
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Polynomials]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2026-05-19
 Tags: [[Mathematics]], [[Algebra]], [[Polynomials]], [[Cheat sheet]]
 

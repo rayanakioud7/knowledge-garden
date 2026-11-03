@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-29'
+tags:
+- analysis
+- stewart
+- mathematics
+- integral-test
+- series
+topics:
+- '[[Analysis]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Integral Test]]'
+- '[[Series]]'
+---
+
 Date: 2026-09-29
 Tags:[[Analysis]], [[Stewart]], [[Mathematics]], [[Integral Test]], [[Series]]
 

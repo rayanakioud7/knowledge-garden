@@ -1,4 +1,23 @@
 ---
+type: note
+date: '2026-04-01'
+tags:
+- mathematics
+- machine-learning
+- deep-learning
+- python
+- neural-networks
+- theory
+topics:
+- '[[Mathematics]]'
+- '[[Machine Learning]]'
+- '[[Deep Learning]]'
+- '[[Python]]'
+- '[[Neural Networks]]'
+- '[[Theory]]'
+---
+
+---
 
 ## Date: 2026-04-01 Tags: [[Mathematics]], [[Machine Learning]], [[Deep Learning]], [[Python]], [[Neural Networks]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-03-04'
+tags:
+- python
+- data-science
+- business-intelligence
+- cheat-sheet
+topics:
+- '[[Python]]'
+- '[[Data Science]]'
+- '[[Business Intelligence]]'
+- '[[Cheat sheet]]'
+---
+
 
 ---
 title: "Pandas — Data Wrangling and Analysis"

@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # Script de Présentation — 15 Minutes
 
 ## Système de Reconnaissance et Traduction de la Langue des Signes Américaine (ASL)

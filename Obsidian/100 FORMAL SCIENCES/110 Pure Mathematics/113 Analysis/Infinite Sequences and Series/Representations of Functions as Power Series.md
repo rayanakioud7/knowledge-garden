@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-10-06'
+tags:
+- calculus
+- stewart
+- mathematics
+- power-series
+- differentiation
+- integration
+topics:
+- '[[Calculus]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Power Series]]'
+- '[[Differentiation]]'
+- '[[Integration]]'
+---
+
 Date: 2026-10-06
 Tags: [[Calculus]], [[Stewart]], [[Mathematics]], [[Power Series]], [[Differentiation]], [[Integration]]
 

@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-06-10'
+tags:
+- mathematics
+- geometry
+topics:
+- '[[Mathematics]]'
+- '[[Geometry]]'
+---
+
 Date: 2026-06-10
 Tags: [[Mathematics]], [[Geometry]]
 

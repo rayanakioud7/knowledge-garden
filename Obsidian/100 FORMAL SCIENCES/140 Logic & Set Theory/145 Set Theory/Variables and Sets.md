@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-08-25'
+tags:
+- mathematics
+- proofs
+- logic
+- sets
+topics:
+- '[[Mathematics]]'
+- '[[Proofs]]'
+- '[[Logic]]'
+- '[[Sets]]'
+---
+
 Date: 2026-08-25
 Tags: [[Mathematics]], [[Proofs]], [[Logic]], [[Sets]]
 

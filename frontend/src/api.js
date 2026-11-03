@@ -25,6 +25,7 @@ export const api = {
   note: (id) => getJson(`/notes/${encodeURIComponent(id)}/`),
   graph: (domain) => getJson(`/graph/${domain ? `?domain=${domain}` : ""}`),
   tree: () => getJson(`/tree/`),
+  mocs: () => getJson(`/mocs/`),
   tags: () => getJson(`/tags/`),
   domains: () => getJson(`/domains/`),
   status: () => getJson(`/status/`),

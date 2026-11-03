@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-10-06'
+tags:
+- calculus
+- stewart
+- mathematics
+- taylor-series
+- maclaurin-series
+- power-series
+topics:
+- '[[Calculus]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Taylor Series]]'
+- '[[Maclaurin Series]]'
+- '[[Power Series]]'
+---
+
 Date: 2026-10-06
 Tags: [[Calculus]], [[Stewart]], [[Mathematics]], [[Taylor Series]], [[Maclaurin Series]], [[Power Series]]
 

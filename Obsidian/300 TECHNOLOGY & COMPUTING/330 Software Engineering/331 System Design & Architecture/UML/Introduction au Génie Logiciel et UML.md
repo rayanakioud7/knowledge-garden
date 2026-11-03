@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-03-05'
+tags:
+- uml
+- genie-logiciel
+topics:
+- '[[UML]]'
+- '[[Genie Logiciel]]'
+---
+
 Date: 2026-03-05
 Tags: [[UML]], [[Genie Logiciel]]
 

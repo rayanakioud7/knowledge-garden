@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-01-28'
+tags:
+- memory
+- mnemonics
+- learning-techniques
+topics:
+- '[[memory]]'
+- '[[mnemonics]]'
+- '[[learning-techniques]]'
+---
+
 Date: 2026-01-28
 Tags: [[memory]], [[mnemonics]], [[learning-techniques]]
 

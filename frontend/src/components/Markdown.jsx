@@ -37,6 +37,7 @@ export default function Markdown({ html }) {
 
     // Intercept in-app note links.
     const onClick = (e) => {
+      if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       const a = e.target.closest("a");
       if (!a) return;
       const href = a.getAttribute("href") || "";
@@ -77,7 +78,7 @@ function renderMath(root) {
         return NodeFilter.FILTER_REJECT;
       }
       const parent = node.parentElement;
-      if (!parent || parent.closest(".katex") || parent.tagName === "SCRIPT") {
+      if (!parent || parent.closest(".katex, pre, code, textarea, style") || parent.tagName === "SCRIPT") {
         return NodeFilter.FILTER_REJECT;
       }
       return NodeFilter.FILTER_ACCEPT;

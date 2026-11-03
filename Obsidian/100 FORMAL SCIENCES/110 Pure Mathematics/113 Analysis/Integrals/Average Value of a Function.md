@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-08-04'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+- antiderivatives
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+- '[[Antiderivatives]]'
+---
+
 Date: 2026-08-04
 Tags:  [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]], [[Antiderivatives]]
 

@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-29'
+tags:
+- analysis
+- stewart
+- mathematics
+- series
+- convergence-tests
+topics:
+- '[[Analysis]]'
+- '[[Stewart]]'
+- '[[Mathematics]]'
+- '[[Series]]'
+- '[[Convergence Tests]]'
+---
+
 Date: 2026-09-29
 Tags: [[Analysis]], [[Stewart]], [[Mathematics]], [[Series]], [[Convergence Tests]]
 

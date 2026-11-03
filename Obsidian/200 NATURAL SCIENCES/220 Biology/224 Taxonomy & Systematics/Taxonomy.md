@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-02-03'
+tags:
+- biology
+- science
+- history
+topics:
+- '[[Biology]]'
+- '[[Science]]'
+- '[[History]]'
+---
+
 Date: 2026-02-03
 Tags: [[Biology]], [[Science]], [[History]]
 

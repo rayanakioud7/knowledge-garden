@@ -1,3 +1,30 @@
+---
+type: note
+date: '2026-10-09'
+tags:
+- mathematics
+- recherche-operationnelle
+- discrete-mathematics
+- optimisation-combinatoire
+- graphes
+- dijkstra
+- bellman-ford
+- ford-fulkerson
+- flot-maximal
+- ensam
+topics:
+- '[[Mathematics]]'
+- '[[Recherche Opérationnelle]]'
+- '[[Discrete Mathematics]]'
+- '[[Optimisation Combinatoire]]'
+- '[[Graphes]]'
+- '[[Dijkstra]]'
+- '[[Bellman-Ford]]'
+- '[[Ford-Fulkerson]]'
+- '[[Flot Maximal]]'
+- '[[ENSAM]]'
+---
+
 Date: 2026-10-09
 Tags: [[Mathematics]], [[Recherche Opérationnelle]], [[Discrete Mathematics]],[[Optimisation Combinatoire]], [[Graphes]], [[Dijkstra]], [[Bellman-Ford]], [[Ford-Fulkerson]], [[Flot Maximal]], [[ENSAM]]
 

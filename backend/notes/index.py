@@ -14,6 +14,8 @@ currently loaded index, so wikilinks always point at real note ids.
 from __future__ import annotations
 
 import json
+import os
+import tempfile
 import re
 import threading
 import time
@@ -23,7 +25,7 @@ from typing import Dict, List, Optional, Tuple
 
 from django.conf import settings
 
-from parser.vault import scan_vault, Note
+from parser.vault import scan_vault, Note, _is_ignored
 from parser.renderer import render_note
 
 
@@ -79,11 +81,12 @@ class GardenIndex:
 
             attachments = scan_attachments(vault_path)
             payload = index_to_payload(notes, attachments=attachments)
+            payload["builtAt"] = time.time()
             try:
                 index_path.parent.mkdir(parents=True, exist_ok=True)
-                index_path.write_text(
-                    json.dumps(payload, ensure_ascii=False), encoding="utf-8"
-                )
+                with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=index_path.parent, delete=False) as tmp:
+                    json.dump(payload, tmp, ensure_ascii=False)
+                os.replace(tmp.name, index_path)
             except OSError:
                 pass
             self._notes = notes
@@ -106,20 +109,20 @@ class GardenIndex:
         return self._cache
 
     def _cache_is_stale(self) -> bool:
-        """Stale if any vault note is newer than the cache file (+1s slack). Throttled."""
+        """Detect added, edited, renamed and deleted notes. Throttled."""
         now = time.time()
         if (now - self._last_stale_check) < self._stale_interval:
             return False
         self._last_stale_check = now
         try:
             vault_path = Path(settings.GARDEN_VAULT_PATH)
-            newest = max(
-                (p.stat().st_mtime for p in vault_path.rglob("*.md")
-                 if ".obsidian" not in p.parts and ".trash" not in p.parts and "z.raw notes" not in p.as_posix().lower()),
-                default=0,
-            )
-            cache_mtime = Path(settings.GARDEN_INDEX_PATH).stat().st_mtime
-            return newest > cache_mtime + 1
+            if not vault_path.exists():
+                return False  # support index-only hosting
+            current = {p.relative_to(vault_path).as_posix(): p.stat().st_mtime
+                       for p in vault_path.rglob("*.md")
+                       if not _is_ignored(p.relative_to(vault_path))}
+            indexed = {n["path"]: n.get("mtime") for n in (self._cache or {}).get("notes", [])}
+            return current != indexed
         except OSError:
             return False
 
@@ -133,7 +136,7 @@ class GardenIndex:
             for tag in n.get("tags", []):
                 tag_counter[tag] = tag_counter.get(tag, 0) + 1
         self._tag_counts = tag_counter
-        self._last_build = time.time()
+        self._last_build = payload.get("builtAt") or Path(settings.GARDEN_INDEX_PATH).stat().st_mtime
 
     # -- resolvers ---------------------------------------------------------
 
@@ -204,7 +207,6 @@ class GardenIndex:
             "edgeCount": len(self._graph.get("edges", [])),
             "tagCount": len(self._tag_counts),
             "lastBuild": self._last_build,
-            "vaultPath": settings.GARDEN_VAULT_PATH,
         }
 
 

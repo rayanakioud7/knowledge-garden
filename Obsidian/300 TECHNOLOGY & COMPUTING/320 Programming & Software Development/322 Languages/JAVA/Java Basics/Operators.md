@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-11-20'
+tags:
+- java
+- programming-language
+- operators
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Operators]]'
+---
+
 
 Date: 2025-11-20
 Tags: [[JAVA]], [[Programming language]], [[Operators]]

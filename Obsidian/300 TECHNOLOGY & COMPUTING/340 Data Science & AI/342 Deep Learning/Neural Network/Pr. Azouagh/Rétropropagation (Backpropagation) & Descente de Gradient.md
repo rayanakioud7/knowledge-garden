@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-04-16'
+tags:
+- backpropagation
+- deep-learning
+- optimization
+- artificial-intelligence
+- methodes-du-gradient---sdid
+topics:
+- '[[Backpropagation]]'
+- '[[Deep Learning]]'
+- '[[Optimization]]'
+- '[[Artificial intelligence]]'
+- '[[Méthodes du Gradient - SDID]]'
+---
+
 Date: 2026-04-16
 Tags: [[Backpropagation]], [[Deep Learning]], [[Optimization]], [[Artificial intelligence]], [[Méthodes du Gradient - SDID|Gradient descent]]
 

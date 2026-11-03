@@ -1,3 +1,15 @@
+---
+type: note
+tags:
+- mathematics
+- algebra
+- cheat-sheet
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Cheat sheet]]'
+---
+
 
 
 **Tags :** [[Mathematics]] [[Algebra]] [[Cheat sheet]]

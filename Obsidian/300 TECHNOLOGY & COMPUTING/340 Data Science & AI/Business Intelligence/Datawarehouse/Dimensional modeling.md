@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-11-14'
+tags:
+- datawarehouse
+- business-intelligence
+- database
+topics:
+- '[[Datawarehouse]]'
+- '[[Business Intelligence]]'
+- '[[Database]]'
+---
+
 Date: 2025-11-14
 Tags: [[Datawarehouse]], [[Business Intelligence]], [[Database]]
 

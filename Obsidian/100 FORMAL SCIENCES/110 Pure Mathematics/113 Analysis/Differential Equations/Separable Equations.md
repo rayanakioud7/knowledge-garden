@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-22'
+tags:
+- mathematics
+- equations
+- analysis
+- differential-equations
+- derivatives
+topics:
+- '[[Mathematics]]'
+- '[[Equations]]'
+- '[[Analysis]]'
+- '[[Differential Equations]]'
+- '[[Derivatives]]'
+---
+
 Date: 2026-09-22
 Tags: [[Mathematics]], [[Equations]], [[Analysis]], [[Differential Equations]], [[Derivatives]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-09-26'
+tags:
+- c_programming
+- pointers
+- memory_management
+- systems_engineering
+topics:
+- '[[C_Programming]]'
+- '[[Pointers]]'
+- '[[Memory_Management]]'
+- '[[Systems_Engineering]]'
+---
+
 
 Date: 2026-09-26
 Tags: [[C_Programming]], [[Pointers]], [[Memory_Management]], [[Systems_Engineering]]

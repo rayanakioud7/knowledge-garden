@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-01-30'
+tags:
+- mathematics
+- history
+- ancient-egypt
+- algebra
+topics:
+- '[[Mathematics]]'
+- '[[History]]'
+- '[[Ancient Egypt]]'
+- '[[Algebra]]'
+---
+
 Date: 2026-01-30
 Tags: [[Mathematics]], [[History]], [[Ancient Egypt]], [[Algebra]]
 

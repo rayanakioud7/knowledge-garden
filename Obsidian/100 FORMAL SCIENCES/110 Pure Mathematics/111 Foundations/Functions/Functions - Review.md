@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-05-18'
+tags:
+- mathematics
+- functions
+- foundations
+topics:
+- '[[Mathematics]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]]'
+- '[[Foundations]]'
+---
+
 Date: 2026-05-18
 Tags: [[Mathematics]], [[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]], [[Foundations]]
 

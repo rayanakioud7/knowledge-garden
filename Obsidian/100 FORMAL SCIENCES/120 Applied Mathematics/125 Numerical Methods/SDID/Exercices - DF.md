@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # Exercice 1
 
 On cherche $u : [0,1]^2 \times \mathbb{R}^+ \to \mathbb{R}$ telle que

@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-09-29'
+tags:
+- analysis
+- mathematics
+- absolute-convergence
+- ratio-test
+- root-test
+- series
+topics:
+- '[[Analysis]]'
+- '[[Mathematics]]'
+- '[[Absolute Convergence]]'
+- '[[Ratio Test]]'
+- '[[Root Test]]'
+- '[[Series]]'
+---
+
 Date: 2026-09-29
 Tags: [[Analysis]], [[Mathematics]], [[Absolute Convergence]], [[Ratio Test]], [[Root Test]]. [[Series]]
 

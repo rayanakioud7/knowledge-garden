@@ -71,6 +71,7 @@ class Note:
         """Serializable payload for the API / index file (without heavy fields)."""
         data = asdict(self)
         data.pop("body_md", None)
+        data["isMoc"] = _is_moc(self)
         return data
 
 
@@ -328,6 +329,16 @@ def _folder_code(name: str) -> Optional[str]:
     return m.group(1) if m else None
 
 
+# A Map-of-Content hub note: titled "MOC — …" / "_MOC - …" or tagged "moc".
+_MOC_RE = re.compile(r"^[_\s]*MOC\b", re.IGNORECASE)
+
+
+def _is_moc(note: Note) -> bool:
+    if _MOC_RE.match(note.title or ""):
+        return True
+    return any((t or "").strip().lower() == "moc" for t in note.tags)
+
+
 def build_tree(notes: Dict[str, Note]) -> Dict[str, object]:
     """Build a nested folder tree from every note's ``folders`` chain.
 
@@ -340,7 +351,7 @@ def build_tree(notes: Dict[str, Note]) -> Dict[str, object]:
           "code": str | None,     # leading Dewey code if present
           "noteCount": int,       # notes in this folder + all descendants
           "children": [node...],  # sub-folders (naturally sorted)
-          "notes": [ {id,title} ] # notes directly in this folder (sorted)
+          "notes": [ {id,title,tags,wordCount,domain,isMoc} ] # direct notes (sorted)
         }
     """
     # Tree of nested dicts keyed by folder path.
@@ -363,7 +374,16 @@ def build_tree(notes: Dict[str, Note]) -> Dict[str, object]:
                     "notes": [],
                 }
             node = children[key]
-        node["notes"].append({"id": note.id, "title": note.title})
+        node["notes"].append(
+            {
+                "id": note.id,
+                "title": note.title,
+                "tags": note.tags[:4],
+                "wordCount": note.word_count,
+                "domain": note.domain_code,
+                "isMoc": _is_moc(note),
+            }
+        )
 
     def _count(n) -> int:
         return len(n["notes"]) + sum(_count(c) for c in n["children"].values())

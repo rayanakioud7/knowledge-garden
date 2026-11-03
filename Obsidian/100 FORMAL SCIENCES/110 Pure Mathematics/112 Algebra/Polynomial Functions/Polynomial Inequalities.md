@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-19'
+tags:
+- mathematics
+- algebra
+- polynomial-functions-and-their-graphs
+- interval-notation-and-solving-inequalities
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Polynomial Functions and Their Graphs]]'
+- '[[Interval Notation and Solving Inequalities#3 Solve Inequalities]]'
+---
+
 Date: 2026-05-19
 Tags: [[Mathematics]], [[Algebra]] ,[[Polynomial Functions and Their Graphs|Polynomials]], [[Interval Notation and Solving Inequalities#3 Solve Inequalities|inequalities]]
 

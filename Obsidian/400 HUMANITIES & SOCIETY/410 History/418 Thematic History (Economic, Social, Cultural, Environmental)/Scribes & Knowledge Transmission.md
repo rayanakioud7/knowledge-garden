@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-02-05'
+tags:
+- history
+- writing
+- manuscripts
+- education
+- linguistics
+- art
+topics:
+- '[[History]]'
+- '[[Writing]]'
+- '[[Manuscripts]]'
+- '[[Education]]'
+- '[[Linguistics]]'
+- '[[Art]]'
+---
+
 Date: 2026-02-05
 Tags: [[History]], [[Writing]], [[Manuscripts]], [[Education]], [[Linguistics]], [[Art]]
 

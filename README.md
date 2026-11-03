@@ -31,7 +31,8 @@ Obsidian vault ──(git push ~15min)──▶ GitHub ──webhook──▶ Dj
   (`> [!INFO]`), `$...$` LaTeX, `==highlights==`, `~={colour}=~`, and `![[image]]`
   embeds.
 - **Builds a knowledge graph** of notes + wikilinks (interactive, filterable).
-- **Full-text search** over every note.
+- **Search everywhere**: an Atlas of Maps, a ⌘K command palette, and
+  title/excerpt/tag/domain filters.
 - **Serves as a portfolio**: About, CV (print-to-PDF), and live GitHub projects.
 - **Stays fresh automatically** — the flagship *deferred real-time sync*.
 
@@ -45,7 +46,7 @@ Obsidian vault ──(git push ~15min)──▶ GitHub ──webhook──▶ Dj
 | Markdown | **markdown-it** (server render) + **KaTeX** (client math) |
 | Graph | **react-force-graph-2d** (d3-force) |
 | Backend | **Django 5 + Django REST Framework** |
-| Search | **Meilisearch** (optional) or in-memory fallback |
+| Search | In-memory index (titles + excerpts) · ⌘K command palette |
 | Sync | **watchdog** (local) + **Git webhook** + **hourly pull** |
 
 ---
@@ -121,7 +122,7 @@ knowledge garden/
 │   └── assets/cv.tex       # source CV for download
 ├── frontend/               # React + Vite + Tailwind SPA
 │   └── src/
-│       ├── pages/          # About, CV, Projects, Garden, Note, Graph, Search
+│       ├── pages/          # About, CV, Projects, Atlas, Notes, Note, Graph, Search
 │       └── components/     # Layout, Sidebar, Markdown, SyncBadge, ...
 ├── scripts/
 │   ├── test_parser.py      # parser smoke test
@@ -177,12 +178,15 @@ Production build:
 npm run build      # outputs frontend/dist/
 ```
 
-### 3. Optional: Meilisearch
+### 3. Optional: Meilisearch (reserved — not wired into the app yet)
 
 ```bash
 docker compose up -d
 # then set MEILISEARCH_URL/MEILISEARCH_KEY in backend/.env
 ```
+
+Search today is served by the in-memory index (titles + excerpts) plus the
+client-side ⌘K palette.
 
 ---
 
@@ -193,7 +197,7 @@ Copy `backend/.env.example` to `backend/.env` and set:
 - `GARDEN_VAULT_PATH` — the in-project vault copy the app reads.
 - `GARDEN_SOURCE_VAULT` — your native vault (source for `runmirror`).
 - `GARDEN_WEBHOOK_SECRET` — shared secret for the sync webhook (prod).
-- `MEILISEARCH_URL` / `MEILISEARCH_KEY` — enable Meilisearch search.
+- `MEILISEARCH_URL` / `MEILISEARCH_KEY` — reserved for future Meilisearch use.
 - `GITHUB_TOKEN` — raise GitHub API limits for live project metadata.
 
 ---
@@ -206,6 +210,7 @@ Copy `backend/.env.example` to `backend/.env` and set:
 | GET | `/api/notes/<id>/` | One note (rendered HTML, links, backlinks) |
 | GET | `/api/graph/` | Nodes + edges (`?domain=` to filter) |
 | GET | `/api/tree/` | Full nested folder tree (sidebar navigation) |
+| GET | `/api/mocs/` | Atlas plates: every MOC + linked notes with domains |
 | GET | `/api/tags/` | All tags with counts |
 | GET | `/api/domains/` | Dewey taxonomy + per-domain counts |
 | GET | `/api/status/` | Sync status (counts, last build) |
@@ -242,16 +247,81 @@ for links and interactive elements.
 
 ### Navigation
 
-The garden sidebar is an **interactive folder tree** that mirrors your vault's
-real structure, as deep as it goes (up to 6 levels). Click a branch (e.g.
-*Formal Sciences → Pure Mathematics → Algebra → Linear Algebra → …*) to expand
-it down to the leaf `.md` notes. The chain to the note you're viewing
-auto-expands. Powered by `GET /api/tree/`.
+The garden opens on the **Knowledge Library** at `/garden`. Its subject directory
+uses the real vault folder hierarchy, with live counts, topic maps, scoped search,
+reading estimates, and paginated note lists. Browse deeper through subtopics or
+resume a recently opened note. URL parameters preserve the subject, query and sort.
+
+The **Atlas of Maps** is available at `/garden/atlas` as an optional visual catalog.
+The note index, graph, and legacy canvas tree remain available at their existing URLs.
+The sidebar keeps folder exploration behind a disclosure to reduce visual clutter.
+Press **Ctrl+K / ⌘K** for quick search. Notes include an on-page outline and chapter
+previous/next navigation. Heavy note rendering, Atlas and canvas routes load on demand.
 
 ### Dark mode
 
-A monochrome dark theme (same palette, inverted) toggled from the sidebar. The
-choice is persisted in `localStorage` and respects your OS preference on first
-visit. Theming is driven by CSS custom properties in `frontend/src/index.css`
+A monochrome dark theme (same palette, inverted) toggled from the sidebar.
+The default is light; an explicit toggle is persisted in `localStorage`.
+Theming is driven by CSS custom properties in `frontend/src/index.css`
 (`:root` / `.dark`), so every surface, border, and the knowledge graph all
 adapt automatically with a single class swap on `<html>`.
+
+## Deployment used by this checkout
+
+`frontend/vercel.json` routes `/api/*` to `https://rayanakioud.pythonanywhere.com/api/*`
+and sends other routes to the React entry point. This is the configured split
+Vercel / PythonAnywhere deployment. `render.yaml`, `Dockerfile` and the Hugging
+Face metadata above are alternative configurations, not proof of the active host.
+
+To publish these changes:
+
+1. Run `python scripts/test_regressions.py`, `python backend/manage.py check`,
+   and `npm --prefix frontend run build` in the configured development environment.
+2. Run `python backend/manage.py build_index --force` to include the current notes.
+3. Review and commit the intended source, notes, attachments, and generated index.
+   This checkout already contains uncommitted note and navigation work.
+4. Push the reviewed commit. Verify Vercel is linked to this repository with
+   `frontend` as its root directory; its build command is `npm run build`.
+5. In the PythonAnywhere application checkout, pull that same commit, install
+   `backend/requirements.txt` in its virtual environment, and rebuild the index
+   if the vault is present. For index-only hosting, deploy `backend/garden-index.json`.
+6. Reload the PythonAnywhere web app. Check `/api/status/`, `/api/mocs/`, a recent
+   note, an attachment, and a direct `/garden/note/...` URL on the frontend.
+
+Export settings in the hosting environment or load them in the WSGI setup.
+The backend does **not** automatically load `.env` files. Set `DJANGO_DEBUG=False`,
+a private `DJANGO_SECRET_KEY`, and `GARDEN_WEBHOOK_SECRET` in production.
+GitHub webhooks now accept `X-Hub-Signature-256`; the existing shared-secret header
+is also supported. An unconfigured webhook is disabled when debug is off.
+
+**Sync limitation:** the webhook rebuilds local files; it does not fetch Git.
+The existing hourly script only pulls a repository at `Obsidian/.git`, which this
+checkout does not have. Until a server-side pull/deploy job is configured, publishing
+notes requires deploying the updated index or pulling the project and rebuilding.
+The one-hour freshness promise above applies only when that job is actually installed.
+
+## Navigation and reliability update — 2026-10-31
+
+The Library is now the primary entry point; the Atlas remains an optional visual catalog. It now has shareable URL
+filters for topic and domain, recently updated notes, and a direct all-notes link.
+Use the command palette for quick lookup, the folder tree for exact hierarchy,
+and the graph/tree canvases for exploration. Heavy canvas routes load on demand.
+
+Shared navigation requests expire after one minute on subsequent access. Already
+mounted views are not continuously refreshed. Note/search requests ignore late
+responses after navigation. Search failures and portfolio failures show a visible
+message. Index freshness detects note additions/deletions as well as edits, cache
+writes use atomic replacement, and the status badge reports the stored build time.
+
+See `PROJECT_REVIEW.md` for remaining engineering work and validation scope.
+
+## Portfolio and Library overhaul — 2026-10-31
+
+The homepage, navigation and Projects page now share a clearer editorial hierarchy.
+Projects includes all 11 public repositories found on the GitHub account, with three
+selected engineering projects and category filters. Curated copy lives in
+`backend/portfolio/projects.json`; `github_snapshot.json` is the offline metadata
+fallback, reviewed on 2026-10-31. Existing independent work remains separately listed.
+Repository READMEs supply feature descriptions; reported evaluations are not newly
+reproduced benchmarks. Run `python scripts/test_portfolio.py` to verify coverage and
+offline behavior.

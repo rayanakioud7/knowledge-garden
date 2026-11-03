@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-19'
+tags:
+- mathematics
+- algebra
+- functions
+- exponential-functions
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]]'
+- '[[Exponential Functions]]'
+---
+
 Date: 2026-05-19
 Tags: [[Mathematics]], [[Algebra]], [[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]], [[Exponential Functions]]
 

@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # MASTER CONTEXT PROMPT — ASL TRANSLATION PFE PROJECT (FINAL v3)
 
 You are assisting with a final-year engineering thesis (Projet de Fin d'Études, PFE) titled:

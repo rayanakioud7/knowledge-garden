@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-08-26'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+---
+
 Date: 2026-08-26
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]]
 

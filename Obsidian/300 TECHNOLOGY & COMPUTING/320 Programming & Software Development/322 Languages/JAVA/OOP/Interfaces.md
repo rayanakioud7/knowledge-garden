@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-01'
+tags:
+- java
+- oop
+- programming-language
+topics:
+- '[[JAVA]]'
+- '[[OOP]]'
+- '[[Programming language]]'
+---
+
 Date: 2025-12-01
 Tags: [[JAVA]], [[OOP]], [[Programming language]]
 

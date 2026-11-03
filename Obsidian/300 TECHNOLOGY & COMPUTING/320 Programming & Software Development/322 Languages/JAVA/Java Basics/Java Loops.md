@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-07'
+tags:
+- java
+- programming-language
+- control-flow
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Control Flow]]'
+---
+
 
 Date: 2025-12-07
 Tags: [[JAVA]], [[Programming language]], [[Control Flow]]

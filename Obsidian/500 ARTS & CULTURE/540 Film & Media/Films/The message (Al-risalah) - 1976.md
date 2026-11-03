@@ -3,7 +3,12 @@ date: 2026-02-08
 type: movie-review
 movie: The Message (Ar-Risalah)
 rating: ⭐⭐⭐⭐ (Production) / ⭐⭐ (Logic/Accuracy)
-tags: #cinema #religion #history #islam #critique
+tags:
+- cinema
+- religion
+- history
+- islam
+- critique
 ---
 
 

@@ -1,3 +1,12 @@
+---
+type: note
+date: '2026-03-05'
+tags:
+- uml
+topics:
+- '[[UML]]'
+---
+
 Date: 2026-03-05
 Tags: [[UML]]
 

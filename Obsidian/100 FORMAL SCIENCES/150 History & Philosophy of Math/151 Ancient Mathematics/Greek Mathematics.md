@@ -13,6 +13,7 @@ tags:
   - philosophy
   - geometry
   - arithmetic
+type: note
 ---
 
 # Greek Mathematics — The Development of Pure Mathematics

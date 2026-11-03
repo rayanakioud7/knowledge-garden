@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-10-01'
+tags:
+- mathematics
+- proofs
+- logic
+topics:
+- '[[Mathematics]]'
+- '[[Proofs]]'
+- '[[Logic]]'
+---
+
 Date: 2026-10-01
 Tags: [[Mathematics]], [[Proofs]], [[Logic]], 
  
@@ -7,12 +20,9 @@ Tags: [[Mathematics]], [[Proofs]], [[Logic]],
 
 * A theorem states that if certain assumptions (called the **hypotheses**) are true, a specific conclusion must also be true.
 
-
 * An **instance** of a theorem is an assignment of particular values to its free variables.
 
-
 * If there is even one instance where the hypotheses are true but the conclusion is false, the theorem is incorrect; this instance is called a **counterexample**.
-
 
 * A mathematical proof is a deductive argument where the premises are the theorem's hypotheses and the conclusion is the theorem's conclusion.
 

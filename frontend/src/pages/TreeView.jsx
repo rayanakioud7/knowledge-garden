@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { api } from "../api.js";
+import { getTree } from "../lib/gardenData.js";
 import {
   buildTreeLayout,
   buildReveal,
   leafSprig,
-  branchLabel,
   bezierPoint,
   MAX_LEAVES,
 } from "./treeLayout.js";
@@ -55,6 +55,10 @@ export default function TreeView() {
   const targetRef = useRef({ x: 0, y: 0, zoom: 0.9 });
   const cursorRef = useRef(null); // {x,y} screen coords
   const hoverRef = useRef(null); // hit target
+  const mocLinksRef = useRef(null); // Map<noteId, Set<linkedId>> from /api/graph/
+  const mocHoverRef = useRef(null); // {id, targets} while hovering a MOC leaf
+  const touchSelRef = useRef(null); // tap-to-preview selection on touch/pen
+  const hoverCardCache = useRef({ key: "" }); // measured hover-card layout
   const rafRef = useRef(null);
   const sceneDirty = useRef(true);
   const overlayDirty = useRef(true);
@@ -65,8 +69,7 @@ export default function TreeView() {
   const fetchTreeData = useCallback(() => {
     setLoading(true);
     setLoadError(false);
-    api
-      .tree()
+    getTree()
       .then((data) => {
         setTree(data);
         setLoadError(false);
@@ -162,6 +165,46 @@ export default function TreeView() {
     });
   }, []);
 
+  // Wikilink adjacency (fetched once): powers "hover a MOC → highlight its links".
+  // NOTE: must live below `renderNow` — the deps array is evaluated during render.
+  useEffect(() => {
+    let alive = true;
+    api
+      .graph()
+      .then((g) => {
+        if (!alive) return;
+        const map = new Map();
+        for (const e of g.edges || []) {
+          const src = e.source && typeof e.source === "object" ? e.source.id : e.source;
+          const tgt = e.target && typeof e.target === "object" ? e.target.id : e.target;
+          if (!src || !tgt) continue;
+          let set = map.get(src);
+          if (!set) map.set(src, (set = new Set()));
+          set.add(tgt);
+        }
+        mocLinksRef.current = map;
+        updateMocHover(hoverRef.current);
+        overlayDirty.current = true;
+        renderNow();
+      })
+      .catch(() => {
+        mocLinksRef.current = null; // link highlighting degrades silently
+      });
+    return () => {
+      alive = false;
+    };
+  }, [renderNow]);
+
+  // Hovering a MOC leaf collects the ids of everything it links to.
+  function updateMocHover(hit) {
+    if (hit && hit.type === "leaf" && hit.leaf.isMoc) {
+      const targets = mocLinksRef.current ? mocLinksRef.current.get(hit.leaf.id) : null;
+      mocHoverRef.current = { id: hit.leaf.id, targets: targets || new Set() };
+    } else {
+      mocHoverRef.current = null;
+    }
+  }
+
   // ---- canvas sizing ----
   // NOTE: the container only exists once loading finishes, so this must re-run
   // when `loading` flips to false (otherwise dimsRef stays at its 1×1 default).
@@ -204,6 +247,8 @@ export default function TreeView() {
   useEffect(() => {
     if (!layout || !scene) return;
     hoverRef.current = null;
+    mocHoverRef.current = null;
+    touchSelRef.current = null;
     const { h: vh, w: vw } = dimsRef.current;
     const focus = scene.reveal.focusBranch;
     const pts = [];
@@ -293,9 +338,6 @@ export default function TreeView() {
     // foliage
     for (const leaf of s.foliage) drawLeaf(ctx, leaf, pal);
 
-    // labels (collision-skipped)
-    drawLabels(ctx, s, pal);
-
     ctx.restore();
   }
 
@@ -319,6 +361,50 @@ export default function TreeView() {
     ctx.save();
     ctx.translate(w / 2 - cx * zoom, h / 2 - cy * zoom);
     ctx.scale(zoom, zoom);
+
+    // MOC hover: ink vines to every visible leaf the hub links to.
+    const moc = mocHoverRef.current;
+    if (moc) {
+      const src = s.foliage.find((lf) => lf.id === moc.id);
+      const targets = [];
+      for (const lf of s.foliage) {
+        if (lf.id !== moc.id && moc.targets && moc.targets.has(lf.id)) targets.push(lf);
+      }
+      if (src && targets.length) {
+        ctx.save();
+        ctx.strokeStyle = pal.accent;
+        ctx.setLineDash([4 / zoom, 4 / zoom]);
+        ctx.lineWidth = 1.1 / zoom;
+        ctx.globalAlpha = 0.22;
+        for (const t of targets) {
+          const mx = (src.center.x + t.center.x) / 2;
+          const my = (src.center.y + t.center.y) / 2;
+          const nx = -(t.center.y - src.center.y);
+          const ny = t.center.x - src.center.x;
+          const nl = Math.hypot(nx, ny) || 1;
+          ctx.beginPath();
+          ctx.moveTo(src.center.x, src.center.y);
+          ctx.quadraticCurveTo(
+            mx + (nx / nl) * 18,
+            my + (ny / nl) * 18,
+            t.center.x,
+            t.center.y
+          );
+          ctx.stroke();
+        }
+        ctx.restore();
+        for (const t of targets) {
+          ctx.save();
+          ctx.strokeStyle = pal.accent;
+          ctx.globalAlpha = 0.75;
+          ctx.lineWidth = 1.4 / zoom;
+          ctx.beginPath();
+          ctx.ellipse(t.center.x, t.center.y, t.length * 0.62 + 3, t.width * 0.95 + 3, t.angle, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
 
     const hover = hoverRef.current;
     if (hover && hover.type === "branch") {
@@ -358,78 +444,130 @@ export default function TreeView() {
       ctx.restore();
     }
     ctx.restore();
+
+    // The hover card is drawn in screen space so text stays crisp at any zoom.
+    drawHoverCard(ctx, pal);
   }
 
-  function drawLabels(ctx, s, pal) {
-    const placed = [];
-    const isBold = (b) => s.reveal.isSpine(b.path) || s.reveal.isFocusChild(b.path);
-    const ordered = [...s.branches]
-      .filter((b) => b.depth > 0 && (isBold(b) || b.path === s.reveal.focus))
-      .sort((a, b) => rank(b) - rank(a));
-    for (const b of ordered) {
-      const lb = branchLabel(b);
-      const active = b.path === s.reveal.focus;
-      const name = stripCode(b.name);
-      const code = b.code ? `[${b.code}] ` : "";
-      const count = b.noteCount > 0 ? ` · ${b.noteCount}` : "";
-      ctx.font = "600 13px 'Source Serif 4', Georgia, serif";
-      const nameW = ctx.measureText(name).width;
-      ctx.font = "600 9px 'JetBrains Mono', monospace";
-      const codeW = ctx.measureText(code).width;
-      const countW = ctx.measureText(count).width;
-      const totalW = codeW + nameW + countW;
-      const left = lb.align === "right" ? lb.x - totalW : lb.x;
-      // Nudge upward/downward to avoid overlap; the focused label always wins.
-      let oy = 0;
-      let clash = false;
-      for (const off of [0, -17, 17, -34, 34]) {
-        clash = false;
-        const minX = left - 4;
-        const maxX = left + totalW + 4;
-        const minY = lb.y + off - 9;
-        const maxY = lb.y + off + 9;
-        for (const p of placed) {
-          if (minX < p.maxX && maxX > p.minX && minY < p.maxY && maxY > p.minY) {
-            clash = true;
-            break;
-          }
-        }
-        if (!clash) {
-          oy = off;
-          break;
-        }
-      }
-      if (clash && !active) continue;
-      const y = lb.y + oy;
-      placed.push({ minX: left - 4, maxX: left + totalW + 4, minY: y - 9, maxY: y + 9 });
+  // Screen-space hover card: note title + metadata (or bough name + count).
+  function drawHoverCard(ctx, pal) {
+    const hover = hoverRef.current;
+    const s = sceneRefData.current;
+    if (!hover || !s) return;
+    const { w, h } = dimsRef.current;
+    if (w < 2 || h < 2) return;
 
-      ctx.textBaseline = "middle";
-      ctx.textAlign = "left";
-      if (active) {
-        ctx.save();
-        ctx.fillStyle = pal.accent;
-        ctx.globalAlpha = 0.1;
-        roundRectPath(ctx, left - 5, y - 11, totalW + 10, 22, 3);
-        ctx.fill();
-        ctx.restore();
+    const key = hover.type === "leaf" ? `l:${hover.leaf.id}` : `b:${hover.branch.path}`;
+    const cache = hoverCardCache.current;
+    if (cache.key !== key) {
+      const title =
+        hover.type === "leaf"
+          ? hover.leaf.title || hover.leaf.note?.title || ""
+          : stripCode(hover.branch.name || "Branch");
+      const meta = [];
+      if (hover.type === "leaf") {
+        const note = hover.leaf.note || {};
+        if (hover.leaf.isMoc) {
+          meta.push({ text: "MOC", accent: true });
+          const n = mocHoverRef.current?.targets?.size || 0;
+          if (n > 0) meta.push({ text: `links to ${n}` });
+        }
+        if (note.domain) meta.push({ text: `[${note.domain}]` });
+        for (const t of (note.tags || []).slice(0, 3)) meta.push({ text: `#${t}` });
+        if (note.wordCount) meta.push({ text: `${note.wordCount} words` });
+      } else {
+        if (hover.branch.code) meta.push({ text: `[${hover.branch.code}]` });
+        if (hover.branch.noteCount > 0) meta.push({ text: `${hover.branch.noteCount} notes` });
+        meta.push({ text: "click to focus" });
       }
-      let x = left;
-      if (code) {
-        ctx.font = "600 9px 'JetBrains Mono', monospace";
-        ctx.fillStyle = active ? pal.accent : pal.faint;
-        ctx.fillText(code, x, y + 1);
-        x += codeW;
-      }
+
+      // Measure once per hover target; truncate very long titles with an ellipsis.
+      ctx.save();
       ctx.font = "600 13px 'Source Serif 4', Georgia, serif";
-      ctx.fillStyle = active ? pal.accent : pal.ink;
-      ctx.fillText(name, x, y);
-      x += nameW;
-      if (count) {
-        ctx.font = "400 10px 'JetBrains Mono', monospace";
-        ctx.fillStyle = pal.faint;
-        ctx.fillText(count, x, y + 1);
+      let shown = title;
+      const MAX_TITLE_W = 360;
+      if (ctx.measureText(shown).width > MAX_TITLE_W) {
+        let cut = shown.length;
+        while (cut > 6 && ctx.measureText(shown.slice(0, cut) + "…").width > MAX_TITLE_W) cut -= 1;
+        shown = shown.slice(0, cut) + "…";
       }
+      const titleW = ctx.measureText(shown).width;
+      ctx.font = "500 10px 'JetBrains Mono', monospace";
+      const pieces = meta.map((m) => ({ ...m, w: ctx.measureText(m.text).width }));
+      const sepW = ctx.measureText(" · ").width;
+      ctx.restore();
+
+      const metaW = pieces.reduce((acc, p, i) => acc + p.w + (i ? sepW : 0), 0);
+      cache.key = key;
+      cache.title = shown;
+      cache.pieces = pieces;
+      cache.sepW = sepW;
+      cache.width = Math.max(titleW, metaW, 40) + 20;
+      cache.height = (pieces.length ? 18 + 2 + 13 : 18) + 14;
     }
+    if (!cache.pieces) return;
+
+    // Anchor: the cursor for mouse hover, the item itself for touch previews.
+    let ax = null;
+    let ay = null;
+    if (cursorRef.current) {
+      ax = cursorRef.current.x;
+      ay = cursorRef.current.y;
+    } else if (hover.type === "leaf") {
+      const cam = cameraRef.current;
+      ax = (hover.leaf.center.x - cam.x) * cam.zoom + w / 2;
+      ay = (hover.leaf.center.y - cam.y) * cam.zoom + h / 2;
+    } else if (hover.type === "branch") {
+      const p = bezierPoint(hover.branch.start, hover.branch.cp1, hover.branch.cp2, hover.branch.tip, 0.82);
+      const cam = cameraRef.current;
+      ax = (p.x - cam.x) * cam.zoom + w / 2;
+      ay = (p.y - cam.y) * cam.zoom + h / 2;
+    }
+    if (ax == null) return;
+
+    const cw = cache.width;
+    const ch = cache.height;
+    let x = ax + 16;
+    let y = ay + 18;
+    if (x + cw > w - 8) x = ax - 16 - cw;
+    if (y + ch > h - 8) y = ay - 18 - ch;
+    x = clamp(x, 8, Math.max(8, w - cw - 8));
+    y = clamp(y, 8, Math.max(8, h - ch - 8));
+
+    ctx.save();
+    ctx.globalAlpha = 0.96;
+    ctx.fillStyle = pal.paper;
+    roundRectPath(ctx, x, y, cw, ch, 4);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = pal.faint;
+    ctx.lineWidth = 1;
+    roundRectPath(ctx, x, y, cw, ch, 4);
+    ctx.stroke();
+
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    ctx.font = "600 13px 'Source Serif 4', Georgia, serif";
+    ctx.fillStyle = pal.ink;
+    ctx.fillText(cache.title, x + 10, y + 16);
+
+    if (cache.pieces.length) {
+      let mx = x + 10;
+      const my = y + 33.5;
+      cache.pieces.forEach((p, i) => {
+        if (i > 0) {
+          ctx.font = "500 10px 'JetBrains Mono', monospace";
+          ctx.fillStyle = pal.faint;
+          ctx.fillText(" · ", mx, my);
+          mx += cache.sepW;
+        }
+        ctx.font = "500 10px 'JetBrains Mono', monospace";
+        ctx.fillStyle = p.accent ? pal.accent : pal.faint;
+        ctx.fillText(p.text, mx, my);
+        mx += p.w;
+      });
+    }
+    ctx.restore();
   }
 
   function drawLeaf(ctx, leaf, pal) {
@@ -462,10 +600,18 @@ export default function TreeView() {
     ctx.quadraticCurveTo(cpR.x, cpR.y, base.x, base.y);
     ctx.closePath();
     ctx.fill();
+    // Map-of-Content hubs wear the accent + a hanko-style seal dot.
     ctx.globalAlpha = bold ? 0.8 : 0.55;
-    ctx.strokeStyle = pal.soft;
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = leaf.isMoc ? pal.accent : pal.soft;
+    ctx.lineWidth = leaf.isMoc ? 1.4 : 1;
     ctx.stroke();
+    if (leaf.isMoc) {
+      ctx.globalAlpha = 0.9;
+      ctx.fillStyle = pal.accent;
+      ctx.beginPath();
+      ctx.arc(base.x + Math.cos(angle) * 8, base.y + Math.sin(angle) * 8, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.globalAlpha = 1;
   }
 
@@ -562,18 +708,7 @@ export default function TreeView() {
     if (!s) return null;
     for (const lf of s.foliage) {
       const d = Math.hypot(world.x - lf.center.x, world.y - lf.center.y);
-      if (d <= Math.max(13, lf.length * 0.62 + 6)) return { type: "leaf", leaf: lf };
-    }
-    for (const b of s.branches) {
-      if (b.depth === 0) continue;
-      const lb = branchLabel(b);
-      const name = stripCode(b.name);
-      const textW = name.length * 7;
-      const minX = lb.align === "right" ? lb.x - textW - 8 : lb.x - 8;
-      const maxX = minX + textW + 16;
-      if (world.x >= minX && world.x <= maxX && world.y >= lb.y - 13 && world.y <= lb.y + 13) {
-        return { type: "branch", branch: b };
-      }
+      if (d <= Math.max(14, lf.length * 0.62 + 6)) return { type: "leaf", leaf: lf };
     }
     for (const b of s.branches) {
       if (b.depth === 0) continue;
@@ -586,10 +721,11 @@ export default function TreeView() {
   // Pointer handlers
   // ------------------------------------------------------------------
   const onPointerMove = useCallback((e) => {
+    const isMouse = e.pointerType !== "touch" && e.pointerType !== "pen";
     const rect = containerRef.current.getBoundingClientRect();
     const sx = e.clientX - rect.left;
     const sy = e.clientY - rect.top;
-    cursorRef.current = { x: sx, y: sy };
+    if (isMouse) cursorRef.current = { x: sx, y: sy };
 
     if (dragRef.current.active) {
       const dx = (e.clientX - dragRef.current.lx) / cameraRef.current.zoom;
@@ -597,6 +733,12 @@ export default function TreeView() {
       dragRef.current.lx = e.clientX;
       dragRef.current.ly = e.clientY;
       if (Math.hypot(e.clientX - dragRef.current.downX, e.clientY - dragRef.current.downY) > 4) {
+        if (!dragRef.current.moved) {
+          // A drag begins: drop any hover card / tap preview.
+          hoverRef.current = null;
+          mocHoverRef.current = null;
+          touchSelRef.current = null;
+        }
         dragRef.current.moved = true;
       }
       cameraRef.current.x -= dx;
@@ -609,6 +751,8 @@ export default function TreeView() {
       return;
     }
 
+    if (!isMouse) return; // touch/pen previews are set on tap (pointerup)
+
     const world = screenToWorld(sx, sy);
     const hit = hitTest(world);
     const prev = hoverRef.current;
@@ -618,10 +762,9 @@ export default function TreeView() {
         (hit.type === "leaf" && hit.leaf.id !== prev.leaf.id) ||
         (hit.type === "branch" && hit.branch.path !== prev.branch.path)));
     hoverRef.current = hit;
-    if (changed || true) {
-      overlayDirty.current = true;
-      renderNow();
-    }
+    if (changed) updateMocHover(hit);
+    overlayDirty.current = true;
+    renderNow();
     if (changed && containerRef.current) {
       containerRef.current.style.cursor = hit ? "pointer" : "grab";
     }
@@ -629,17 +772,59 @@ export default function TreeView() {
 
   const onPointerDown = useCallback((e) => {
     if (e.button !== 0) return;
-    dragRef.current = { active: true, moved: false, lx: e.clientX, ly: e.clientY, downX: e.clientX, downY: e.clientY };
+    dragRef.current = {
+      active: true,
+      moved: false,
+      lx: e.clientX,
+      ly: e.clientY,
+      downX: e.clientX,
+      downY: e.clientY,
+      pointerType: e.pointerType || "mouse",
+    };
   }, []);
 
   const onPointerUp = useCallback(
     (e) => {
       const wasDrag = dragRef.current.moved;
+      const pType = e.pointerType || dragRef.current.pointerType || "mouse";
       dragRef.current.active = false;
       if (wasDrag) return;
+
       const rect = containerRef.current.getBoundingClientRect();
       const world = screenToWorld(e.clientX - rect.left, e.clientY - rect.top);
       const hit = hitTest(world);
+
+      // Touch/pen: the first tap previews (hover card), a second tap on the
+      // same target activates it (open note / focus branch).
+      if (pType === "touch" || pType === "pen") {
+        const sel = touchSelRef.current;
+        const same =
+          !!hit &&
+          !!sel &&
+          ((hit.type === "leaf" && sel.type === "leaf" && sel.id === hit.leaf.id) ||
+            (hit.type === "branch" && sel.type === "branch" && sel.path === hit.branch.path));
+        if (hit && !same) {
+          touchSelRef.current =
+            hit.type === "leaf"
+              ? { type: "leaf", id: hit.leaf.id }
+              : { type: "branch", path: hit.branch.path };
+          hoverRef.current = hit;
+          updateMocHover(hit);
+          overlayDirty.current = true;
+          renderNow();
+          return;
+        }
+        if (!hit) {
+          touchSelRef.current = null;
+          hoverRef.current = null;
+          updateMocHover(null);
+          overlayDirty.current = true;
+          renderNow();
+          return;
+        }
+        touchSelRef.current = null; // second tap on the same target: act
+      }
+
       if (!hit) return;
       if (hit.type === "leaf") {
         navigate(`/garden/note/${encodeURIComponent(hit.leaf.id)}`);
@@ -647,12 +832,15 @@ export default function TreeView() {
         setParams({ path: hit.branch.path });
       }
     },
-    [navigate, setParams]
+    [navigate, setParams, renderNow]
   );
 
-  const onPointerLeave = useCallback(() => {
+  const onPointerLeave = useCallback((e) => {
+    // Touch/pen leave fires right after a tap — keep the preview card alive.
+    if (e && e.pointerType && e.pointerType !== "mouse") return;
     cursorRef.current = null;
     hoverRef.current = null;
+    mocHoverRef.current = null;
     overlayDirty.current = true;
     if (containerRef.current) containerRef.current.style.cursor = "grab";
     renderNow();
@@ -827,7 +1015,7 @@ export default function TreeView() {
           );
         })}
         <span className="ml-auto hidden shrink-0 font-mono text-[10px] uppercase tracking-wider text-ink-faint sm:inline">
-          Click a bough to focus · Click a leaf to open its note · Drag to pan · Scroll to zoom
+          Hover for names · Click a bough to focus · Click a leaf to open · Drag to pan · Scroll to zoom
         </span>
       </div>
 
@@ -907,10 +1095,6 @@ function distToCurve(p, b) {
     if (d < min) min = d;
   }
   return min;
-}
-
-function rank(b) {
-  return b.noteCount * 0.01 - b.depth;
 }
 
 function stripCode(name) {

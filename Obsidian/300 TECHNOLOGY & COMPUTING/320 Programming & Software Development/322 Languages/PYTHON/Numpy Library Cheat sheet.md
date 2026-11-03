@@ -1,3 +1,24 @@
+---
+type: note
+date: '2026-03-23'
+tags:
+- python
+- data-science
+- array
+- cheat-sheet
+- mathematics
+- linear-algebra
+- machine-learning
+topics:
+- '[[Python]]'
+- '[[Data Science]]'
+- '[[Array]]'
+- '[[Cheat sheet]]'
+- '[[Mathematics]]'
+- '[[Linear Algebra]]'
+- '[[Machine Learning]]'
+---
+
 Date: 2026-03-23
 Tags: [[Python]], [[Data Science]], [[Array]], [[Cheat sheet]], [[Mathematics]], [[Linear Algebra]], [[Machine Learning]]
 

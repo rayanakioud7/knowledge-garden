@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 The key decision here is **don't create separate beginner/intermediate folders** — merge everything into the same structure. Several lessons appear in both lists (Hand Stretches, One Trick for Hand Positioning, Proper Muting, Chord Embellishments) — they're the same note referenced from both levels.
 

@@ -9,6 +9,8 @@ export default function GardenHome() {
   const [notes, setNotes] = useState([]);
   const [domains, setDomains] = useState([]);
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const activeDomain = params.get("domain") || "";
@@ -17,16 +19,26 @@ export default function GardenHome() {
     api.domains().then((d) => setDomains(d.domains)).catch(() => {});
   }, []);
 
+  // Debounce the text filter so a per-keystroke request is not fired.
   useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 200);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  useEffect(() => {
+    let alive = true;
+    setError(false);
     setLoading(true);
     const filters = {};
     if (activeDomain) filters.domain = activeDomain;
-    if (query) filters.q = query;
+    if (debouncedQuery) filters.q = debouncedQuery;
     api
       .notes(filters)
-      .then((d) => setNotes(d.notes))
-      .finally(() => setLoading(false));
-  }, [activeDomain, query]);
+      .then((d) => { if (alive) setNotes(d.notes); })
+      .catch(() => { if (alive) { setNotes([]); setError(true); } })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, [activeDomain, debouncedQuery]);
 
   const domainName = useMemo(
     () => domains.find((d) => d.code === activeDomain)?.name,
@@ -43,8 +55,8 @@ export default function GardenHome() {
           </h1>
         </div>
         <div className="flex gap-2">
-          <Link to="/garden/tree" className="btn-ghost">
-            Tree
+          <Link to="/garden" className="btn-ghost">
+            Atlas
           </Link>
           <Link to="/garden/graph" className="btn-ghost">
             Graph
@@ -58,10 +70,11 @@ export default function GardenHome() {
       {/* Toolbar */}
       <div className="mt-6 flex flex-col gap-3 border-y border-paper-line py-4 sm:flex-row sm:items-center">
         <input
+          aria-label="Filter notes"
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Filter by title or content…"
+          placeholder="Filter by title or excerpt…"
           className="w-full border border-paper-line2 bg-paper px-3 py-2 text-sm outline-none focus:border-ink sm:max-w-xs"
         />
         <div className="flex flex-wrap gap-1.5">
@@ -84,6 +97,7 @@ export default function GardenHome() {
         </div>
       </div>
 
+      {error && <p role="alert" className="mt-6 text-ink-soft">Could not load notes. Please reload to try again.</p>}
       {/* Notes list */}
       {loading ? (
         <div className="py-10 label">Loading…</div>

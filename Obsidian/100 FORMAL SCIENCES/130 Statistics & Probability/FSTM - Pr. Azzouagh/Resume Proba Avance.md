@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-02-21'
+tags:
+- measure-theory
+- mathematics
+- probability-theory
+topics:
+- '[[Measure Theory]]'
+- '[[Mathematics]]'
+- '[[Probability Theory]]'
+---
+
 Date: 2026-02-21
 
 Tags: [[Measure Theory]], [[Mathematics]], [[Probability Theory]]

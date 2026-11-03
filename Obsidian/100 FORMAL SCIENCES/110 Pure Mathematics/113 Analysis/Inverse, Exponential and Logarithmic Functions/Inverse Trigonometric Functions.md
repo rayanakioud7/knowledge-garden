@@ -1,3 +1,24 @@
+---
+type: note
+date: '2026-08-19'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+- limits
+- trigonometry
+- integral
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+- '[[Limits]]'
+- '[[Trigonometry]]'
+- '[[Integral]]'
+---
+
 Date: 2026-08-19
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]], [[Limits]], [[Trigonometry]], [[Integral]]
 

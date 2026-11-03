@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-06'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+- the-definite-integral
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+- '[[The Definite Integral]]'
+---
+
 Date: 2026-09-06
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]], [[The Definite Integral]]
 

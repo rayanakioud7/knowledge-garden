@@ -11,6 +11,7 @@ export default function SearchView() {
   const [input, setInput] = useState(q);
   const [notes, setNotes] = useState([]);
   const [tags, setTags] = useState([]);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,14 +27,18 @@ export default function SearchView() {
       setNotes([]);
       return;
     }
+    let alive = true;
+    setError(false);
     setLoading(true);
     const filters = {};
     if (q) filters.q = q;
     if (tag) filters.tag = tag;
     api
       .notes(filters)
-      .then((d) => setNotes(d.notes))
-      .finally(() => setLoading(false));
+      .then((d) => { if (alive) setNotes(d.notes); })
+      .catch(() => { if (alive) { setNotes([]); setError(true); } })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
   }, [q, tag]);
 
   const submit = (e) => {
@@ -54,10 +59,11 @@ export default function SearchView() {
 
       <form onSubmit={submit} className="mt-6 flex gap-2">
         <input
+          aria-label="Search notes"
           autoFocus
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Search titles and content…"
+          placeholder="Search titles and excerpts…"
           className="w-full border border-paper-line2 bg-paper px-3 py-2.5 font-serif outline-none focus:border-ink"
         />
         <button type="submit" className="btn">
@@ -96,6 +102,7 @@ export default function SearchView() {
         </div>
       </div>
 
+      {error && <p role="alert" className="mt-6 text-ink-soft">Could not load notes. Please try your search again.</p>}
       {/* Results */}
       <div className="mt-8">
         {(q || tag) && (

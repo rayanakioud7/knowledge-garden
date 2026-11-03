@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-27'
+tags:
+- recherche-operationnelle
+- optimization
+- mathematical-modeling
+- ensam
+- algorithms
+topics:
+- '[[Recherche Opérationnelle]]'
+- '[[Optimization]]'
+- '[[Mathematical Modeling]]'
+- '[[ENSAM]]'
+- '[[Algorithms]]'
+---
+
 
 Date: 2026-09-27
 Tags: [[Recherche Opérationnelle]], [[Optimization]], [[Mathematical Modeling]], [[ENSAM]], [[Algorithms]]

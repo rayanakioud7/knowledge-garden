@@ -1,3 +1,14 @@
+---
+type: note
+date: '2025-10-30'
+tags:
+- programming-language
+- object-oriented
+topics:
+- '[[Programming language]]'
+- '[[Object Oriented]]'
+---
+
 Date: 2025-10-30
 Tags: [[Programming language]], [[Object Oriented]]
 

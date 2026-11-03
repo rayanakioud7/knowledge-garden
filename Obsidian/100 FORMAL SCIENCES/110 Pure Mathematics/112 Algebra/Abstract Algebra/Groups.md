@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-10-12'
+tags:
+- abstract-algebra
+- linear-algebra
+- groups
+- mml
+- deisenroth
+- mathematics
+topics:
+- '[[Abstract Algebra]]'
+- '[[Linear Algebra]]'
+- '[[Groups]]'
+- '[[MML]]'
+- '[[Deisenroth]]'
+- '[[Mathematics]]'
+---
+
 Date: 2026-10-12
 Tags: [[Abstract Algebra]], [[Linear Algebra]], [[Groups]], [[MML]], [[Deisenroth]], [[Mathematics]]
 

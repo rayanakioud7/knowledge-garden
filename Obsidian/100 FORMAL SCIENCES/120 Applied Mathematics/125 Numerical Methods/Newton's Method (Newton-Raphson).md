@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-07-06'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+- optimization
+- isaac-newton
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+- '[[Optimization]]'
+- '[[Isaac Newton]]'
+---
+
 Date: 2026-07-06
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]], [[Optimization]], [[Isaac Newton]]
 

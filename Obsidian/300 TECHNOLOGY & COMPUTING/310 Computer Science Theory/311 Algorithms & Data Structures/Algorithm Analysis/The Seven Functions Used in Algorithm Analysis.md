@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-08-26'
+tags:
+- mathematics
+- sequences-and-summation-notation
+- algorithm
+- data-structure
+- functions
+topics:
+- '[[Mathematics]]'
+- '[[Sequences and Summation Notation]]'
+- '[[Algorithm]]'
+- '[[Data Structure]]'
+- '[[Functions]]'
+---
+
 Date: 2026-08-26
 Tags: [[Mathematics]], [[Sequences and Summation Notation|Summation]], [[Algorithm]], [[Data Structure]], [[Functions]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-08-26'
+tags:
+- programming-language
+- python
+- algorithm
+- data-structure
+topics:
+- '[[Programming language]]'
+- '[[Python]]'
+- '[[Algorithm]]'
+- '[[Data Structure]]'
+---
+
 Date: 2026-08-26
 Tags: [[Programming language]], [[Python]], [[Algorithm]], [[Data Structure]]
 

@@ -1,3 +1,10 @@
+---
+type: note
+date: '2025-11-12'
+tags:
+- note
+---
+
 Date: 2025-11-12
 Tags:
 

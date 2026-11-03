@@ -1,3 +1,12 @@
+---
+type: note
+date: '2025-11-01'
+tags:
+- mathematics
+topics:
+- '[[Mathematics]]'
+---
+
 Date: 2025-11-01
 Tags: [[Mathematics]]
 

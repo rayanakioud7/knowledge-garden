@@ -244,3 +244,30 @@
     text-decoration: none !important;
   }
 }
+
+/* Editorial directory: shared spacing and hierarchy across portfolio + library. */
+@layer components {
+  .editorial-page { @apply mx-auto w-full max-w-6xl px-6 py-10 sm:px-10 sm:py-12; }
+  .display-title { @apply whitespace-pre-line font-sans text-4xl font-medium leading-[1.08] tracking-[-0.045em] text-ink sm:text-5xl xl:text-6xl; }
+  .quiet-link { @apply text-xs text-ink-mute underline decoration-paper-line2 underline-offset-4 transition-colors hover:text-accent; }
+  .subject-row { @apply flex min-w-0 items-center gap-4 border-b border-paper-line py-5; }
+  .site-nav { @apply flex items-center gap-3 px-2 py-2.5 text-[13px] text-ink-soft transition-colors hover:bg-paper-shade hover:text-ink; }
+  .site-nav.is-active { @apply bg-ink text-paper; }
+  .filter-tab { @apply border border-paper-line2 px-3 py-2 text-xs text-ink-mute transition-colors hover:border-ink hover:text-ink; }
+  .filter-tab.is-selected { @apply border-ink bg-ink text-paper; }
+  .section-rule { @apply mb-5 flex flex-wrap items-baseline justify-between gap-3 border-b border-paper-line pb-3 text-sm font-semibold; }
+  .section-rule > :last-child:not(:first-child) { @apply text-xs font-normal text-ink-mute; }
+  .project-feature { @apply border border-paper-line bg-paper-shade p-5 sm:p-7; }
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+@media print {
+  #site-navigation, header.lg\:hidden, footer { display: none !important; }
+}
+
+@layer components {
+  .btn-ghost:disabled { @apply cursor-default opacity-30; }
+}

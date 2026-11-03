@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-11-13'
+tags:
+- java
+- programming-language
+- output
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Input/Output]]'
+---
+
 
 Date: 2025-11-13
 Tags: [[JAVA]], [[Programming language]], [[Input/Output]]

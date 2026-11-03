@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-02-03'
+tags:
+- mathematics
+- discrete-mathematics
+topics:
+- '[[Mathematics]]'
+- '[[Discrete Mathematics]]'
+---
+
 Date: 2026-02-03
 Tags: [[Mathematics]], [[Discrete Mathematics]]
 
@@ -30,9 +41,8 @@ Tags: [[Mathematics]], [[Discrete Mathematics]]
 ## 2. Généralités sur les Relations
 
 **Définition :** Une relation est un lien entre deux ensembles.
-
-![[Relation#^frame=relation|center]]
-
+$x\mathfrak{R}y$ : x est en relation avec y
+![[{A43C746A-09CE-4ED3-870A-2032FEEEF139}.png|429]]
 ### Graphe d'une relation
 Soit $\mathfrak{R}$ une relation entre un ensemble $E$ et un ensemble $F$. Le graphe de $\mathfrak{R}$, noté $G_R$, est le sous-ensemble de $E \times F$ défini par :
 $$
@@ -82,15 +92,14 @@ $$
 
 4.  **L'Inclusion ($\subseteq$) :**
     Relation sur l'ensemble des parties $\mathcal{P}(E)$.
-    ![[Excalidraw/Relation.md#^frame=relation binaire|center|600]]
-    
+		![[{60EBAE73-AFA2-4CAF-9A6C-98D14087280B}.png]]
     Exemple pour $E=\{a\}$ (donc $\mathcal{P}(E)=\{\emptyset, \{a\}\}$) :
     $$\subseteq \ = \{(\emptyset, \emptyset), (\emptyset, \{a\}), (\{a\}, \{a\})\}$$
 
 ### Relation Complémentaire
 C'est la négation de la relation.
 * **Définition :** $x \bar{\mathfrak{R}} y \iff (x,y) \notin \mathfrak{R}$.
-* **Logique :** Le couple existe dans $\bar{\mathfrak{R}}$ ssi il n'existe pas dans $\mathfrak{R}$.
+* **Logique :** Le couple existe dans $\bar{\mathfrak{R}}$ ssi il n'existe pas dans $\mathfrak{R}$
 
 ---
 
@@ -101,7 +110,7 @@ $R = \{(1,1), (1,2), (1,3), (1,4), (2,2), (2,4), (3,3), (4,4)\}$
 
 ### A. Diagramme Sagittal
 *(Un graphe avec des flèches entre les points)*
-![[Excalidraw/Relation.md#^frame=sagital|center|600]]
+![[{78217D33-6651-4DF8-87EB-635EC18BDC4C}.png]]
 
 ### B. Diagramme Cartésien (Tableau)
 On colore la case si $x\mathfrak{R}y$.
@@ -197,7 +206,7 @@ $$
 Soit $E = \{1, 2, 3\}$.
 * $\mathfrak{R}$ : $1\to 2$ et $2\to 3$
 * $\mathfrak{S}$ : $2\to 1$ et $3\to 2$
-![[Excalidraw/Relation.md#^frame=vraiii|center|300]]
+![[{B27F6AA1-0FB5-4028-BFD5-5DD97E392D6C}.png]]
 **Matrices :**
 $$
 M_{\mathfrak{R}} = 
@@ -454,7 +463,7 @@ $$
 \forall a,b,c \in E, \quad ((a\mathfrak{R}b)\text{ et }(b\mathfrak{R}c)) \Longrightarrow a\mathfrak{R}c
 $$
 
-![[Excalidraw/Relation.md#^frame=transitive|center|500]]
+![[{BD22B67A-1781-490F-BCF1-1C57FDB97ED2}.png]]
 
 > [!tip]
 > $\mathfrak{R}$ est transitive $\Longrightarrow \mathfrak{R}^2 \subseteq \mathfrak{R}$ 

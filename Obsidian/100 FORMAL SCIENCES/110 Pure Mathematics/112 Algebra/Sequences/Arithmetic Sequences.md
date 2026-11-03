@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-06-23'
+tags:
+- mathematics
+- algebra
+- sequences-and-summation-notation
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Sequences and Summation Notation]]'
+---
+
 Date: 2026-06-23
 Tags: [[Mathematics]], [[Algebra]], [[Sequences and Summation Notation|Sequences]]
 

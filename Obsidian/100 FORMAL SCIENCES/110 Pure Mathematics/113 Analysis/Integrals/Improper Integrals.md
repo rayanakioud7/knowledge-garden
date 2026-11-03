@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-09-06'
+tags:
+- mathematics
+- functions
+- analysis
+- integral
+- limits
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Integral]]'
+- '[[Limits]]'
+---
+
 Date: 2026-09-06
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Integral]], [[Limits]]
 

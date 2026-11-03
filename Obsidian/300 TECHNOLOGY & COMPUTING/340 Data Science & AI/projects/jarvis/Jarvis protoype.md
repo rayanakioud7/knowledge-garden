@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 - an ai agent that can track your whole life
 - each sub agent is finetuned to a specific task
 - for example one sub agent can be your health advisor tracking your blood pressure your diet your muscle mass you gym improvement using IOt as a data gatherer

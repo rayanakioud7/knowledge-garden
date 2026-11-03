@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-10-29'
+tags:
+- sql
+- programming-language
+- database
+- theory
+topics:
+- '[[SQL]]'
+- '[[Programming language]]'
+- '[[Database]]'
+- '[[Theory]]'
+---
+
 
 Date: 2025-10-29
 Tags: [[SQL]], [[Programming language]], [[Database]], [[Theory]]

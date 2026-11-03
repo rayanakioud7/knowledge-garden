@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-19'
+tags:
+- mathematics
+- algebra
+- rational-functions-and-asymptotes
+- interval-notation-and-solving-inequalities
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Rational Functions and Asymptotes#Rational Functions]]'
+- '[[Interval Notation and Solving Inequalities#3 Solve Inequalities]]'
+---
+
 Date: 2026-05-19
 Tags: [[Mathematics]], [[Algebra]], [[Rational Functions and Asymptotes#Rational Functions|Rational]], [[Interval Notation and Solving Inequalities#3 Solve Inequalities|inequalities]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-04-16'
+tags:
+- cnn
+- deep-learning
+- convolution
+- neural-networks
+topics:
+- '[[CNN]]'
+- '[[Deep Learning]]'
+- '[[Convolution]]'
+- '[[Neural Networks]]'
+---
+
 Date: 2026-04-16
 Tags: [[CNN]], [[Deep Learning]], [[Convolution]], [[Neural Networks]]
 

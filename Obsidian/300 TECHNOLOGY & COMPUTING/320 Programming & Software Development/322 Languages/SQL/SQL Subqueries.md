@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-13'
+tags:
+- sql
+- programming-language
+- database
+topics:
+- '[[SQL]]'
+- '[[Programming language]]'
+- '[[Database]]'
+---
+
 
 Date: 2025-12-13
 Tags: [[SQL]], [[Programming language]], [[Database]], 

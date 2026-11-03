@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-07-23'
+tags:
+- mathematics
+- functions
+- analysis
+- sequences-and-summation-notation
+- area
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Sequences and Summation Notation]]'
+- '[[Area]]'
+---
+
 Date: 2026-07-23
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Sequences and Summation Notation|Summation]], [[Area]]
 

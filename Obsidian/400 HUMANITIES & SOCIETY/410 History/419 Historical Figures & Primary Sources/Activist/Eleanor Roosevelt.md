@@ -1,3 +1,14 @@
+---
+type: note
+date: '2025-12-15'
+tags:
+- history
+- united-nation
+topics:
+- '[[History]]'
+- '[[United Nation]]'
+---
+
 Date: 2025-12-15
 Tags: [[History]], [[United Nation]]
 

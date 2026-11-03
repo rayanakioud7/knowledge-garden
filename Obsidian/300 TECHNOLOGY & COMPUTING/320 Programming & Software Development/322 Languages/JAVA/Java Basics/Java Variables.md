@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-11-17'
+tags:
+- java
+- programming-language
+- variables
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Variables]]'
+---
+
 
 Date: 2025-11-17
 Tags: [[JAVA]], [[Programming language]], [[Variables]]

@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-07-04'
+tags:
+- mathematics
+- proofs
+- logic
+topics:
+- '[[Mathematics]]'
+- '[[Proofs]]'
+- '[[Logic]]'
+---
+
 Date: 2026-07-04
 Tags: [[Mathematics]], [[Proofs]], [[Logic]]
 

@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 Here’s a concrete plan for making a **pure NumPy neural network + autograd engine** as your Year 1–2 “From Scratch” theoretical flagship repo. Treat v1.0 as a 3–4 month part-time project, then extend it over time.
 
 The goal is not to beat PyTorch. The goal is to prove you understand **reverse-mode autodiff, matrix calculus, backpropagation, and neural network internals** by building them with only NumPy in the core.

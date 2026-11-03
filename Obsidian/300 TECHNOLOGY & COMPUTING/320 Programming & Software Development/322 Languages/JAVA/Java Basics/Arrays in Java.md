@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-10-29'
+tags:
+- java
+- programming-language
+- array
+- oop
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Array]]'
+- '[[OOP]]'
+---
+
 
 Date: 2025-10-29
 Tags: [[JAVA]], [[Programming language]], [[Array]], [[OOP]]

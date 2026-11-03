@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-10-08'
+tags:
+- systemes-d-information
+- merise
+- modelisation
+- acsi
+- si-vs-informatique
+- ensam
+topics:
+- '[[Systèmes d''Information]]'
+- '[[Merise]]'
+- '[[Modélisation]]'
+- '[[ACSI]]'
+- '[[SI vs Informatique]]'
+- '[[ENSAM]]'
+---
+
 Date: 2026-10-08
 Tags: [[Systèmes d'Information]], [[Merise]], [[Modélisation]], [[ACSI]], [[SI vs Informatique]], [[ENSAM]]
 

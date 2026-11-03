@@ -1,6 +1,7 @@
 ---
 tags: [mathematics, linear-algebra, formal-sciences]
 source: https://en.wikipedia.org/wiki/Linear_algebra
+type: note
 ---
 
 

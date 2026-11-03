@@ -1,4 +1,26 @@
-Tags: [[Statistics]], [[Descriptive Statistics]], [[Paramètres de Position]], [[Dispersion]], [[Histogramme]], [[Moments]], [[ENSAM]]
+---
+type: note
+tags:
+- statistics
+- mathematics
+- descriptive-statistics
+- parametres-de-position
+- dispersion
+- histogramme
+- moments
+- ensam
+topics:
+- '[[Statistics]]'
+- '[[Mathematics]]'
+- '[[Descriptive Statistics]]'
+- '[[Paramètres de Position]]'
+- '[[Dispersion]]'
+- '[[Histogramme]]'
+- '[[Moments]]'
+- '[[ENSAM]]'
+---
+
+Tags: [[Statistics]], [[Mathematics]], [[Descriptive Statistics]], [[Paramètres de Position]], [[Dispersion]], [[Histogramme]], [[Moments]], [[ENSAM]]
 
 ---
 # Statistique Descriptive

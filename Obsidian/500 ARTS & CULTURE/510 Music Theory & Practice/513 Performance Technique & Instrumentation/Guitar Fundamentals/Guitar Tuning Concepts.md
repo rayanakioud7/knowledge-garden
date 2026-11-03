@@ -1,3 +1,14 @@
+---
+type: note
+date: '2026-05-11'
+tags:
+- music
+- guitar
+topics:
+- '[[Music]]'
+- '[[Guitar]]'
+---
+
 Date: 2026-05-11
 Tags: [[Music]], [[Guitar]]
 

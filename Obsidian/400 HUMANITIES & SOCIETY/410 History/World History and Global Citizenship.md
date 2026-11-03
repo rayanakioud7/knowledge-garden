@@ -1,3 +1,12 @@
+---
+type: note
+date: '2025-12-15'
+tags:
+- history
+topics:
+- '[[History]]'
+---
+
 Date: 2025-12-15
 Tags: [[History]]
 

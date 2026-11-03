@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-18'
+tags:
+- mathematics
+- algebra
+- polynomials
+- functions
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Polynomials]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]]'
+---
+
 Date: 2026-05-18
 Tags: [[Mathematics]], [[Algebra]], [[Polynomials]], [[100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions]]
 

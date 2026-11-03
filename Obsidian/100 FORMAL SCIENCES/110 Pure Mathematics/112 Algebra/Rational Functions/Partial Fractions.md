@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-06-10'
+tags:
+- algebra
+- mathematics
+- functions
+topics:
+- '[[Algebra]]'
+- '[[Mathematics]]'
+- '[[Functions]]'
+---
+
 Date: 2026-06-10
 Tags: [[Algebra]], [[Mathematics]], [[Functions]]
 

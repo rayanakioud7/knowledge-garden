@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 # Historical Methodology: The Problem of Archival Silence
 

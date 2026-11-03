@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 > **One sentence summary:** LayerNorm rescales the 256 output
 > values of each frame independently so that no single feature

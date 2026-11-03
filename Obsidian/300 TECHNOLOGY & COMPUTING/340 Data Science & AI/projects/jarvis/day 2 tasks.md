@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # Day 2 — Infrastructure Services & Development Environment
 
 ---

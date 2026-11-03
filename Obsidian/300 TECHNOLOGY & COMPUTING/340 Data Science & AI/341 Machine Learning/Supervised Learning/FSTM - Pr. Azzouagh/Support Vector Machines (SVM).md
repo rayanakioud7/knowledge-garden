@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-04-21'
+tags:
+- mathematics
+- data-science
+- machine-learning
+- supervised-learning
+topics:
+- '[[Mathematics]]'
+- '[[Data Science]]'
+- '[[Machine Learning]]'
+- '[[Supervised Learning]]'
+---
+
 
 Date: 2026-04-21
 Tags: [[Mathematics]], [[Data Science]], [[Machine Learning]], [[Supervised Learning]]
@@ -244,7 +259,7 @@ Les conditions KKT sont **nécessaires et suffisantes** (problème convexe, qual
 
 $$\alpha_i^* > 0 \quad \Longrightarrow \quad y_i(\langle w^_, x_i \rangle + b^_) = 1 \quad \text{(point sur la frontière de marge)}$$
 
-$$y_i(\langle w^_, x_i \rangle + b^_) > 1 \quad \Longrightarrow \quad \alpha_i^* = 0 \quad \text{(point hors marge → n'influence pas $w^*$)}$$
+$$y_i(\langle w^ x_i \rangle + b^_) > 1 \quad \Longrightarrow \quad \alpha_i^* = 0 \quad \text{(point hors marge → n'influence pas )} w^*$$
 
 ### 5.6 Vecteurs Supports
 

@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-07-24'
+tags:
+- mathematics
+- functions
+- analysis
+- sequences-and-summation-notation
+- integral
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Sequences and Summation Notation]]'
+- '[[Integral]]'
+---
+
 Date: 2026-07-24
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Sequences and Summation Notation|Summation]], [[Integral]]
 

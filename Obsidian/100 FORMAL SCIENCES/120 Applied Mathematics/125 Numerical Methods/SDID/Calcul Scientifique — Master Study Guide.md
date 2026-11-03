@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-03-20'
+tags:
+- edp
+- matlab
+- calcul-scientifique
+- mathematics
+topics:
+- '[[EDP]]'
+- '[[Matlab]]'
+- '[[Calcul Scientifique]]'
+- '[[Mathematics]]'
+---
+
 
 Date: 2026-03-20
 Tags: [[EDP]], [[Matlab]], [[Calcul Scientifique]], [[Mathematics]]

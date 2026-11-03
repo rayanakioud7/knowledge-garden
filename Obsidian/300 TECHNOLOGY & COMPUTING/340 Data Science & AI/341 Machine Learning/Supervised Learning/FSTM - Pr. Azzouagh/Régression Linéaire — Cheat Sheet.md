@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-04-21'
+tags:
+- mathematics
+- data-science
+- machine-learning
+- supervised-learning
+topics:
+- '[[Mathematics]]'
+- '[[Data Science]]'
+- '[[Machine Learning]]'
+- '[[Supervised Learning]]'
+---
+
 Date: 2026-04-21
 Tags: [[Mathematics]], [[Data Science]], [[Machine Learning]], [[Supervised Learning]]
 

@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-07-07'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+---
+
 Date: 2026-07-07
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]]
 

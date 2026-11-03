@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-05-16'
+tags:
+- mathematics
+- geometry
+- cheat-sheet
+topics:
+- '[[Mathematics]]'
+- '[[Geometry]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2026-05-16
 Tags: [[Mathematics]], [[Geometry]], [[Cheat sheet]]
 

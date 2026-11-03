@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-06-09'
+tags:
+- mathematics
+- equations
+- algebra
+topics:
+- '[[Mathematics]]'
+- '[[Equations]]'
+- '[[Algebra]]'
+---
+
 Date: 2026-06-09
 Tags: [[Mathematics]], [[Equations]], [[Algebra]]
 

@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-05-29'
+tags:
+- mathematics
+- geometry
+- trigonometry
+- graphes
+- cheat-sheet
+topics:
+- '[[Mathematics]]'
+- '[[Geometry]]'
+- '[[Trigonometry]]'
+- '[[Graphes]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2026-05-29
 Tags: [[Mathematics]],[[Geometry]], [[Trigonometry]], [[Graphes]], [[Cheat sheet]]
 

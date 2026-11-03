@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-12-11'
+tags:
+- java
+- programming-language
+- methods
+- clean-code
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Methods]]'
+- '[[Clean Code]]'
+---
+
 
 Date: 2025-12-11
 Tags: [[JAVA]], [[Programming language]], [[Methods]], [[Clean Code]]

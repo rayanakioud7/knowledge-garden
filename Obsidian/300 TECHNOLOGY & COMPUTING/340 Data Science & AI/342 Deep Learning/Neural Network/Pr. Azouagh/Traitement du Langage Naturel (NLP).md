@@ -1,3 +1,19 @@
+---
+type: note
+tags:
+- nlp
+- artificial-intelligence
+- machine-learning
+- transformers
+- text-mining
+topics:
+- '[[NLP]]'
+- '[[Artificial intelligence]]'
+- '[[Machine Learning]]'
+- '[[Transformers]]'
+- '[[Text Mining]]'
+---
+
 
 **Tags:** [[NLP]], [[Artificial intelligence]], [[Machine Learning]], [[Transformers]], [[Text Mining]]
 

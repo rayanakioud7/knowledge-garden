@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # PFE Presentation Script
 
 ## American Sign Language — Word Recognition and Sentence Generation System

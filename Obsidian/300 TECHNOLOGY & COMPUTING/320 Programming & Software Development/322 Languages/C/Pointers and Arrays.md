@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-09-26'
+tags:
+- c_programming
+- pointers
+- array
+- memory_management
+topics:
+- '[[C_Programming]]'
+- '[[Pointers]]'
+- '[[Array]]'
+- '[[Memory_Management]]'
+---
+
 
 ---
 

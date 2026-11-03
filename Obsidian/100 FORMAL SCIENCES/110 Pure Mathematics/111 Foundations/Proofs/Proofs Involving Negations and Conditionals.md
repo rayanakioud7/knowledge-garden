@@ -1,5 +1,20 @@
+---
+type: note
+date: '2026-10-08'
+tags:
+- mathematics
+- proofs
+- logic
+- sets
+topics:
+- '[[Mathematics]]'
+- '[[Proofs]]'
+- '[[Logic]]'
+- '[[Sets]]'
+---
+
 Date: 2026-10-08
-Tags: [[Mathematics]], [[Proofs]], [[Logic]], [[Sets]]]
+Tags: [[Mathematics]], [[Proofs]], [[Logic]], [[Sets]]
 
 ---
 

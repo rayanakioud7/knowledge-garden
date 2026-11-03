@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-05-20'
+tags:
+- mathematics
+- algebra
+- exponential-functions
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Exponential Functions]]'
+---
+
 Date: 2026-05-20
 Tags: [[Mathematics]], [[Algebra]], [[Exponential Functions]]
 

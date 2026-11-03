@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-10-28'
+tags:
+- business-intelligence
+- sql
+- datawarehouse
+- database
+topics:
+- '[[Business Intelligence]]'
+- '[[SQL]]'
+- '[[Datawarehouse]]'
+- '[[Database]]'
+---
+
 
 Date: 2025-10-28
 Course: Datawarehouse

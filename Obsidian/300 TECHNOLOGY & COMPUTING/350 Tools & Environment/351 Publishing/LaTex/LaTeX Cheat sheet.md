@@ -1,3 +1,17 @@
+---
+type: note
+tags:
+- mathematics
+- latex
+- cheat-sheet
+- reference
+topics:
+- '[[Mathematics]]'
+- '[[LaTeX]]'
+- '[[Cheat sheet]]'
+- '[[Reference]]'
+---
+
 
 **Date:** 2026-01-30  
 **Last Updated:** 2026-02-07  

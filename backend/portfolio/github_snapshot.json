@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-10-31",
+  "repositories": [
+    {
+      "name": "Python-Avance",
+      "url": "https://github.com/rayanakioud7/Python-Avance",
+      "description": "Ateliers et travaux pratiques réalisés en IAGI pour le module Python Avancé.",
+      "language": "Jupyter Notebook",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-10-27T17:46:49Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "centre-beauty-souad",
+      "url": "https://github.com/rayanakioud7/centre-beauty-souad",
+      "description": null,
+      "language": "HTML",
+      "stars": 0,
+      "topics": [],
+      "homepage": "https://centre-beauty-souad.vercel.app",
+      "updatedAt": "2026-10-20T08:34:23Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "knowledge-garden",
+      "url": "https://github.com/rayanakioud7/knowledge-garden",
+      "description": "everything about akioud rayan",
+      "language": "Jupyter Notebook",
+      "stars": 1,
+      "topics": [],
+      "homepage": "https://knowledge-garden-nine.vercel.app",
+      "updatedAt": "2026-10-15T22:19:09Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "snake-py",
+      "url": "https://github.com/rayanakioud7/snake-py",
+      "description": "A simple snake game built with pygame",
+      "language": "Python",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-10-13T08:13:30Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "CminiTorch",
+      "url": "https://github.com/rayanakioud7/CminiTorch",
+      "description": "A minimalist, dependency-free deep learning library written from scratch in pure C99/C11 that mimics PyTorch's core design.",
+      "language": "C",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-10-13T00:59:39Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "neetcode-submissions",
+      "url": "https://github.com/rayanakioud7/neetcode-submissions",
+      "description": "My NeetCode.io problem submissions",
+      "language": "Python",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-10-09T16:22:44Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "Foundations-Toolkit",
+      "url": "https://github.com/rayanakioud7/Foundations-Toolkit",
+      "description": "An implementation of the mathematical, algorithmic, and systems foundations required for Machine Learning Systems Engineering.",
+      "language": "Python",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-10-03T19:46:48Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "signlang",
+      "url": "https://github.com/rayanakioud7/signlang",
+      "description": "American Sign Language Recognition and Translation System",
+      "language": "Jupyter Notebook",
+      "stars": 1,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-05-29T12:50:29Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "rym-shuffler",
+      "url": "https://github.com/rayanakioud7/rym-shuffler",
+      "description": "an easy web app to shuffle your album collections in rateyourmusic when bored or don't know what to listen to",
+      "language": "HTML",
+      "stars": 0,
+      "topics": [],
+      "homepage": "https://rayan007.pythonanywhere.com/",
+      "updatedAt": "2026-03-30T20:56:56Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "SDID-portal-fullstack",
+      "url": "https://github.com/rayanakioud7/SDID-portal-fullstack",
+      "description": "Full Stack portal created for SDID students to Access Courses, submit projects and check grades.",
+      "language": "JavaScript",
+      "stars": 0,
+      "topics": [],
+      "homepage": null,
+      "updatedAt": "2026-01-06T23:20:26Z",
+      "archived": false,
+      "fork": false
+    },
+    {
+      "name": "sdid-portal-frontend",
+      "url": "https://github.com/rayanakioud7/sdid-portal-frontend",
+      "description": "React Frontend for SDID Portal- JEE 2nd half project",
+      "language": "JavaScript",
+      "stars": 0,
+      "topics": [],
+      "homepage": "",
+      "updatedAt": "2026-01-04T02:31:45Z",
+      "archived": false,
+      "fork": false
+    }
+  ]
+}

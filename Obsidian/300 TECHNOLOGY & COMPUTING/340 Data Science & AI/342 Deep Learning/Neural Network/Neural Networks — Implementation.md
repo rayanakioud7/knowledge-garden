@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-04-01'
+tags:
+- deep-learning
+- neural-networks
+- python
+- pytorch
+- tensorflow
+topics:
+- '[[Deep Learning]]'
+- '[[Neural Networks]]'
+- '[[Python]]'
+- '[[PyTorch]]'
+- '[[Tensorflow]]'
+---
+
 
 
 > **Prerequisites:** [[Neural Networks - Foundations]] · [[Neural Networks — Training]]

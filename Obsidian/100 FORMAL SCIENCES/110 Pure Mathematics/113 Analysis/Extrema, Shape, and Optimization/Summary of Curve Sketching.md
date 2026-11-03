@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-07-06'
+tags:
+- mathematics
+- functions
+- analysis
+- the-graph-of-a-function
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[The Graph of a Function]]'
+---
+
 Date: 2026-07-06
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[The Graph of a Function]]
 

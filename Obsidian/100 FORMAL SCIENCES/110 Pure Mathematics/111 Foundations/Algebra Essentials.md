@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-05-09'
+tags:
+- mathematics
+- foundations
+- prerequisites
+- algebra
+topics:
+- '[[Mathematics]]'
+- '[[Foundations]]'
+- '[[Prerequisites]]'
+- '[[Algebra]]'
+---
+
 Date: 2026-05-09
 Tags: [[Mathematics]], [[Foundations]], [[Prerequisites]], [[Algebra]]
 

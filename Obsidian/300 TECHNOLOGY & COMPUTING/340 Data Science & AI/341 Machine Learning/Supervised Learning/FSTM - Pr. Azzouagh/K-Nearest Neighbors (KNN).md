@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-01-11'
+tags:
+- mathematics
+- data-science
+- machine-learning
+- python
+- supervised-learning
+- r
+topics:
+- '[[Mathematics]]'
+- '[[Data Science]]'
+- '[[Machine Learning]]'
+- '[[Python]]'
+- '[[Supervised Learning]]'
+- '[[R]]'
+---
+
 Date: 2026-01-11
 Tags:  [[Mathematics]], [[Data Science]], [[Machine Learning]], [[Python]], [[Supervised Learning]], [[R]]
 

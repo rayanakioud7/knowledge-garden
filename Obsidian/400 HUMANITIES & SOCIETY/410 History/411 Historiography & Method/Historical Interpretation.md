@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-12-20'
+tags:
+- history
+- methodology
+- historiography
+- philosophy
+topics:
+- '[[History]]'
+- '[[Methodology]]'
+- '[[Historiography]]'
+- '[[Philosophy]]'
+---
+
 Date: 2025-12-20
 Tags: [[History]], [[Methodology]], [[Historiography]], [[Philosophy]]
 

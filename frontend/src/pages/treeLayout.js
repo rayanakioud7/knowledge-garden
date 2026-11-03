@@ -31,6 +31,11 @@ function weight(node) {
   return (node.noteCount || 0) + 1;
 }
 
+// Hub notes (Maps of Content) always lead their leaf cluster (stable order).
+function mocFirst(list) {
+  return [...list].sort((a, b) => (b.isMoc ? 1 : 0) - (a.isMoc ? 1 : 0));
+}
+
 function radiusFor(depth) {
   return 118 + (depth - 1) * 104;
 }
@@ -172,7 +177,7 @@ export function buildTreeLayout(treeData) {
   // reads as leaves even when a folder holds its notes in descendants.
   const collect = (b) => {
     const picked = [];
-    for (const n of b.notes) { picked.push(n); if (picked.length >= 6) break; }
+    for (const n of mocFirst(b.notes)) { picked.push(n); if (picked.length >= 6) break; }
     if (picked.length < 6) {
       for (const cpath of b.children) {
         const cb = out.byPath.get(cpath);
@@ -228,7 +233,7 @@ export function buildReveal(layout, focusPath) {
 // Bamboo-leaf sprigs for a branch's direct notes (笹葉 Sasa-ha).
 // ----------------------------------------------------------------------------
 export function leafSprig(branch, maxLeaves = MAX_LEAVES, notesOverride = null) {
-  const notes = notesOverride || branch.notes || [];
+  const notes = mocFirst(notesOverride || branch.notes || []);
   const leaves = [];
   if (notes.length === 0) return leaves;
   const count = Math.min(maxLeaves, notes.length);
@@ -250,6 +255,7 @@ export function leafSprig(branch, maxLeaves = MAX_LEAVES, notesOverride = null) 
       id: notes[i].id,
       title: notes[i].title,
       note: notes[i],
+      isMoc: !!notes[i].isMoc,
       twigStart: branch.tip,
       base,
       tip,
@@ -265,12 +271,4 @@ export function leafSprig(branch, maxLeaves = MAX_LEAVES, notesOverride = null) 
   return leaves;
 }
 
-// Category label anchor (left/right aligned to the bough tip).
-export function branchLabel(branch) {
-  const isLeft = Math.cos(branch.angle) < 0;
-  return {
-    x: branch.tip.x + (isLeft ? -26 : 26),
-    y: branch.tip.y - 16,
-    align: isLeft ? "right" : "left",
-  };
-}
+

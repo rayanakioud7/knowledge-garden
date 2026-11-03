@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-08-18'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+- limits
+- exponential-functions
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+- '[[Limits]]'
+- '[[Exponential Functions]]'
+---
+
 Date: 2026-08-18
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]], [[Limits]], [[Exponential Functions]]
 

@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 # 🚀 Local AI Coding Workflow: The Ultimate Cheat Sheet
 
 **Hardware Profile:** Ryzen 7 7700 | 32GB DDR5 | RX 7900XT (20GB VRAM)

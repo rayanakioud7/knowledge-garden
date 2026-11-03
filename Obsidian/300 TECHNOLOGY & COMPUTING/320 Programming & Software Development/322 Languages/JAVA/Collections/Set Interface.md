@@ -1,3 +1,18 @@
+---
+type: note
+date: '2025-11-24'
+tags:
+- java
+- oop
+- jfc---java-collection-framework
+- programming-language
+topics:
+- '[[JAVA]]'
+- '[[OOP]]'
+- '[[JFC - Java Collection Framework]]'
+- '[[Programming language]]'
+---
+
 Date: 2025-11-24
 Tags: [[JAVA]], [[OOP]],  [[JFC - Java Collection Framework|JFC]], [[Programming language]]
 

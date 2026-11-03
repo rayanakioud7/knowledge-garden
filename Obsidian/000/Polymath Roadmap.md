@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 Here is a comprehensive, dependency-aware roadmap designed to cover **all major domains of human knowledge**, structured progressively from foundations to synthesis. It’s organized into 9 phases + meta-layers, with clear learning dependencies, core topics, and verification methods. While no static list can capture every subfield forever (knowledge expands daily), this map covers ~95%+ of established teachable curricula worldwide, plus frontier and tacit domains.
 
 ---

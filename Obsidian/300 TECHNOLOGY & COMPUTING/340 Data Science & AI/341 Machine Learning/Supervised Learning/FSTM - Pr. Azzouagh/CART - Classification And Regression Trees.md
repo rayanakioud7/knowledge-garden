@@ -1,3 +1,24 @@
+---
+type: note
+date: '2026-01-12'
+tags:
+- mathematics
+- data-science
+- machine-learning
+- decision-tree
+- python
+- supervised-learning
+- r
+topics:
+- '[[Mathematics]]'
+- '[[Data Science]]'
+- '[[Machine Learning]]'
+- '[[Decision Tree]]'
+- '[[Python]]'
+- '[[Supervised Learning]]'
+- '[[R]]'
+---
+
 Date: 2026-01-12
 Tags:  [[Mathematics]], [[Data Science]], [[Machine Learning]], [[Decision Tree]],[[Python]], [[Supervised Learning]], [[R]]
 **Source Material:** Cours Arbre CART 2025 AZOUAGH

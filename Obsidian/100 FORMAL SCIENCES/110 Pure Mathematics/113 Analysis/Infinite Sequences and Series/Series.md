@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-09-29'
+tags:
+- mathematics
+- limits
+- analysis
+- sequences
+topics:
+- '[[Mathematics]]'
+- '[[Limits]]'
+- '[[Analysis]]'
+- '[[Sequences]]'
+---
+
 Date: 2026-09-29
 Tags: [[Mathematics]], [[Limits]], [[Analysis]], [[Sequences]]
 

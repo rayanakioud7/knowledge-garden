@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 ## The Revised Complete Setup Plan
 
 Now that I know everything, here is your precise action plan:

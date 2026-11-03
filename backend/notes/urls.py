@@ -9,6 +9,7 @@ urlpatterns = [
     path("notes/<str:note_id>/", views.note_detail, name="note-detail"),
     path("graph/", views.graph, name="graph"),
     path("tree/", views.tree, name="tree"),
+    path("mocs/", views.mocs, name="mocs"),
     path("tags/", views.tag_list, name="tag-list"),
     path("domains/", views.domains, name="domains"),
     path("status/", views.status, name="status"),

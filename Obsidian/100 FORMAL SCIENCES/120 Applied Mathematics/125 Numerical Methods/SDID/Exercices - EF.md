@@ -1,3 +1,9 @@
+---
+type: note
+tags:
+- note
+---
+
 
 
 # Résolution de l'Exercice — Méthode des Éléments Finis 1D

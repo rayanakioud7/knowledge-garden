@@ -1,3 +1,22 @@
+---
+type: note
+date: '2026-08-19'
+tags:
+- mathematics
+- functions
+- analysis
+- derivatives
+- limits
+- logarithmic-functions
+topics:
+- '[[Mathematics]]'
+- '[[Functions]]'
+- '[[Analysis]]'
+- '[[Derivatives]]'
+- '[[Limits]]'
+- '[[Logarithmic Functions]]'
+---
+
 Date: 2026-08-19
 Tags: [[Mathematics]], [[Functions]], [[Analysis]], [[Derivatives]], [[Limits]], [[Logarithmic Functions]]
 

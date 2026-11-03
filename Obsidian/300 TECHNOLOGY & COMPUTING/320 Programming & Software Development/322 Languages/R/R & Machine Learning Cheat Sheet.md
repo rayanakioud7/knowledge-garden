@@ -1,3 +1,19 @@
+---
+type: note
+tags:
+- r
+- programming-language
+- cheat-sheet
+- machine-learning
+- data-science
+topics:
+- '[[R]]'
+- '[[Programming language]]'
+- '[[Cheat sheet]]'
+- '[[Machine Learning]]'
+- '[[Data Science]]'
+---
+
 
 tags: [[R]], [[Programming language]], [[Cheat sheet]],[[Machine Learning]], [[Data Science]]
 

@@ -1,0 +1,662 @@
+---
+type: audit
+date: 2026-11-02
+tags:
+  - vault-maintenance
+---
+
+# Vault Audit — 2026-11-02
+
+## Applied cleanup
+
+- Inspected **518** visible Markdown files; hidden and trash folders excluded.
+- Updated **505** existing files, including two reusable templates.
+- Preserved **13** Excalidraw Markdown files byte for byte.
+- Added valid YAML to notes lacking it and retained existing metadata fields.
+- Copied explicit legacy topic links into quoted `topics` properties and derived searchable tags from those topics.
+- Retained original note bodies and legacy headers; template replacement is the only intentional body change.
+- No files renamed or moved; no attachments or settings changed.
+- Recovery snapshot: `.vault-maintenance/20261102-213205/before.zip`.
+
+## Metadata repairs
+
+- Added valid frontmatter above a pre-existing opening divider: 300 TECHNOLOGY & COMPUTING/340 Data Science & AI/342 Deep Learning/Neural Network/Neural Networks - Foundations.md
+- Recovered commented-out YAML tags: 500 ARTS & CULTURE/540 Film & Media/Films/The message (Al-risalah) - 1976.md
+
+## Findings requiring judgment
+
+- **54** originally empty notes (including intentional topic placeholders).
+- **0** duplicated note basenames.
+- **69** sync-conflict files, including configuration copies. Left untouched.
+- **520** distinct wiki-link targets not matched by this conservative filename scan. Some may be intentional future notes, aliases, or syntax the scan does not resolve.
+- **33** distinct unmatched attachment targets. Placeholder illustrations are included.
+
+No links were automatically rewritten. These findings are review candidates, not proof of broken links.
+
+## Originally empty notes
+
+- `000/000.Source Material/math/docs/Control Flow.md`
+- `000/000.Zettelkasten/B - Tags/Algorithm.md`
+- `000/000.Zettelkasten/B - Tags/Analysis.md`
+- `000/000.Zettelkasten/B - Tags/Array.md`
+- `000/000.Zettelkasten/B - Tags/Business Intelligence.md`
+- `000/000.Zettelkasten/B - Tags/C_Programming.md`
+- `000/000.Zettelkasten/B - Tags/Cheat sheet.md`
+- `000/000.Zettelkasten/B - Tags/Data Structure.md`
+- `000/000.Zettelkasten/B - Tags/Debugging.md`
+- `000/000.Zettelkasten/B - Tags/Derivatives.md`
+- `000/000.Zettelkasten/B - Tags/Differential Equations.md`
+- `000/000.Zettelkasten/B - Tags/Dot Product.md`
+- `000/000.Zettelkasten/B - Tags/Foundations.md`
+- `000/000.Zettelkasten/B - Tags/Gaussian Elimination.md`
+- `000/000.Zettelkasten/B - Tags/Geometry.md`
+- `000/000.Zettelkasten/B - Tags/History.md`
+- `000/000.Zettelkasten/B - Tags/Integral.md`
+- `000/000.Zettelkasten/B - Tags/Limits.md`
+- `000/000.Zettelkasten/B - Tags/Linear Combinations.md`
+- `000/000.Zettelkasten/B - Tags/Linear Independence.md`
+- `000/000.Zettelkasten/B - Tags/Linked Lists.md`
+- `000/000.Zettelkasten/B - Tags/Logic.md`
+- `000/000.Zettelkasten/B - Tags/Methodology.md`
+- `000/000.Zettelkasten/B - Tags/Networking.md`
+- `000/000.Zettelkasten/B - Tags/Optimization.md`
+- `000/000.Zettelkasten/B - Tags/Orthogonality.md`
+- `000/000.Zettelkasten/B - Tags/Prerequisites.md`
+- `000/000.Zettelkasten/B - Tags/Proofs.md`
+- `000/000.Zettelkasten/B - Tags/Python.md`
+- `000/000.Zettelkasten/B - Tags/Recherche Opérationnelle.md`
+- `000/000.Zettelkasten/B - Tags/Recursion.md`
+- `000/000.Zettelkasten/B - Tags/Sets.md`
+- `000/000.Zettelkasten/B - Tags/Trigonometry.md`
+- `000/000.Zettelkasten/B - Tags/United Nation.md`
+- `000/000.Zettelkasten/B - Tags/Vectors.md`
+- `000/000.Zettelkasten/Collection Interface.md`
+- `100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Proofs/Proofs Involving Conjunctions and Biconditionals.md`
+- `100 FORMAL SCIENCES/120 Applied Mathematics/122 Discrete Mathematics/Discrete Mathematics.md`
+- `300 TECHNOLOGY & COMPUTING/340 Data Science & AI/341 Machine Learning/Machine Learning.md`
+- `300 TECHNOLOGY & COMPUTING/340 Data Science & AI/341 Machine Learning/Supervised Learning/Supervised Learning.md`
+- `400 HUMANITIES & SOCIETY/410 History/419 Historical Figures & Primary Sources/Scientists/Charles Darwin.md`
+- `400 HUMANITIES & SOCIETY/410 History/419 Historical Figures & Primary Sources/Scientists/Fibonacci.md`
+- `400 HUMANITIES & SOCIETY/410 History/419 Historical Figures & Primary Sources/Scientists/Pythagoras.md`
+- `Algorithm Analysis.md`
+- `Ancient Egypt.md`
+- `Animalia.md`
+- `Aristotle.md`
+- `Artificial intelligence.md`
+- `Australopithecus.md`
+- `Composition.md`
+- `Islamic Golden Age.md`
+- `Japan.md`
+- `Judaism.md`
+- `Latter Day Saint movement.md`
+
+## Duplicate basenames
+
+None.
+
+## Unmatched attachment targets
+
+- `Business intelligence concepts - MDSI SDID.pdf`
+- `Cours_SVM_2025_AZOUAGH.pdf`
+- `FDR_pearlharborspeech_64kb.mp3`
+- `PLACEHOLDER_HAVING_Filtrage_Des_Groupes.png`
+- `Pasted image 20251030130541.png`
+- `Pasted image 20251216183619.png`
+- `Pasted image 20260205124729.png`
+- `Pasted image 20260205214044.png`
+- `Pasted image 20260205232634.png`
+- `Relations-25_251001_103911.pdf`
+- `cours_Arbre_CART_2025_AZOUAGH-29-73.pdf`
+- `cours_Arbre_CHAID_2025_AZOUAGH.pdf`
+- `placeholder_arithmetic_vs_geometry.png`
+- `placeholder_atomist_vs_continuous_geometry.png`
+- `placeholder_book_x_euclid_irrationals.png`
+- `placeholder_city_planning_square_diagonal.png`
+- `placeholder_comparison_babylonian_tablet_vs_euclid.png`
+- `placeholder_egyptian_land_surveying_nile.png`
+- `placeholder_euclid_elements_manuscript.png`
+- `placeholder_euclid_teaching_geometry.png`
+- `placeholder_eupalinus_aqueduct_samos.png`
+- `placeholder_greco_roman_mathematicians_map.png`
+- `placeholder_greek_abacus_stone.png`
+- `placeholder_greek_math_legacy_modern.png`
+- `placeholder_incommensurable_lengths_diagram.png`
+- `placeholder_number_line_irrationals.png`
+- `placeholder_polygon_circle_comparison.png`
+- `placeholder_portraits_pre_euclidean_mathematicians.png`
+- `placeholder_practical_vs_theoretical_math.png`
+- `placeholder_pythagorean_triple_right_triangle.png`
+- `placeholder_timeline_greek_mathematics.png`
+- `placeholder_unit_square_diagonal_sqrt2.png`
+- `placeholder_zeno_paradox_motion.png`
+
+## Unmatched note targets
+
+- `'a', 'b'`
+- `'col1', 'col2'`
+- `'col1', 'col3'`
+- `'col1','col2'`
+- `0,1,2`
+- `00. preliminary`
+- `01. Low-Level & Referential Arrays`
+- `01. Recursion Fundamentals & Examples`
+- `01. The Perceptron — The Atom of Neural Networks`
+- `01. The Perceptron — The Atom of Neural Networks\`
+- `02 — The Linear Layer (MLP)`
+- `02. Analyzing Recursive Algorithms`
+- `02. Dynamic Arrays & Amortized Analysis`
+- `02. The Linear Layer (MLP) — Many Perceptrons Working Together`
+- `02. The Linear Layer (MLP) — Many Perceptrons Working Together\`
+- `03 — What Learning Means`
+- `03. Python Sequence Operations & Complexity`
+- `03. Recursion Pitfalls & Stack Limits`
+- `03. What Learning Means — Backpropagation Without the Jargon`
+- `03. What Learning Means — Backpropagation Without the Jargon\`
+- `04. Array Applications & Insertion Sort`
+- `04. Linear Projection — The Matrix Multiplication in Detail`
+- `04. Linear Projection — The Matrix Multiplication in Detail\`
+- `04. Recursion Patterns (Linear, Binary, Multiple)`
+- `05 — Activation Functions`
+- `05. Activation Functions — ReLU and GELU`
+- `05. Activation Functions — ReLU and GELU\`
+- `05. Multidimensional Arrays`
+- `05. Recursive Design & Tail Call Optimization`
+- `06 — Layer Normalisation\`
+- `07. Dropout — How Random Disabling Makes the Model Stronger`
+- `07. Dropout — How Random Disabling Makes the Model Stronger\`
+- `08. The 1D Convolution — What Kernel Size 3 Actually Sees`
+- `08. The 1D Convolution — What Kernel Size 3 Actually Sees\`
+- `09. Residual Connection — Why We Add the Input Back`
+- `09. Residual Connection — Why We Add the Input Back\`
+- `1, 0, 1, 0`
+- `1, 3, 1`
+- `1,3,5`
+- `1. Concepts de Base - La Base de Données`
+- `1. Cybersécurité — Fondamentaux, Anatomie d'une Attaque et Méthodologie Offensive`
+- `1. Derivatives and Rates of Change`
+- `1. Four Ways to Represent a Function`
+- `1. Réseaux et Protocoles - Concepts de Base et Modèle OSI`
+- `1.5`
+- `1.5, 2., 3.`
+- `10 — Positional Encoding`
+- `10. Positional Encoding — How Sine Waves Tell the Transformer Where You Are`
+- `10. Positional Encoding — How Sine Waves Tell the Transformer Where You Are\`
+- `11. Self-Attention — The Heart of the Transformer`
+- `11. Self-Attention — The Heart of the Transformer\`
+- `12. Multi-Head Attention`
+- `12. Multi-Head Attention\`
+- `13.  The Feed-Forward Block`
+- `13.  The Feed-Forward Block\`
+- `14. Global Average Pooling`
+- `15. CrossEntropyLoss`
+- `2. Catalog of Essential Functions`
+- `2. Les Clauses `WHERE` et 'ORDER BY'`
+- `2. Réseaux et Protocoles - Théorèmes Fondamentaux`
+- `2. The Derivative as a Function`
+- `2.5`
+- `3. Differentiation Formulas`
+- `3. Fonctions Mono-Ligne SQL`
+- `3. New Functions from Old Functions`
+- `3. Réseaux et Protocoles — Sous-couche MAC, TCP-IP et Adressage`
+- `4. Derivatives of Trigonometric Functions`
+- `4. Principe des Jointures`
+- `4. Tangent and Velocity Problems`
+- `5. GROUP BY et HAVING`
+- `5. The Chain Rule`
+- `5. The Limit of a Function`
+- `6. Implicit Differentiation`
+- `6. Limit Laws`
+- `7. Precise Definition of a Limit`
+- `8. Continuity`
+- `ACSI`
+- `ARP`
+- `Absolute Convergence`
+- `Abstract Algebra`
+- `Adressage IP`
+- `Agrégation`
+- `Algorithmes de Tri`
+- `Algorithmique`
+- `Algorithms`
+- `Allocation Dynamique`
+- `Ancient Egyptian Mathematics\`
+- `Ancient Egyptian deities`
+- `Ancient Greece`
+- `Ancient Rome`
+- `Andreas Vesalius`
+- `Annales School`
+- `Annelida`
+- `Anthropology`
+- `Antiphon`
+- `Appels Système`
+- `Applications in Learning`
+- `Archaebacteria`
+- `Archaeology`
+- `Archytas`
+- `Archytas of Tarentum`
+- `Ardipithecus`
+- `Area`
+- `Arithmetic`
+- `Art`
+- `Arthropoda`
+- `Arthropods`
+- `Aschelminthes`
+- `Autojointure`
+- `Babylon`
+- `Backpropagation`
+- `Barnacles`
+- `Bash`
+- `Basis`
+- `Bellman-Ford`
+- `Bending & Rolling`
+- `Berger & Luckmann`
+- `Biology`
+- `Birds`
+- `Block Matrices`
+- `Blue-green Algae`
+- `Boucles`
+- `Brahmi script`
+- `Bryophyta`
+- `Bryson`
+- `Buddhism`
+- `C`
+- `CASE`
+- `CNN`
+- `CSMA`
+- `Calcul Scientifique`
+- `Calculus`
+- `Calligraphy`
+- `Cambrian Period`
+- `Cantor’s Remarkable Theorem and the Rationals’ Lack of the Least Upper Bound Property`
+- `Carl Friedrich Gauss`
+- `Carlyle`
+- `Category Theory`
+- `Cellulose`
+- `Cetaceans`
+- `Chinese Characters`
+- `Chinese calligraphy`
+- `Chinua Achebe`
+- `Chitin`
+- `Chlorophyll`
+- `Chordata`
+- `Cicero`
+- `Class Struggle`
+- `Clean Code`
+- `Cnidaria`
+- `Codex`
+- `Column Space`
+- `Combinatorics`
+- `Commandes Unix`
+- `Commutative Algebra`
+- `Comparison Tests`
+- `Complete Solution`
+- `Complexité Algorithmique`
+- `Computational Cost`
+- `Conquest of Mexico`
+- `Convergence Tests`
+- `Conversion`
+- `Convex Optimization`
+- `Convolution`
+- `Coordinates`
+- `Couche IP`
+- `Cuneiform`
+- `Cybersecurity`
+- `DECODE`
+- `DELETE`
+- `DNA`
+- `Data Structures`
+- `Decision Tree`
+- `Deep Learning`
+- `Deir el-Medina`
+- `Deisenroth`
+- `Democritus`
+- `Demotic script`
+- `Deque Interface`
+- `Descriptive Statistics`
+- `Determinant`
+- `Devanagari`
+- `Dicots`
+- `Differentiation`
+- `Dijkstra`
+- `Dimension`
+- `Discrete Math`
+- `Dispersion`
+- `Diwan`
+- `Diwani`
+- `Dualité`
+- `EDP`
+- `ENSAM`
+- `ENSET`
+- `ENSIASDT`
+- `Earthworms`
+- `Echinodermata`
+- `Ecology`
+- `Education`
+- `Eigenvalues and Eigenvectors`
+- `Ema`
+- `Equijointure`
+- `Ernst Mayr`
+- `Euclid`
+- `Euclid of Alexandria`
+- `Euclid's Elements`
+- `Euclidean Geometry`
+- `Eudoxus`
+- `Eudoxus of Cnidus`
+- `Euglena`
+- `Eukaryotes`
+- `Evolution`
+- `Excel`
+- `Expressions Régulières`
+- `Field Theory`
+- `Filtering`
+- `Fishes`
+- `Flagellum`
+- `Flot Maximal`
+- `Fonctions Mono-Ligne`
+- `Fonctions de Groupe`
+- `Ford-Fulkerson`
+- `Fossil Records`
+- `Four Fundamental Subspaces`
+- `Fragmentation`
+- `Fungi`
+- `Fungi\`
+- `GROUP BY`
+- `Galois Theory`
+- `Game Theory`
+- `Gauss-Jordan Elimination`
+- `Genealogy`
+- `Genetics`
+- `Genie Logiciel`
+- `Genus`
+- `Goodhart's Law`
+- `Goshuin`
+- `Gottfried Wilhelm Leibniz`
+- `Grantha script`
+- `Graph Theory`
+- `Greek`
+- `Greek Philosophy`
+- `Group Theory`
+- `Groupes`
+- `Guitar`
+- `Gustave Doré`
+- `HAVING`
+- `Han dynasty`
+- `Harmonics`
+- `Hellenistic Period`
+- `Heracleitus`
+- `Herodotus`
+- `Hieratic script`
+- `Hieroglyphics`
+- `Hinduism deities`
+- `Hipparchus`
+- `Hippocrates of Chios`
+- `Histogramme`
+- `Historiography`
+- `History of Mathematics`
+- `Hominids`
+- `Homo`
+- `Homo erectus`
+- `Homo habilis`
+- `Homo sapiens`
+- `Homological Algebra`
+- `Horace`
+- `House of Wisdom`
+- `Hypatia of Alexandria`
+- `INSERT`
+- `Input/Output`
+- `Insects`
+- `Integral Test`
+- `Integration`
+- `Invertebrates`
+- `Irrational Numbers`
+- `Isaac Newton`
+- `Islam`
+- `Jin dynasty`
+- `John Ray`
+- `Jointure Externe`
+- `Jointures`
+- `Julius Caesar`
+- `Kernel`
+- `Kharosthi`
+- `Kill Chain`
+- `Kufic`
+- `LMD`
+- `LU Factorization`
+- `Learning`
+- `Leonhard Euler`
+- `Level Curves`
+- `Linear Programming`
+- `Linguistics`
+- `Linux`
+- `Listes Chaînées`
+- `MAC`
+- `MCD`
+- `MITRE ATT&CK`
+- `MML`
+- `Machine Learning Theory`
+- `Maclaurin Series`
+- `Magnoliophyta`
+- `Mammals`
+- `Manuscripts`
+- `Markov Chain`
+- `Marxism`
+- `Marxism\`
+- `Mathematical Logic`
+- `Mathematical Structures`
+- `Mathematics for Machine Learning`
+- `Mathematics: Nature & Evolution`
+- `Matlab`
+- `Matplotlib`
+- `Matrix Algebra`
+- `Matrix Decompositions`
+- `Matrix Operations`
+- `Measure Theory`
+- `Memory Palace Variations`
+- `Memory_Management`
+- `Merise`
+- `Mesopotamian Mathematics\`
+- `Mesopotamian religion`
+- `Mnemonics`
+- `Module Theory`
+- `Modélisation`
+- `Mollusca`
+- `Mollusks`
+- `Moments`
+- `Monera`
+- `Monocots`
+- `Morocco`
+- `Multicast`
+- `Multivariable Calculus`
+- `Music`
+- `Máel Muire mac Céilechair`
+- `Mémoire`
+- `Méthodes mathématiques pour linformatique - 5e éd. - Cours et exercices corrigés Cours et exercices corrigés (Jacques Vélu) (Z-Library).djvu`
+- `NLP`
+- `NVL`
+- `Napoleon`
+- `Naskh`
+- `Neanderthals`
+- `Neural Networks`
+- `Notation de Landau`
+- `Note Name`
+- `Nullspace`
+- `NumPy`
+- `Number Theory`
+- `ORDER BY`
+- `OSINT`
+- `Object Oriented`
+- `Ofuda`
+- `Operating Systems`
+- `Oracle`
+- `Orrorin tugenensis`
+- `Orthogonal Complements`
+- `Ottoman Empire`
+- `PCA`
+- `PY0101EN-5-1-Numpy1D.ipynb`
+- `PY0101EN-5-2-Numpy2D.ipynb`
+- `Paleontology`
+- `Pandas`
+- `Parametric Equations`
+- `Paramètres de Position`
+- `Paranthropus`
+- `Parmenides`
+- `Partial Differential Equations`
+- `Pecia System`
+- `Pentest`
+- `Peptidoglycan`
+- `Permissions`
+- `Permutations`
+- `Philosophy`
+- `Philosophy of Mathematics`
+- `Physiology`
+- `Plantae`
+- `Plato`
+- `Platyhelminthes`
+- `Pointeurs`
+- `Porifera`
+- `Positional List ADT`
+- `Post-Optimisation`
+- `Power BI`
+- `Primary Sources`
+- `Printing Press`
+- `Probability Theory`
+- `Processus Stochastiques`
+- `Prokaryotes`
+- `Protagoras`
+- `Protista`
+- `Protocoles`
+- `Pseudo-code`
+- `Psychology`
+- `PyTorch`
+- `Pythagoras of Samos`
+- `Pythagorean Theorem`
+- `Pythagoreans`
+- `Qin dynasty`
+- `Querying`
+- `Queue Interface`
+- `Quran`
+- `R`
+- `RNA`
+- `Radius of Convergence`
+- `Rank`
+- `Ratio Test`
+- `Recherche`
+- `Reference`
+- `Regex`
+- `Reptiles`
+- `Ring Theory`
+- `Roman Empire`
+- `Root Test`
+- `Row Echelon Form`
+- `Réseaux`
+- `SI vs Informatique`
+- `SVD`
+- `Sahelanthropus tchadensis`
+- `Science`
+- `Scikit-Learn`
+- `Scripting`
+- `Scrivener`
+- `Seleucid`
+- `Set Theory`
+- `Shang dynasty`
+- `Shell`
+- `Shennong`
+- `Shōsōin`
+- `Signal vs Noise`
+- `Sima Qian`
+- `Simplexe`
+- `Softmax Regression`
+- `Sorting`
+- `Sous-Interrogations`
+- `Sous-réseaux`
+- `Space Curves`
+- `Species`
+- `Species Concept`
+- `Spectral-Theorem`
+- `Statistics`
+- `Statistics Fundamentals`
+- `Stewart`
+- `Strang`
+- `Structures`
+- `Structures de Contrôle`
+- `Structures de Données`
+- `Subqueries`
+- `Subspaces`
+- `Sumer`
+- `Sumerian`
+- `Sumerian Literature`
+- `Sumerians`
+- `Symmetric Matrices`
+- `Systematics`
+- `Systems_Engineering`
+- `Système de Fichiers`
+- `Systèmes d'Information`
+- `TCP`
+- `TCP/IP`
+- `Tableaux`
+- `Tang dynasty`
+- `Tangent Vectors`
+- `Taylor Series`
+- `Tensorflow`
+- `Text Mining`
+- `Thales of Miletus`
+- `The Characterization of the Real Numbers`
+- `The Data Science Process`
+- `Theaetetus`
+- `Theaetetus of Athens`
+- `Theophrastus`
+- `Theory`
+- `Things Fall Apart`
+- `Thuluth`
+- `Tironian notes`
+- `Tolstoy`
+- `Transformers`
+- `Tri`
+- `UDP`
+- `UML`
+- `UPDATE`
+- `Uni Notes`
+- `Universal Algebra`
+- `Unix`
+- `Unsupervised Learning`
+- `Uthman ibn Affan`
+- `Utilisateurs`
+- `Variables`
+- `Variables Shell`
+- `Vector Calculus`
+- `Vector Functions`
+- `Velleman`
+- `Vertebrates`
+- `Virus`
+- `Viruses`
+- `Volume`
+- `WHERE`
+- `War and Peace`
+- `World War I`
+- `Worms`
+- `Zayd ibn Thabit`
+- `Zeno of Elea`
+- `Zhou dynasty`
+- `[-0.12, -1.33,  1.09,  0.36`
+- `[0.1, -0.1, 0.2, -0.3`
+- `[0.2, 0.1, 0.3, 0.4`
+- `[0.3, -0.2, 0.8, 0.5`
+- `[0.3, 0.0, 0.5, 0.1`
+- `[0.32, -1.33, 1.09, 0.36`
+- `[0.5, -0.5`
+- `chmod`
+- `find`
+- `grep`
+- `learning-techniques`
+- `malloc`
+- `memory`
+- `mnemonics`
+- `umask`
+- `x_new`
+
+## Tag naming collisions
+
+Distinct explicit topic targets yielding the same tag are listed below. Their original topic links remain separate.
+
+- `functions`: `100 FORMAL SCIENCES/110 Pure Mathematics/111 Foundations/Functions/Functions`, `Functions`
+- `logarithmic-functions`: `100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Exponential and Logarithmic Functions/Logarithmic Functions`, `Logarithmic Functions`
+- `java`: `JAVA`, `JAVA `

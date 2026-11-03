@@ -6,11 +6,14 @@ import SectionTitle from "../components/SectionTitle.jsx";
 // dialog (no LaTeX toolchain needed). "Print / Save as PDF" uses a print
 // stylesheet that strips the app chrome.
 export default function CV() {
+  const [error, setError] = useState(false);
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    api.cv().then(setData).catch(() => {});
+    api.cv().then(setData).catch(() => setError(true));
   }, []);
+
+  if (error) return <div role="alert" className="p-10">Unable to load this page. <button className="link" onClick={() => window.location.reload()}>Try again</button></div>;
 
   if (!data) return <div className="p-10 label">Loading…</div>;
 

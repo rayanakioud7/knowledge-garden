@@ -1,3 +1,20 @@
+---
+type: note
+date: '2026-01-20'
+tags:
+- mathematics
+- data-science
+- geometry
+- optimization
+- linear-programming
+topics:
+- '[[Mathematics]]'
+- '[[Data Science]]'
+- '[[Geometry]]'
+- '[[Optimization]]'
+- '[[Linear Programming]]'
+---
+
 Date: 2026-01-20
 Tags: [[Mathematics]], [[Data Science]], [[Geometry]], [[Optimization]], [[Linear Programming]]
 

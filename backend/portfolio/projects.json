@@ -1,0 +1,166 @@
+[
+  {
+    "repo": "CminiTorch",
+    "slug": "cminitorch",
+    "title": "CminiTorch",
+    "category": "ML systems",
+    "featured": true,
+    "headline": "Tensors, automatic differentiation, and neural networks in C.",
+    "summary": "A dependency-free C library with tensors, reverse-mode automatic differentiation and trainable neural networks.",
+    "tags": [
+      "C11",
+      "Autograd",
+      "Transformers"
+    ],
+    "bullets": [
+      "Dynamic computation graphs with shared parameters and topological backward traversal.",
+      "CNN and causal Transformer layers, SGD and Adam, plus scoped memory ownership.",
+      "Finite-difference gradient checks for operators and complete networks."
+    ],
+    "year": "2026",
+    "order": 0
+  },
+  {
+    "repo": "signlang",
+    "slug": "signlang",
+    "title": "Sign Language Recognition",
+    "category": "Machine learning",
+    "featured": true,
+    "headline": "Local ASL recognition with a native desktop interface.",
+    "summary": "An ASL recognition system combining a training pipeline with a native desktop application.",
+    "tags": [
+      "PyTorch",
+      "MediaPipe",
+      "PySide6",
+      "ROCm"
+    ],
+    "bullets": [
+      "Landmark-based features feed a CNN and Transformer architecture.",
+      "Recognition, recording and inference settings live in a PySide6 desktop app.",
+      "Reported evaluation: 86.89% Top-1 on PopSign with six unseen signers across 250 signs."
+    ],
+    "year": "2026",
+    "order": 1
+  },
+  {
+    "repo": "Foundations-Toolkit",
+    "slug": "foundations-toolkit",
+    "title": "Foundations Toolkit",
+    "category": "Systems & mathematics",
+    "featured": true,
+    "headline": "Memory management, data structures, and linear algebra.",
+    "summary": "Implementations of memory management, data structures and linear algebra for ML systems engineering.",
+    "tags": [
+      "C",
+      "Python",
+      "Linear algebra"
+    ],
+    "bullets": [
+      "Manual memory management and dynamic arrays in C.",
+      "Python data structures and a matrix class with Gaussian elimination.",
+      "A learn-by-building approach connecting derivations, implementation and benchmarks."
+    ],
+    "year": "2026",
+    "order": 2
+  },
+  {
+    "repo": "SDID-portal-fullstack",
+    "slug": "sdid-portal-fullstack",
+    "title": "SDID Academic Portal",
+    "category": "Web applications",
+    "featured": false,
+    "headline": "Course materials, assignments, and grading.",
+    "summary": "A collaborative academic portal for course materials, submissions, grading and administration.",
+    "tags": [
+      "Spring Boot",
+      "React",
+      "MySQL"
+    ],
+    "bullets": [
+      "Role-based workflows for administrators, instructors and students.",
+      "Separated API and frontend with course and submission management.",
+      "Built with Mohammed Sabri and Anas Joundy, as credited in the repository."
+    ],
+    "year": "2026",
+    "order": 3
+  },
+  {
+    "repo": "knowledge-garden",
+    "slug": "knowledge-garden",
+    "title": "Knowledge Garden",
+    "category": "Web applications",
+    "featured": false,
+    "headline": "An Obsidian reader and engineering portfolio.",
+    "summary": "The website you are reading: an Obsidian reader, linked knowledge library and engineering portfolio.",
+    "tags": [
+      "Django",
+      "React",
+      "Markdown"
+    ],
+    "bullets": [
+      "Markdown notes become searchable pages with math, links and backlinks.",
+      "A Dewey-style subject directory connects notes and maps of content.",
+      "A Vercel frontend proxies requests to a PythonAnywhere API."
+    ],
+    "year": "2026",
+    "order": 4
+  },
+  {
+    "repo": "centre-beauty-souad",
+    "slug": "centre-beauty-souad",
+    "title": "Centre Beauty Souad",
+    "category": "Web applications",
+    "featured": false,
+    "headline": "A service catalog and booking website.",
+    "summary": "A responsive salon website with searchable services, a package calculator and WhatsApp booking.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "bullets": [
+      "Filterable service catalog and interactive before/after comparison.",
+      "A price calculator assembles a booking message for WhatsApp.",
+      "A static site deployed on Vercel."
+    ],
+    "year": "2026",
+    "order": 5
+  },
+  {
+    "repo": "rym-shuffler",
+    "slug": "rym-shuffler",
+    "title": "RateYourMusic Shuffler",
+    "category": "Web applications",
+    "featured": false,
+    "headline": "An album picker for a RateYourMusic collection.",
+    "summary": "A small Flask app that picks an album from pasted RateYourMusic collection text.",
+    "tags": [
+      "Flask",
+      "Python",
+      "HTML"
+    ],
+    "bullets": [
+      "Parses collection text without scraping or relying on an RYM API.",
+      "Minimum-rating filters narrow the listening choices.",
+      "Links the selected album to YouTube and Spotify searches."
+    ],
+    "year": "2026",
+    "order": 6
+  },
+  {
+    "repo": "Python-Avance",
+    "slug": "python-avance",
+    "title": "Python Avancé",
+    "category": "Coursework",
+    "featured": false,
+    "headline": "Advanced Python workshops and notebooks.",
+    "summary": "IAGI workshops and notebooks for the Advanced Python module at ENSAM.",
+    "tags": [
+      "Python",
+      "Jupyter"
+    ],
+    "bullets": [],
+    "year": "2026",
+    "order": 7
+  }
+]

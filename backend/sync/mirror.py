@@ -30,7 +30,7 @@ _MIRROR_SUFFIXES = {
     ".md", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".pdf",
 }
 # Path fragments that are never mirrored.
-_IGNORED_FRAGMENTS = (".obsidian", ".trash", "Excalidraw", ".stfolder", "z.raw notes")
+_IGNORED_FRAGMENTS = (".obsidian", ".trash", "excalidraw", ".stfolder", "z.raw notes")
 
 
 def _is_ignored(path: Path) -> bool:
@@ -93,7 +93,7 @@ class VaultMirror:
                 continue
             target = self.dest / rel
             try:
-                if target.exists() and target.stat().st_size == path.stat().st_size:
+                if target.exists() and target.stat().st_size == path.stat().st_size and target.stat().st_mtime_ns == path.stat().st_mtime_ns:
                     continue  # unchanged
             except OSError:
                 pass

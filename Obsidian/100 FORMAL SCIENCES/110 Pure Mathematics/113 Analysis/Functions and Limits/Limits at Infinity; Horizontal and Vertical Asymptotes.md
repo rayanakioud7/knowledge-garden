@@ -1,3 +1,18 @@
+---
+type: note
+date: '2026-07-06'
+tags:
+- mathematics
+- analysis
+- functions
+- limits
+topics:
+- '[[Mathematics]]'
+- '[[Analysis]]'
+- '[[Functions]]'
+- '[[Limits]]'
+---
+
 Date: 2026-07-06
 Tags:[[Mathematics]], [[Analysis]], [[Functions]], [[Limits]]
 

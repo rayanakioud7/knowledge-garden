@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-24'
+tags:
+- java
+- programming-language
+- cheat-sheet
+topics:
+- '[[JAVA]]'
+- '[[Programming language]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2025-12-24
 Tags: [[JAVA]], [[Programming language]], [[Cheat sheet]]
 

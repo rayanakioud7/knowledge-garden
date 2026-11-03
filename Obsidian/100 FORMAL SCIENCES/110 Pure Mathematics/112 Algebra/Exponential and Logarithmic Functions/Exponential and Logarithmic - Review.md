@@ -1,3 +1,21 @@
+---
+type: note
+date: '2026-05-20'
+tags:
+- mathematics
+- algebra
+- exponential-functions
+- logarithmic-functions
+- cheat-sheet
+topics:
+- '[[Mathematics]]'
+- '[[Algebra]]'
+- '[[Exponential Functions]]'
+- '[[100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Exponential and Logarithmic
+  Functions/Logarithmic Functions]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2026-05-20
 Tags: [[Mathematics]], [[Algebra]], [[Exponential Functions]], [[100 FORMAL SCIENCES/110 Pure Mathematics/112 Algebra/Exponential and Logarithmic Functions/Logarithmic Functions]], [[Cheat sheet]]
 

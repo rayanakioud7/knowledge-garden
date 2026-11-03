@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { api } from "../api.js";
+import { getTree } from "../lib/gardenData.js";
 
 export default function FolderTree() {
   const [tree, setTree] = useState(null);
@@ -12,8 +12,7 @@ export default function FolderTree() {
 
   const fetchTree = () => {
     setTreeError(false);
-    api
-      .tree()
+    getTree()
       .then((data) => {
         setTree(data);
         setTreeError(false);
@@ -121,6 +120,7 @@ export default function FolderTree() {
       {/* Filter input */}
       <div className="mb-2 px-1">
         <input
+          aria-label="Filter folders and notes"
           type="search"
           placeholder="Filter files…"
           value={filter}
@@ -167,6 +167,7 @@ function TreeNode({ node, expanded, toggle, filter, depth = 0 }) {
   return (
     <div className="relative">
       <button
+        aria-expanded={Boolean(isOpen)}
         onClick={() => toggle(node.path)}
         className="group flex w-full items-center justify-between gap-1.5 px-1.5 py-1 text-left transition-colors hover:bg-paper-shade"
         style={{ paddingLeft: `${depth * 0.75 + 0.375}rem` }}

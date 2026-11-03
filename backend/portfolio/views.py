@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import time
+import json
+from pathlib import Path
 from typing import Dict, List
 
 import requests
@@ -13,7 +15,8 @@ from rest_framework.response import Response
 from . import data
 
 # Small in-process cache so we don't hammer the GitHub API on every request.
-_repo_cache: Dict[str, dict] = {}
+_snapshot = json.loads(Path(__file__).with_name("github_snapshot.json").read_text(encoding="utf-8"))
+_repo_cache: Dict[str, dict] = {r["name"].lower(): r for r in _snapshot["repositories"]}
 _repo_cache_ts: float = 0.0
 _CACHE_TTL = 900  # 15 minutes
 
@@ -30,11 +33,14 @@ def _fetch_repos() -> Dict[str, dict]:
     token = data.github_token()
     if token:
         headers["Authorization"] = f"Bearer {token}"
+    _repo_cache_ts = now  # throttle failed requests as well as successful ones
     try:
         resp = requests.get(url, headers=headers, timeout=2.5)
         if resp.status_code == 200:
             repos = {}
             for r in resp.json():
+                if r.get("fork"):
+                    continue
                 repos[r["name"].lower()] = {
                     "name": r["name"],
                     "url": r["html_url"],
@@ -43,6 +49,9 @@ def _fetch_repos() -> Dict[str, dict]:
                     "stars": r.get("stargazers_count", 0),
                     "topics": r.get("topics", []),
                     "fork": r.get("fork", False),
+                    "homepage": r.get("homepage"),
+                    "updatedAt": r.get("pushed_at"),
+                    "archived": r.get("archived", False),
                 }
             _repo_cache = repos
             _repo_cache_ts = now
@@ -85,28 +94,31 @@ def cv(request):
 
 @api_view(["GET"])
 def projects(request):
-    """Project cards enriched with live GitHub metadata when available."""
+    """Curated work plus remaining public repositories, with an offline snapshot."""
     repos = _fetch_repos()
-    cards: List[dict] = []
-    for p in data.PROJECTS:
-        card = dict(p)
-        card["github"] = None
-        repo_key = (p.get("repo") or "").lower()
-        if repo_key and repo_key in repos:
-            card["github"] = repos[repo_key]
-        elif p.get("repo"):
-            card["github"] = {
-                "name": p["repo"],
-                "url": f"https://github.com/{data.GITHUB_USERNAME}/{p['repo']}",
-                "description": None,
-                "language": None,
-                "stars": 0,
-                "topics": [],
-                "fork": False,
-            }
+    cards = []
+    seen = set()
+    for project in data.PROJECTS:
+        card = dict(project)
+        key = project["repo"].lower()
+        seen.add(key)
+        card["github"] = repos.get(key)
         cards.append(card)
-    featured = [c for c in cards if c.get("featured")]
-    rest = [c for c in cards if not c.get("featured")]
-    featured.sort(key=lambda c: str(c.get("year", "")), reverse=True)
-    rest.sort(key=lambda c: str(c.get("year", "")), reverse=True)
-    return Response({"featured": featured, "other": rest})
+    for key, repo in repos.items():
+        if key in seen or repo.get("fork"):
+            continue
+        cards.append({
+            "slug": key, "repo": repo["name"], "title": repo["name"],
+            "summary": repo.get("description") or "Explore the source and documentation on GitHub.",
+            "category": "More repositories", "featured": False,
+            "tags": [repo["language"]] if repo.get("language") else [],
+            "bullets": [], "github": repo,
+        })
+    return Response({
+        "featured": [c for c in cards if c.get("featured")],
+        "other": [c for c in cards if not c.get("featured")],
+        "independent": data.INDEPENDENT_PROJECTS,
+        "repositoryCount": len(repos),
+        "reviewedAt": _snapshot["checkedAt"],
+        "profileUrl": f"https://github.com/{data.GITHUB_USERNAME}",
+    })

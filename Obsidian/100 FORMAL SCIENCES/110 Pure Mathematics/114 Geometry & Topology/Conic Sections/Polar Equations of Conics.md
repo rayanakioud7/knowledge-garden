@@ -1,3 +1,16 @@
+---
+type: note
+date: '2026-06-20'
+tags:
+- mathematics
+- geometry
+- polar-coordinates
+topics:
+- '[[Mathematics]]'
+- '[[Geometry]]'
+- '[[Polar Coordinates]]'
+---
+
 Date: 2026-06-20
 Tags: [[Mathematics]], [[Geometry]], [[Polar Coordinates]]
 

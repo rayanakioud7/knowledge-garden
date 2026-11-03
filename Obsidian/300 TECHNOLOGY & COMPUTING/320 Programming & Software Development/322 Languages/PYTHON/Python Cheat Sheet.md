@@ -1,3 +1,16 @@
+---
+type: note
+date: '2025-12-24'
+tags:
+- python
+- programming-language
+- cheat-sheet
+topics:
+- '[[Python]]'
+- '[[Programming language]]'
+- '[[Cheat sheet]]'
+---
+
 Date: 2025-12-24
 Tags: [[Python]], [[Programming language]], [[Cheat sheet]]
 
